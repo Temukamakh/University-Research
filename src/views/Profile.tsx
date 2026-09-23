@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion'
 import { useMemo, useRef, useState } from 'react'
-import { BookOpenCheck, Database, Download, GraduationCap, Link2, RotateCcw, Upload } from 'lucide-react'
+import { BookOpenCheck, Database, Download, Flag, GraduationCap, Lightbulb, Link2, RotateCcw, Upload } from 'lucide-react'
 import { areaColors, creditChecks, curriculum, toGermanGrade, totalEcts, type Area } from '../data/curriculum'
 import { generalLinks } from '../data/general'
+import { cv, goal, storyTips } from '../data/profile'
 import { useStore, type Theme } from '../lib/store'
 import { Section } from '../components/ui'
 
@@ -123,6 +124,40 @@ export default function Profile() {
           </p>
         </Section>
       </div>
+
+      <Section title="Your edge" icon={<Flag size={18} />} action={<span className="goal-pill">🎯 {goal}</span>}>
+        <div className="cv">
+          {cv.map((sec, i) => (
+            <motion.div key={sec.title} className="cv-sec card-inner" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
+              <h4>
+                <span aria-hidden>{sec.emoji}</span> {sec.title}
+              </h4>
+              <ul>
+                {sec.items.map((it) => (
+                  <li key={it.title}>
+                    <strong>{it.title}</strong>
+                    {it.detail && <span className="muted small">{it.detail}</span>}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      <Section title="Turning it into applications" icon={<Lightbulb size={18} />}>
+        <div className="tips">
+          {storyTips.map((t, i) => (
+            <motion.div key={t.title} className="tip" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 + i * 0.05 }}>
+              <span className="tip-num">{i + 1}</span>
+              <div>
+                <strong>{t.title}</strong>
+                <p className="muted small">{t.text}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
 
       <Section title={`Your bachelor's: Mechanical Engineering, ${totalEcts} ECTS`} icon={<GraduationCap size={18} />}>
         <div className="stack-bar" role="img" aria-label="ECTS by subject area">

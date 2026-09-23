@@ -36,8 +36,8 @@ const STORAGE_KEY = 'masters-tracker:v1'
 
 export const defaultState: AppState = {
   version: 1,
-  profile: { name: '', gpa: 93, german: 'A2' },
-  shortlist: ['rwth-automotive', 'kit-mechanical', 'stuttgart-fame', 'rptu-cvt', 'thi-iae', 'ude-mechanical'],
+  profile: { name: 'Temur', gpa: 93, german: 'A2' },
+  shortlist: ['rwth-automotive', 'kit-mechanical', 'stuttgart-fame', 'stuttgart-commas', 'thi-iae', 'ude-mechanical'],
   status: {},
   docs: {},
   notes: {},

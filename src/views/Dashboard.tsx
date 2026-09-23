@@ -59,7 +59,7 @@ export default function Dashboard() {
           </h1>
           <p className="lead">
             Lectures start in <strong>{daysUntil(SEMESTER_START, now)} days</strong>. You have{' '}
-            <strong>{tracked.length}</strong> programs on your shortlist. Keep going.
+            <strong>{tracked.length}</strong> programs on your shortlist. Next stop after that: motorsport 🏁
           </p>
           <div className="hero-actions">
             <a className="btn primary" href="#/programs">
@@ -237,6 +237,13 @@ export default function Dashboard() {
                 <small>German</small>
                 <strong>{state.profile.german}</strong>
               </div>
+            </div>
+            <div className="edge-chips">
+              {['🔬 Jülich (Helmholtz) internship', '📜 SOLIDWORKS CSWP', '🏆 1st: university sumo robots', '🛰️ ESP32 hardware-in-the-loop 6-DOF sim', '🏁 Autonomous RC race organiser'].map((c) => (
+                <span key={c} className="edge-chip">
+                  {c}
+                </span>
+              ))}
             </div>
             <p className="muted small">
               In Germany 1.0 is the best grade and 4.0 is the lowest pass. Below 1.5 is excellent, which puts you in a strong position at

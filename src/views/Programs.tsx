@@ -5,10 +5,10 @@ import { programs, RESEARCHED_ON } from '../data/programs'
 import type { Focus, Program, Tier } from '../data/types'
 import { useStore } from '../lib/store'
 import { BUDGET_PER_SEMESTER, eur, fmtDate, focusMeta, tierMeta, useNow } from '../lib/util'
-import { DeadlineChip, DifficultyMeter, PhotoImg, Pill, StarButton, StatusSelect, TierBadge } from '../components/ui'
+import { DeadlineChip, DifficultyMeter, MotorsportMeter, PhotoImg, Pill, StarButton, StatusSelect, TierBadge } from '../components/ui'
 import { navigate } from '../App'
 
-type Sort = 'deadline' | 'fit' | 'ranking' | 'cost' | 'difficulty'
+type Sort = 'deadline' | 'fit' | 'ranking' | 'cost' | 'difficulty' | 'motorsport'
 
 const rankValue = (p: Program) => {
   const m = p.ranking.qsWorld.match(/\d+/)
@@ -24,6 +24,7 @@ export default function Programs() {
   const [onlyShortlist, setOnlyShortlist] = useState(false)
   const [withinBudget, setWithinBudget] = useState(false)
   const [noGre, setNoGre] = useState(false)
+  const [motorsportOnly, setMotorsportOnly] = useState(false)
   const [sort, setSort] = useState<Sort>('deadline')
 
   const list = useMemo(() => {
@@ -34,6 +35,7 @@ export default function Programs() {
       if (focus.length && !p.focus.some((f) => focus.includes(f))) return false
       if (onlyShortlist && !state.shortlist.includes(p.id)) return false
       if (withinBudget && p.costs.tuition > BUDGET_PER_SEMESTER) return false
+      if (motorsportOnly && p.motorsport.score < 4) return false
       if (noGre && p.requirements.some((r) => r.label.startsWith('GRE') && !/not required/i.test(r.value))) return false
       return true
     })
@@ -43,9 +45,10 @@ export default function Programs() {
       ranking: (a, b) => rankValue(a) - rankValue(b),
       cost: (a, b) => a.costs.tuition + a.costs.living * 6 - (b.costs.tuition + b.costs.living * 6),
       difficulty: (a, b) => b.difficulty - a.difficulty,
+      motorsport: (a, b) => b.motorsport.score - a.motorsport.score || b.fit - a.fit,
     }
     return filtered.sort(by[sort])
-  }, [q, tiers, focus, onlyShortlist, withinBudget, noGre, sort, state.shortlist])
+  }, [q, tiers, focus, onlyShortlist, withinBudget, noGre, motorsportOnly, sort, state.shortlist])
 
   const toggle = <T,>(arr: T[], v: T, set: (x: T[]) => void) => set(arr.includes(v) ? arr.filter((x) => x !== v) : [...arr, v])
 
@@ -89,6 +92,9 @@ export default function Programs() {
           <button className={`chip ${noGre ? 'on' : ''}`} onClick={() => setNoGre(!noGre)}>
             📝 No GRE
           </button>
+          <button className={`chip ${motorsportOnly ? 'on' : ''}`} onClick={() => setMotorsportOnly(!motorsportOnly)}>
+            🏁 Strong motorsport links
+          </button>
           <label className="sort">
             <SlidersHorizontal size={14} />
             <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} aria-label="Sort programs">
@@ -97,6 +103,7 @@ export default function Programs() {
               <option value="ranking">Sort: QS ranking</option>
               <option value="cost">Sort: cheapest</option>
               <option value="difficulty">Sort: hardest first</option>
+              <option value="motorsport">Sort: motorsport links</option>
             </select>
           </label>
         </div>
@@ -148,7 +155,12 @@ export default function Programs() {
                   </div>
                   <b>{p.fit}%</b>
                 </div>
-                <DifficultyMeter level={p.difficulty} />
+                <div className="pc-meters">
+                  <DifficultyMeter level={p.difficulty} />
+                  <span className="pc-ms" title={p.motorsport.team}>
+                    🏁 <MotorsportMeter score={p.motorsport.score} compact />
+                  </span>
+                </div>
                 <div className="pc-foot">
                   <div>
                     <small className="muted">Deadline</small>

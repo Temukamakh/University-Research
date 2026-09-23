@@ -35,12 +35,23 @@ export const programs: Program[] = [
       'Your degree has about 179 ECTS in engineering, maths and science. RWTH asks for 120.',
       'You already cover mathematics, mechanics, machine design, thermodynamics and materials science.',
       'Your "Automotive Theory" and "Mechatronics" courses match the program focus.',
+      'Your internship at Forschungszentrum Jülich (Simulation & Calculation: FEA, thermal and flow analysis) is 30 km from Aachen, a strong point for RWTH',
+      'CSWA and CSWP certifications back up the machine-design part of your application',
     ],
     gaps: [
       'The GRE General Test is mandatory for non-EU degrees: Verbal ≥ 145, Quant ≥ 160, Analytical Writing ≥ 3.0.',
-      'An industrial internship is an admission requirement. Ask ika how many weeks they need. You have about 7 ECTS of practice (internship + summer practice).',
+      'An industrial internship is an admission requirement. Ask ika how many weeks they need, and whether your Forschungszentrum Jülich internship counts (a research institute is not a company). You also have about 7 ECTS of practice from your degree.',
       'Fluid mechanics: you only have Hydraulics (4 ECTS) and Hydraulic Machines (5 ECTS). Mention both clearly in your course list.',
     ],
+    motorsport: {
+      score: 5,
+      team: 'Ecurie Aix (won Formula Student Germany Electric 2023)',
+      points: [
+        'ika builds and tests vehicles for real, including chassis, powertrain and vehicle dynamics',
+        'Forschungszentrum Jülich (your internship) is about 30 km away and is a close RWTH research partner (JARA). Good for a student job (HiWi) or thesis later',
+        'Toyota Gazoo Racing Europe (WEC / Le Mans) is based in Cologne, about 70 km away',
+      ],
+    },
     ranking: { qsWorld: '#104', qsYear: 'QS 2027', qsSubject: '#25 in Mechanical Eng. (QS 2025)' },
     costs: { tuition: 0, semesterFee: 330, living: 950, appFee: 'None (direct application)' },
     application: {
@@ -57,7 +68,7 @@ export const programs: Program[] = [
       { label: 'Credits', value: '≥ 120 ECTS in engineering, maths & natural sciences (internships excluded)', status: 'ok' },
       { label: 'GRE General', value: 'V ≥ 145 · Q ≥ 160 · AW ≥ 3.0', status: 'todo', note: 'Aim for Q 165+ to be safe' },
       { label: 'English', value: 'B2: e.g. IELTS 6.0 or TOEFL iBT 90', status: 'todo' },
-      { label: 'Internship', value: 'Industrial internship required for admission', status: 'warn', note: 'Check the required length in the ika FAQ' },
+      { label: 'Internship', value: 'Industrial internship required for admission', status: 'warn', note: 'Ask ika whether the Jülich internship counts, and how many weeks are needed' },
       { label: 'German', value: 'Not required', status: 'ok' },
     ],
     extraDocs: ['Official GRE score report (sent by ETS)', 'Internship certificate(s)'],
@@ -104,11 +115,20 @@ export const programs: Program[] = [
       'Block 1 (higher maths, engineering mechanics, thermodynamics) needs 37 ECTS. You have about 52.',
       'Block 2 (machine design, materials science, fluid mechanics) needs 26 ECTS. You have about 36–41.',
       "You can specialise in automotive engineering (vehicle technology) while studying for KIT's general mechanical engineering degree.",
+      'FEA and CFD electives build directly on your Jülich simulation internship',
     ],
     gaps: [
-      'A 12-week industrial internship is required. You can make it up during the master if it is missing.',
+      'A 12-week industrial internship is required. You can make it up during the master if it is missing, and your Jülich internship may count toward it (ask KIT).',
       'Non-EU tuition in Baden-Württemberg is €1,500 per semester.',
     ],
+    motorsport: {
+      score: 4,
+      team: 'KA-RaceIng (Formula Student Germany winner 2016)',
+      points: [
+        'Vehicle-technology specialisation includes vehicle dynamics, powertrain and lightweight design',
+        'Porsche, Mercedes-AMG and Bosch are all within about 80 km',
+      ],
+    },
     ranking: { qsWorld: '#110', qsYear: 'QS 2027', qsSubject: '#45 in Mechanical Eng. (QS 2025)' },
     costs: { tuition: 1500, semesterFee: 184, living: 1000, appFee: 'None (direct application)' },
     application: {
@@ -166,11 +186,23 @@ export const programs: Program[] = [
     difficultyNote:
       "Germany's highest-ranked university. Admission uses a two-stage aptitude assessment: your grades and course match are scored first, and borderline applicants take a written test. OVER YOUR BUDGET: non-EU tuition is €6,000 per semester.",
     fit: 85,
-    fitNotes: ['Strong academic match', 'Your A average helps a lot in stage 1 of the aptitude assessment'],
+    fitNotes: [
+      'Strong academic match',
+      'Your A average helps a lot in stage 1 of the aptitude assessment',
+      'TUM Autonomous Motorsport matches your autonomous RC oval-race project and your ESP32 control work',
+    ],
     gaps: [
       'Tuition of €6,000 per semester is above your €3,000 limit. Only consider it if you win a scholarship or fee waiver.',
       'Munich is the most expensive city in this list, at about €1,300–1,500 a month.',
     ],
+    motorsport: {
+      score: 5,
+      team: 'TUfast Racing Team (FSG Electric winner 2019)',
+      points: [
+        'TUM Autonomous Motorsport won the Indy Autonomous Challenge and the first A2RL race. That is your autonomous oval-racing project at full scale',
+        "BMW M Motorsport is in Munich, and Audi Sport's F1 power-unit site in Neuburg is about 90 km away",
+      ],
+    },
     ranking: { qsWorld: '#25', qsYear: 'QS 2027', qsSubject: '#19 in Mechanical Eng. (QS 2025)' },
     costs: { tuition: 6000, semesterFee: 160, living: 1400, appFee: 'None' },
     application: {
@@ -227,8 +259,17 @@ export const programs: Program[] = [
       'Built for international mechanical engineering graduates',
       'Includes a "Language and Culture" module that helps you integrate in Germany',
       'Stuttgart is home to Mercedes-Benz, Porsche and Bosch',
+      'Best place on this list for aerodynamics and CFD (FKFS wind tunnels), which is your secondary interest',
     ],
     gaps: ['English must be C1 (plan for IELTS 7.0)', 'Tuition is €1,500 per semester (Baden-Württemberg)'],
+    motorsport: {
+      score: 5,
+      team: 'Rennteam Uni Stuttgart (2nd at FSG Combustion 2023) + GreenTeam (electric/driverless)',
+      points: [
+        "FKFS, the university's automotive research institute, runs full-scale wind tunnels, ideal for aerodynamics and CFD",
+        'Porsche Motorsport (Weissach) and Mercedes-AMG (Affalterbach) are both in the Stuttgart region',
+      ],
+    },
     ranking: { qsWorld: '#310', qsYear: 'QS 2026', qsSubject: '#68 in Mechanical Eng. (QS 2025)' },
     costs: { tuition: 1500, semesterFee: 200, living: 1150, appFee: 'None via C@MPUS' },
     application: {
@@ -264,6 +305,75 @@ export const programs: Program[] = [
     ],
   },
   {
+    id: 'stuttgart-commas',
+    university: 'University of Stuttgart',
+    short: 'Stuttgart',
+    program: 'Computational Mechanics of Materials and Structures (COMMAS)',
+    degree: 'M.Sc.',
+    city: 'Stuttgart (Vaihingen)',
+    state: 'Baden-Württemberg',
+    coords: [48.7452, 9.1032],
+    kind: 'TU9',
+    color: '#1f4e9c',
+    focus: ['mechanical'],
+    tier: 'target',
+    language: 'English',
+    semesters: 4,
+    intake: 'Winter',
+    difficulty: 3,
+    difficultyNote:
+      'A well-known English program in computational mechanics (FEA and simulation) with a small, international cohort. Your grades, your Jülich simulation internship and your 6-DOF Python simulation make a strong case.',
+    fit: 87,
+    fitNotes: [
+      'The whole degree is about FEA, continuum mechanics and simulation, which is what your Jülich Simulation & Calculation team does',
+      'Your Finite Element Method, Strength of Materials and Theoretical Mechanics courses are the right foundation',
+      'Motorsport teams need simulation engineers, and Stuttgart has Porsche Motorsport and Mercedes-AMG nearby',
+    ],
+    gaps: [
+      'More maths-heavy than a general mechanical engineering master\'s. Revise linear algebra and PDEs.',
+      'Less vehicle-specific: you would add vehicle dynamics and CFD through electives or Formula Student',
+      'Tuition is €1,500 per semester (Baden-Württemberg)',
+    ],
+    motorsport: {
+      score: 4,
+      team: 'Rennteam Uni Stuttgart + GreenTeam (shared with FAME)',
+      points: [
+        'Simulation (FEA, CFD) is one of the most in-demand skills in motorsport engineering',
+        'FKFS wind tunnels, Porsche Motorsport (Weissach) and Mercedes-AMG (Affalterbach) are all in the Stuttgart region',
+      ],
+    },
+    ranking: { qsWorld: '#310', qsYear: 'QS 2026', qsSubject: '#68 in Mechanical Eng. (QS 2025)' },
+    costs: { tuition: 1500, semesterFee: 200, living: 1150, appFee: 'None via C@MPUS' },
+    application: {
+      portal: 'C@MPUS',
+      portalUrl: 'https://www.commas.uni-stuttgart.de/admission/',
+      opens: 'late autumn',
+      deadline: '2027-02-15',
+      deadlineNote: 'COMMAS deadline for the winter semester: 15 February. Confirm it on the COMMAS admission page.',
+      viaUniAssist: false,
+    },
+    requirements: [
+      { label: 'Degree', value: 'Bachelor in engineering or a related field', status: 'ok' },
+      { label: 'English', value: 'An international English test is required (check the minimum score)', status: 'todo' },
+      { label: 'GRE', value: 'Not required', status: 'ok' },
+    ],
+    extraDocs: ['Short description of your simulation work (Jülich internship, 6-DOF Python simulation)'],
+    highlights: [
+      'The best fit on this list for your FEA and simulation interest',
+      'Can be combined with Formula Student at Rennteam Uni Stuttgart',
+      'A long-running English-taught program at Stuttgart',
+    ],
+    photos: [
+      { file: 'Universität Stuttgart (Vaihingen) 006.JPG', caption: 'Campus Vaihingen' },
+      { file: 'Universität Stuttgart (Vaihingen) 013.JPG', caption: 'Campus Vaihingen' },
+    ],
+    links: [
+      { label: 'COMMAS program', url: 'https://www.commas.uni-stuttgart.de/program/' },
+      { label: 'COMMAS admission', url: 'https://www.commas.uni-stuttgart.de/admission/' },
+      { label: 'Program page (University of Stuttgart)', url: 'https://www.uni-stuttgart.de/en/study/study-programs/Computational-Mechanics-of-Materials-and-Structures-COMMAS-M.Sc-00001./' },
+    ],
+  },
+  {
     id: 'tuhh-mechatronics',
     university: 'Hamburg University of Technology (TUHH)',
     short: 'TUHH',
@@ -285,9 +395,18 @@ export const programs: Program[] = [
     fit: 78,
     fitNotes: [
       'Your Mechatronics, Automatic Control, Digital Control, Electromechanics and Electric Circuits courses give you about 20 ECTS of mechatronics background',
+      'Your ESP32 attitude-control (ADCS) hardware-in-the-loop project and robot-competition results are exactly what mechatronics admissions want to see',
       'No tuition fees in Hamburg',
     ],
     gaps: ['This program leans more on electronics and control than pure mechanical engineering', 'IELTS 6.5 minimum'],
+    motorsport: {
+      score: 3,
+      team: 'e-gnition Hamburg (electric + driverless classes)',
+      points: [
+        'The driverless class matches your ESP32, sensing and control work',
+        'Few motorsport companies nearby. Aerospace (Airbus) is the stronger local industry',
+      ],
+    },
     ranking: { qsWorld: '#696', qsYear: 'QS 2026' },
     costs: { tuition: 0, semesterFee: 340, living: 1150, appFee: 'Check the TUHH "How to apply" PDF' },
     application: {
@@ -348,6 +467,13 @@ export const programs: Program[] = [
       'Tuition-free, and one of the cheapest cities on this list',
     ],
     gaps: ['Getting to B1 German before applying would strengthen your application'],
+    motorsport: {
+      score: 2,
+      team: 'KaRaT, Kaiserslautern Racing Team (electric, since 2007)',
+      points: [
+        'Strong vehicle engineering, but the program is about trucks and off-highway machines, not race cars',
+      ],
+    },
     ranking: { qsWorld: '1201–1400', qsYear: 'QS 2026', note: 'Its commercial-vehicle research is much stronger than the overall rank suggests' },
     costs: { tuition: 0, semesterFee: 350, living: 850, appFee: '€60 assessment fee' },
     application: {
@@ -402,6 +528,13 @@ export const programs: Program[] = [
     fit: 85,
     fitNotes: ['A general mechanical engineering degree that directly continues your bachelor\'s', 'Tuition-free, and the Ruhr area is affordable'],
     gaps: ['You first need a uni-assist check of your documents (see the uni-assist fee)'],
+    motorsport: {
+      score: 2,
+      team: 'E-Team Duisburg-Essen (electric, since 2010)',
+      points: [
+        'Solid mechanical engineering base. Toyota Gazoo Racing Europe in Cologne is about 70 km away',
+      ],
+    },
     ranking: { qsWorld: '≈ #801', qsYear: 'QS 2026' },
     costs: { tuition: 0, semesterFee: 320, living: 900, appFee: 'uni-assist: €75 first program, €30 each additional' },
     application: {
@@ -446,8 +579,20 @@ export const programs: Program[] = [
     difficulty: 3,
     difficultyNote: 'A practical university of applied sciences in the home town of Audi. It admits fewer students than the TU9 universities but is less selective, so with an A average you have a strong chance.',
     fit: 86,
-    fitNotes: ['Focused entirely on automotive engineering', 'Your 240 ECTS bachelor\'s is more than enough for an M.Eng.', 'Close to Audi and the CARISSMA vehicle-safety research centre'],
+    fitNotes: [
+      'Focused entirely on automotive engineering',
+      'Your 240 ECTS bachelor\'s is more than enough for an M.Eng.',
+      'Close to Audi, the CARISSMA vehicle-safety centre, and Audi\'s F1 power-unit base in Neuburg',
+    ],
     gaps: ['Foreign degrees must go through uni-assist first, by 15 June'],
+    motorsport: {
+      score: 4,
+      team: 'Schanzer Racing Electric (about 80 students)',
+      points: [
+        'Audi builds its Formula 1 power unit in Neuburg an der Donau, about 20 km from THI (Audi Formula Racing GmbH)',
+        'Audi HQ and the CARISSMA test centre are in town: good for internships and a thesis with industry',
+      ],
+    },
     ranking: { qsWorld: 'Not ranked', qsYear: 'QS', note: 'QS does not rank universities of applied sciences. THI is known for its links with Audi.' },
     costs: { tuition: 0, semesterFee: 80, living: 1050, appFee: 'uni-assist: €75' },
     application: {
@@ -496,6 +641,14 @@ export const programs: Program[] = [
     fit: 80,
     fitNotes: ['Two tracks: Vehicle Systems or Automotive IT', 'In the Stuttgart car-industry region'],
     gaps: ['Prefers bachelor\'s degrees in automotive engineering or systems, so highlight "Automotive Theory"', 'Tuition is €1,500 per semester (Baden-Württemberg)'],
+    motorsport: {
+      score: 4,
+      team: 'Rennstall Esslingen',
+      points: [
+        'In the Stuttgart motorsport cluster: Porsche Motorsport (Weissach), Mercedes-AMG (Affalterbach)',
+        'A practical M.Eng. suits a race-engineering or development-engineer path',
+      ],
+    },
     ranking: { qsWorld: 'Not ranked', qsYear: 'QS', note: 'University of applied sciences with strong links to Mercedes-Benz and Bosch' },
     costs: { tuition: 1500, semesterFee: 180, living: 1100, appFee: 'Check the application page' },
     application: {
@@ -541,6 +694,13 @@ export const programs: Program[] = [
     fit: 84,
     fitNotes: ['General mechanical engineering with English specialisations', 'Tuition-free, affordable city'],
     gaps: [],
+    motorsport: {
+      score: 2,
+      team: 'Speeding Scientists Siegen',
+      points: [
+        'Useful general mechanical engineering, but few motorsport links nearby',
+      ],
+    },
     ranking: { qsWorld: '1201–1400', qsYear: 'QS 2026' },
     costs: { tuition: 0, semesterFee: 320, living: 880, appFee: 'None (UNISONO)' },
     application: {
@@ -586,6 +746,13 @@ export const programs: Program[] = [
     fit: 75,
     fitNotes: ['Your Manufacturing Processes, CAD methods and Measurement courses match', 'Saxony has a lot of automotive manufacturing (e.g. Volkswagen)'],
     gaps: ['Focused on production and manufacturing rather than vehicle design'],
+    motorsport: {
+      score: 1,
+      team: 'Check the current FSG team list',
+      points: [
+        'Focused on manufacturing. Choose it only if production engineering appeals to you',
+      ],
+    },
     ranking: { qsWorld: 'n/a', qsYear: 'QS', note: 'Check the current QS table' },
     costs: { tuition: 0, semesterFee: 300, living: 800, appFee: '€49.95 (EduApplication)' },
     application: {

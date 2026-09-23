@@ -4,7 +4,7 @@ import { programs } from '../data/programs'
 import type { Program } from '../data/types'
 import { useStore } from '../lib/store'
 import { BUDGET_PER_SEMESTER, degreeCost, eur, fmtDate } from '../lib/util'
-import { DifficultyMeter, PhotoImg, TierBadge } from '../components/ui'
+import { DifficultyMeter, MotorsportMeter, PhotoImg, TierBadge } from '../components/ui'
 
 const reqValue = (p: Program, label: string) => p.requirements.find((r) => r.label.startsWith(label))?.value ?? '–'
 
@@ -16,6 +16,16 @@ const ROWS: { label: string; render: (p: Program) => React.ReactNode; best?: (ps
   { label: 'Duration', render: (p) => `${p.semesters} semesters (${p.degree})` },
   { label: 'Fit for you', render: (p) => `${p.fit}%`, best: (ps) => ps.reduce((a, b) => (b.fit > a.fit ? b : a)).id },
   { label: 'Difficulty', render: (p) => <DifficultyMeter level={p.difficulty} /> },
+  {
+    label: 'Motorsport',
+    render: (p) => (
+      <span className="cmp-ms">
+        <MotorsportMeter score={p.motorsport.score} />
+        <small className="muted">{p.motorsport.team}</small>
+      </span>
+    ),
+    best: (ps) => ps.reduce((a, b) => (b.motorsport.score > a.motorsport.score ? b : a)).id,
+  },
   { label: 'QS world rank', render: (p) => `${p.ranking.qsWorld} (${p.ranking.qsYear})` },
   { label: 'Subject rank', render: (p) => p.ranking.qsSubject ?? '–' },
   {

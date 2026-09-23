@@ -40,6 +40,13 @@ export interface Program {
   fit: number
   fitNotes: string[]
   gaps: string[]
+  /** How well the university sets you up for a motorsport career (my assessment). */
+  motorsport: {
+    score: 1 | 2 | 3 | 4 | 5
+    /** Formula Student team at this university. */
+    team: string
+    points: string[]
+  }
   ranking: {
     qsWorld: string
     qsYear: string

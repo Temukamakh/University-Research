@@ -1,23 +1,25 @@
 # Master's Tracker 🎓
 
-A personal web app for planning an English-taught **mechanical / automotive engineering master's in Germany**, starting Winter Semester 2027/28. The applicant has a B.Sc. in Mechanical Engineering from the Agricultural University of Georgia (240 ECTS).
+A personal web app for planning an English-taught **mechanical / automotive engineering master's in Germany**, starting Winter Semester 2027/28. The long-term goal is a career in motorsport. The applicant has a B.Sc. in Mechanical Engineering from the Agricultural University of Georgia (240 ECTS).
 
 ## What's inside
 
 | Page | What it does |
 | --- | --- |
 | **Dashboard** | Live countdown to your next deadline, readiness score, IELTS/GRE tracker, your profile at a glance |
-| **Programs** | 11 researched programs with photos, filters (reach/target/safety, focus, budget, GRE), sorting, shortlist ⭐ and status |
-| **Program page** | Requirements checked against your degree, fit and difficulty, full cost breakdown, application steps, document checklist, notes, official links |
+| **Programs** | 12 researched programs with photos, filters (reach/target/safety, focus, budget, GRE, motorsport), sorting, shortlist ⭐ and status |
+| **Program page** | Requirements checked against your degree, fit and difficulty, **road to motorsport** (Formula Student team and nearby race companies), full cost breakdown, application steps, document checklist, notes, official links |
 | **Timeline** | Month-by-month plan from October 2026 to your first lecture, with program deadlines merged in |
 | **Map** | Interactive OpenStreetMap map of every university |
 | **Compare** | Up to 3 programs side by side, with the best value in each row highlighted |
 | **Costs** | Cost calculator, cost of the whole degree for each program, blocked account and scholarship info |
-| **Me** | GPA → German grade converter, your curriculum by subject area, KIT/RWTH credit checks, backup export/import |
+| **Me** | Your CV and "edge" (Jülich, CSWP, competitions, projects), tips for motivation letters, GPA → German grade converter, curriculum credit checks, backup export/import |
 
 Your progress is saved in your browser (`localStorage`). Use **Me → Export backup** to keep a copy or move it to another device.
 
 ## Programs researched (September 2026)
+
+The app also scores each one for motorsport links (Formula Student team, nearby race companies).
 
 | University | Program | Tuition/sem (non-EU) | WS 2027/28 deadline* |
 | --- | --- | --- | --- |
@@ -25,6 +27,7 @@ Your progress is saved in your browser (`localStorage`). Use **Me → Export bac
 | KIT Karlsruhe | Mechanical Engineering M.Sc. (English track) | €1,500 | 15 Jul 2027 |
 | TU Munich | Mechanical Engineering M.Sc. | €6,000 ⚠️ over budget | 31 May 2027 |
 | Univ. of Stuttgart | FAME M.Sc. | €1,500 | 15 Jan 2027 |
+| Univ. of Stuttgart | COMMAS M.Sc. (computational mechanics / FEA) | €1,500 | 15 Feb 2027 |
 | TU Hamburg | Mechatronics M.Sc. | Free | 1 Feb 2027 |
 | RPTU Kaiserslautern | Commercial Vehicle Technology M.Sc. | Free | 7 Feb 2027 (round 1) |
 | Univ. Duisburg-Essen | Mechanical Engineering (ISE) M.Sc. | Free | 5 Feb 2027 |

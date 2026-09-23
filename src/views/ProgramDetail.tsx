@@ -6,6 +6,7 @@ import {
   CalendarClock,
   CheckCircle2,
   Circle,
+  Flag,
   ClipboardList,
   ExternalLink,
   FileText,
@@ -22,7 +23,7 @@ import { programById } from '../data/programs'
 import type { ReqStatus } from '../data/types'
 import { useStore } from '../lib/store'
 import { BUDGET_PER_SEMESTER, degreeCost, docsFor, eur, fmtDate, tierMeta, useNow } from '../lib/util'
-import { AnimatedNumber, DeadlineChip, DifficultyMeter, Gallery, ProgressRing, riseIn, Section, stagger, StarButton, StatusSelect, TierBadge } from '../components/ui'
+import { AnimatedNumber, DeadlineChip, DifficultyMeter, Gallery, MotorsportMeter, ProgressRing, riseIn, Section, stagger, StarButton, StatusSelect, TierBadge } from '../components/ui'
 import { navigate } from '../App'
 
 const reqIcon: Record<ReqStatus, React.ReactNode> = {
@@ -160,6 +161,27 @@ export default function ProgramDetail({ id }: { id: string }) {
           </Section>
         </motion.div>
       </div>
+
+      <motion.div variants={riseIn}>
+        <Section title="Road to motorsport" icon={<Flag size={18} />} action={<MotorsportMeter score={p.motorsport.score} />}>
+          <div className="motorsport">
+            <div className="ms-team">
+              <span className="ms-flag" aria-hidden>🏁</span>
+              <div>
+                <small className="muted">Formula Student team</small>
+                <strong>{p.motorsport.team}</strong>
+              </div>
+            </div>
+            <ul className="bullets">
+              {p.motorsport.points.map((pt) => (
+                <li key={pt}>
+                  <Flag size={13} /> {pt}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Section>
+      </motion.div>
 
       <div className="grid-2">
         <motion.div variants={riseIn}>

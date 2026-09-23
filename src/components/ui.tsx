@@ -81,6 +81,17 @@ export function DifficultyMeter({ level }: { level: number }) {
   )
 }
 
+export function MotorsportMeter({ score, compact = false }: { score: number; compact?: boolean }) {
+  return (
+    <span className={`ms-meter ${compact ? 'compact' : ''}`} title={`Motorsport score: ${score}/5`} aria-label={`Motorsport score ${score} out of 5`}>
+      {[1, 2, 3, 4, 5].map((i) => (
+        <motion.i key={i} className={i <= score ? 'on' : ''} initial={{ opacity: 0, x: -4 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }} />
+      ))}
+      {!compact && <b>{score}/5</b>}
+    </span>
+  )
+}
+
 export function DeadlineChip({ iso, now }: { iso: string; now: Date }) {
   const d = daysUntil(iso, now)
   const tone = d < 0 ? '#64748b' : d <= 30 ? '#ef4444' : d <= 90 ? '#f59e0b' : '#10b981'
