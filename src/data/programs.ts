@@ -36,6 +36,7 @@ export const programs: Program[] = [
       'You already cover mathematics, mechanics, machine design, thermodynamics and materials science.',
       'Your "Automotive Theory" and "Mechatronics" courses match the program focus.',
       'Your internship at Forschungszentrum Jülich (Simulation & Calculation: FEA, thermal and flow analysis) is 30 km from Aachen, a strong point for RWTH',
+      'A letter from Prof. Ghaleb Natour, director of ITE and a professor in RWTH\'s Faculty of Mechanical Engineering who personally chose you for the internship, is the strongest asset you have here. Ask him in early February so it is ready before 1 March',
       'CSWA and CSWP certifications back up the machine-design part of your application',
     ],
     gaps: [

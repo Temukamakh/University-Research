@@ -28,6 +28,8 @@ export interface AppState {
   docs: Record<string, Record<string, boolean>>
   notes: Record<string, string>
   milestonesDone: Record<string, boolean>
+  /** Recommendation-letter status per recommender id (see data/profile.ts). */
+  letters: Record<string, string>
   tests: Record<string, TestEntry>
   compare: string[]
   theme: Theme
@@ -43,6 +45,7 @@ export const defaultState: AppState = {
   docs: {},
   notes: {},
   milestonesDone: {},
+  letters: {},
   tests: {},
   compare: ['rwth-automotive', 'kit-mechanical', 'stuttgart-fame'],
   theme: 'system',

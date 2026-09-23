@@ -15,7 +15,7 @@ export const cv: CvSection[] = [
       {
         title: 'Internship, February 2027: Forschungszentrum Jülich (Helmholtz Association)',
         detail:
-          'Institute of Technology and Engineering (ITE), headed by Prof. Ghaleb Natour. Interviewed and accepted; team assignment pending. Target team: Simulation and Calculation (FEA, thermal and flow analysis of components under extreme loads). Secondary interest: CFD.',
+          'Institute of Technology and Engineering (ITE), headed by Prof. Ghaleb Natour, who personally selected you from about 100 students at your university. Team assignment pending. Target team: Simulation and Calculation (FEA, thermal and flow analysis of components under extreme loads). Secondary interest: CFD.',
       },
     ],
   },
@@ -94,7 +94,7 @@ export const storyTips = [
   },
   {
     title: 'Lead with Jülich',
-    text: 'A Helmholtz research internship on components under extreme loads is your strongest point. Name the institute, the team and the methods. Ask your Jülich supervisor for a recommendation letter if the timing allows.',
+    text: 'A Helmholtz research internship on components under extreme loads, for which the institute director personally chose you out of about 100 students, is your strongest point. Name the institute, the team and the methods. Prof. Natour\'s letter is the most valuable one you can get, especially for RWTH.',
   },
   {
     title: 'Use numbers',
@@ -107,5 +107,44 @@ export const storyTips = [
   {
     title: 'Plan Formula Student from day one',
     text: 'In Germany, the usual route into motorsport is a Formula Student team, then a student job at a vehicle institute, then a master thesis at a motorsport company. Say in your letter which team you want to join and what you would work on.',
+  },
+]
+
+export type LetterStatus = 'planned' | 'asked' | 'agreed' | 'received'
+
+export interface Recommender {
+  id: string
+  name: string
+  role: string
+  why: string
+  /** When the letter can realistically be ready, and which applications it can reach. */
+  timing: string
+  defaultStatus: LetterStatus
+}
+
+export const recommenders: Recommender[] = [
+  {
+    id: 'natour',
+    name: 'Prof. Dr. Ghaleb Natour',
+    role: 'Director, Institute of Technology and Engineering (ITE), Forschungszentrum Jülich · Professor, Faculty of Mechanical Engineering, RWTH Aachen',
+    why: 'Your strongest letter. He chose you personally out of about 100 students, and he is a professor in RWTH\'s own mechanical engineering faculty (ITE is listed as one of its institutes). His letter carries weight everywhere and especially at RWTH.',
+    timing: 'After or near the end of your February 2027 internship. Ask early in February so it is ready for RWTH (1 March). It is also in time for Siegen, TUM, THI and KIT, but too late for Stuttgart FAME, TUHH, UDE, RPTU (round 1) and probably COMMAS.',
+    defaultStatus: 'planned',
+  },
+  {
+    id: 'glueckler',
+    name: 'Harald Glückler',
+    role: 'Role and institution not added yet',
+    why: 'A second, independent voice. The letter is strongest if he can describe specific work you did with him.',
+    timing: 'Ask by November 2026 so it is ready for the January and February deadlines.',
+    defaultStatus: 'agreed',
+  },
+  {
+    id: 'metreveli',
+    name: 'Zaza Metreveli',
+    role: 'Head of Engineering, Agricultural University of Georgia',
+    why: 'Your academic reference. He can confirm your coursework, your projects, the sumo-robot and BattleBots results, and the autonomous RC race you are designing, and put your grades in context.',
+    timing: 'Ask by November 2026 so it is ready for Stuttgart (15 January) and every later deadline.',
+    defaultStatus: 'agreed',
   },
 ]

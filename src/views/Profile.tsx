@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
 import { useMemo, useRef, useState } from 'react'
-import { BookOpenCheck, Database, Download, Flag, GraduationCap, Lightbulb, Link2, RotateCcw, Upload } from 'lucide-react'
+import { BookOpenCheck, Database, Download, Flag, GraduationCap, Lightbulb, Link2, Mail, RotateCcw, Upload } from 'lucide-react'
 import { areaColors, creditChecks, curriculum, toGermanGrade, totalEcts, type Area } from '../data/curriculum'
 import { generalLinks } from '../data/general'
-import { cv, goal, storyTips } from '../data/profile'
+import { cv, goal, recommenders, storyTips, type LetterStatus } from '../data/profile'
 import { useStore, type Theme } from '../lib/store'
 import { Section } from '../components/ui'
 
@@ -127,6 +127,36 @@ export default function Profile() {
           </p>
         </Section>
       </div>
+
+      <Section title="Recommendation letters" icon={<Mail size={18} />}>
+        <div className="letters">
+          {recommenders.map((r, i) => {
+            const status = (state.letters[r.id] ?? r.defaultStatus) as LetterStatus
+            return (
+              <motion.div key={r.id} className={`letter card-inner ${status}`} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }}>
+                <div className="letter-head">
+                  <div>
+                    <strong>{r.name}</strong>
+                    <span className="muted small">{r.role}</span>
+                  </div>
+                  <select
+                    value={status}
+                    onChange={(e) => update((s) => ({ ...s, letters: { ...s.letters, [r.id]: e.target.value } }))}
+                    aria-label={`Letter status for ${r.name}`}
+                  >
+                    <option value="planned">Planned</option>
+                    <option value="asked">Asked</option>
+                    <option value="agreed">Agreed to write</option>
+                    <option value="received">Received ✓</option>
+                  </select>
+                </div>
+                <p className="small">{r.why}</p>
+                <p className="muted small">⏱ {r.timing}</p>
+              </motion.div>
+            )
+          })}
+        </div>
+      </Section>
 
       <Section title="Your edge" icon={<Flag size={18} />} action={<span className="goal-pill">🎯 {goal}</span>}>
         <div className="cv">
