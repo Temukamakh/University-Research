@@ -9,6 +9,17 @@ export interface CvSection {
 
 export const cv: CvSection[] = [
   {
+    title: 'Industry experience',
+    emoji: '🏭',
+    items: [
+      {
+        title: '6-month internship: Nasolutions (manufacturing firm, Georgia)',
+        detail:
+          '3-axis CNC milling, CNC routers, laser cutters, 3D printers and 3D scanners. SolidWorks every day. Reverse engineering of mechanical and automotive parts. Co-designing a 6-axis robot arm for welding and industrial use. Machined aluminium, stainless steel, carbon steel and titanium.',
+      },
+    ],
+  },
+  {
     title: 'Research experience',
     emoji: '🔬',
     items: [
@@ -73,7 +84,8 @@ export const cv: CvSection[] = [
     title: 'Skills',
     emoji: '⚙️',
     items: [
-      { title: 'CAD', detail: 'SolidWorks (CSWA, CSWP)' },
+      { title: 'CAD', detail: 'SolidWorks (CSWA, CSWP), daily use in industry, reverse engineering from 3D scans' },
+      { title: 'Manufacturing', detail: '3-axis CNC milling, CNC routing, laser cutting, 3D printing, 3D scanning. Aluminium, stainless and carbon steel, titanium' },
       { title: 'Embedded', detail: 'ESP32, IMU sensors, serial communication, PWM control' },
       { title: 'Simulation & programming', detail: 'Python (6-DOF dynamics simulation)' },
       { title: 'Languages', detail: 'Georgian (native; language of your bachelor\'s), English (IELTS planned), German (A2)' },
@@ -90,7 +102,7 @@ export const storyTips = [
   },
   {
     title: 'One clear story',
-    text: 'Motorsport needs engineers who can design (CSWP), simulate (Jülich FEA/CFD, 6-DOF Python) and build and control real hardware (ESP32, robot competitions). Every motivation letter should show you already do all three.',
+    text: 'Motorsport needs engineers who can design (CSWP, SolidWorks every day), manufacture (6 months of CNC work on aluminium, steel and titanium at Nasolutions), simulate (Jülich FEA/CFD, 6-DOF Python) and control hardware (ESP32, robots, a 6-axis welding arm). You have done all four; every motivation letter should show it.',
   },
   {
     title: 'Lead with Jülich',

@@ -243,7 +243,7 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="edge-chips">
-              {['🔬 Jülich internship: chosen by Prof. Natour (1 of ~100)', '✉️ 3 recommendation letters', '📜 SOLIDWORKS CSWP', '🏆 1st: university sumo robots', '🛰️ ESP32 hardware-in-the-loop 6-DOF sim', '🏁 Autonomous RC race organiser'].map((c) => (
+              {['🔬 Jülich internship: chosen by Prof. Natour (1 of ~100)', '🏭 6 months in industry: CNC, reverse engineering, robot arm', '✉️ 3 recommendation letters', '📜 SOLIDWORKS CSWP', '🏆 1st: university sumo robots', '🛰️ ESP32 hardware-in-the-loop 6-DOF sim', '🏁 Autonomous RC race organiser'].map((c) => (
                 <span key={c} className="edge-chip">
                   {c}
                 </span>
