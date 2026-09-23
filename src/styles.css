@@ -208,7 +208,7 @@ input, select, textarea { font: inherit; color: var(--text); }
 input[type='range'] { accent-color: var(--accent); width: 100%; }
 
 /* ---------- Profile facts / dream ---------- */
-.profile-facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 10px; }
+.profile-facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 10px; }
 .profile-facts > div { padding: 12px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--border); display: flex; flex-direction: column; }
 .profile-facts small { color: var(--muted); font-size: 0.72rem; }
 .profile-facts strong { font-family: var(--font-display); font-size: 1.25rem; }

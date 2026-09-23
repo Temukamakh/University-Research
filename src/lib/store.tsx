@@ -21,7 +21,8 @@ export interface TestEntry {
 
 export interface AppState {
   version: 1
-  profile: { name: string; gpa: number; german: string }
+  /** GPA on the Georgian 4.0 scale: current and expected at graduation. */
+  profile: { name: string; gpaNow: number; gpaExpected: number; german: string }
   shortlist: string[]
   status: Record<string, StatusId>
   docs: Record<string, Record<string, boolean>>
@@ -36,8 +37,8 @@ const STORAGE_KEY = 'masters-tracker:v1'
 
 export const defaultState: AppState = {
   version: 1,
-  profile: { name: 'Temur', gpa: 93, german: 'A2' },
-  shortlist: ['rwth-automotive', 'kit-mechanical', 'stuttgart-fame', 'stuttgart-commas', 'thi-iae', 'ude-mechanical'],
+  profile: { name: 'Temur', gpaNow: 2.5, gpaExpected: 2.9, german: 'A2' },
+  shortlist: ['rwth-automotive', 'kit-mechanical', 'stuttgart-fame', 'stuttgart-commas', 'rptu-cvt', 'thi-iae', 'ude-mechanical', 'siegen-mechanical', 'chemnitz-am'],
   status: {},
   docs: {},
   notes: {},
@@ -47,12 +48,18 @@ export const defaultState: AppState = {
   theme: 'system',
 }
 
+/** Merges saved state over the defaults. Older backups stored a 0–100 `gpa`, which is dropped. */
+function withDefaults(parsed: Partial<AppState>): AppState {
+  const { gpa: _old, ...profile } = (parsed.profile ?? {}) as Partial<AppState['profile']> & { gpa?: number }
+  return { ...defaultState, ...parsed, profile: { ...defaultState.profile, ...profile } }
+}
+
 function load(): AppState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (!raw) return defaultState
     const parsed = JSON.parse(raw) as Partial<AppState>
-    return { ...defaultState, ...parsed, profile: { ...defaultState.profile, ...parsed.profile } }
+    return withDefaults(parsed)
   } catch {
     return defaultState
   }
@@ -115,7 +122,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         try {
           const parsed = JSON.parse(json) as Partial<AppState>
           if (parsed.version !== 1) return false
-          setState({ ...defaultState, ...parsed, profile: { ...defaultState.profile, ...parsed.profile } })
+          setState(withDefaults(parsed))
           return true
         } catch {
           return false

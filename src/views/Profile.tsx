@@ -28,7 +28,9 @@ export default function Profile() {
     URL.revokeObjectURL(a.href)
   }
 
-  const german = toGermanGrade(state.profile.gpa)
+  const germanNow = toGermanGrade(state.profile.gpaNow)
+  const germanExpected = toGermanGrade(state.profile.gpaExpected)
+  const setGpa = (key: 'gpaNow' | 'gpaExpected', v: number) => update((s) => ({ ...s, profile: { ...s.profile, [key]: v } }))
 
   return (
     <div className="page">
@@ -46,33 +48,34 @@ export default function Profile() {
             <input value={state.profile.name} placeholder="Your first name" onChange={(e) => update((s) => ({ ...s, profile: { ...s.profile, name: e.target.value } }))} />
           </label>
           <label className="field">
-            GPA (Georgian 0–100 scale): <b>{state.profile.gpa}</b>
-            <input
-              type="range"
-              min={51}
-              max={100}
-              value={state.profile.gpa}
-              onChange={(e) => update((s) => ({ ...s, profile: { ...s.profile, gpa: Number(e.target.value) } }))}
-            />
+            Current GPA (4.0 scale): <b>{state.profile.gpaNow.toFixed(1)}</b>
+            <input type="range" min={1} max={4} step={0.1} value={state.profile.gpaNow} onChange={(e) => setGpa('gpaNow', Number(e.target.value))} />
+          </label>
+          <label className="field">
+            Expected GPA at graduation: <b>{state.profile.gpaExpected.toFixed(1)}</b>
+            <input type="range" min={1} max={4} step={0.1} value={state.profile.gpaExpected} onChange={(e) => setGpa('gpaExpected', Number(e.target.value))} />
           </label>
           <div className="grade-convert">
             <div>
-              <small>Your grade</small>
-              <strong>{state.profile.gpa}/100</strong>
+              <small>Now</small>
+              <strong>{state.profile.gpaNow.toFixed(1)}</strong>
+              <small>≈ German {germanNow.toFixed(1)}</small>
             </div>
             <motion.span className="arrow" animate={{ x: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 1.6 }}>
               →
             </motion.span>
             <div>
-              <small>German equivalent</small>
-              <motion.strong key={german} initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="grad-text">
-                {german.toFixed(1)}
+              <small>At graduation</small>
+              <motion.strong key={germanExpected} initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="grad-text">
+                {state.profile.gpaExpected.toFixed(1)}
               </motion.strong>
+              <small>≈ German {germanExpected.toFixed(1)}</small>
             </div>
           </div>
           <p className="muted small">
-            Uses the modified Bavarian formula: 1 + 3 × (100 − grade) / (100 − 51). German universities use it to convert foreign grades (1.0 = best, 4.0 = pass).
-            uni-assist or the university makes the official conversion.
+            Uses the modified Bavarian formula: 1 + 3 × (4.0 − GPA) / (4.0 − 1.0). German universities use it to convert foreign grades (1.0 = best, 4.0 = pass).
+            If they convert from your 0–100 marks instead, the result is usually a few tenths worse. uni-assist or the university makes the official
+            conversion. Most applications are judged on your average <b>at the time you apply</b> (January–July 2027), so every exam this year counts.
           </p>
           <label className="field">
             German level

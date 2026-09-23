@@ -146,11 +146,13 @@ export const creditChecks = [
 export const totalEcts = curriculum.reduce((a, c) => a + c.ects, 0)
 
 /**
- * Converts a Georgian 0–100 grade to the German 1.0–4.0 scale with the
+ * Converts a foreign grade to the German 1.0–4.0 scale with the
  * "modified Bavarian formula" that most German universities use:
- * N = 1 + 3 × (Nmax − Nd) / (Nmax − Nmin), with Nmax = 100 and Nmin = 51 (lowest pass).
+ * N = 1 + 3 × (Nmax − Nd) / (Nmax − Nmin).
+ * Defaults are the Georgian 4.0 GPA scale with 1.0 as the lowest pass. Converting from
+ * the 0–100 marks instead (max 100, pass 51) usually comes out a few tenths worse.
  */
-export function toGermanGrade(score: number, max = 100, minPass = 51): number {
+export function toGermanGrade(score: number, max = 4, minPass = 1): number {
   const n = 1 + (3 * (max - score)) / (max - minPass)
   return Math.min(4, Math.max(1, Math.round(n * 10) / 10))
 }

@@ -222,12 +222,16 @@ export default function Dashboard() {
           <Section title="Your profile" icon={<Info size={18} />} action={<a href="#/me" className="link">Edit →</a>}>
             <div className="profile-facts">
               <div>
-                <small>GPA (Georgian scale)</small>
-                <strong>{state.profile.gpa}/100</strong>
+                <small>GPA now → expected</small>
+                <strong>
+                  {state.profile.gpaNow.toFixed(1)} → {state.profile.gpaExpected.toFixed(1)}
+                </strong>
               </div>
               <div>
                 <small>≈ German grade</small>
-                <strong className="grad-text">{toGermanGrade(state.profile.gpa).toFixed(1)}</strong>
+                <strong className="grad-text">
+                  {toGermanGrade(state.profile.gpaNow).toFixed(1)} → {toGermanGrade(state.profile.gpaExpected).toFixed(1)}
+                </strong>
               </div>
               <div>
                 <small>Bachelor credits</small>
@@ -246,8 +250,8 @@ export default function Dashboard() {
               ))}
             </div>
             <p className="muted small">
-              In Germany 1.0 is the best grade and 4.0 is the lowest pass. Below 1.5 is excellent, which puts you in a strong position at
-              every university on this list.
+              In Germany 1.0 is the best grade and 4.0 is the lowest pass. Around 2.1–2.5 you are an average applicant, so the top
+              universities are reaches. Your Jülich internship, CSWP and projects have to do the heavy lifting, and so does raising your grades this year.
             </p>
           </Section>
         </motion.div>

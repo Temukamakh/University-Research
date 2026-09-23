@@ -85,6 +85,10 @@ export const cv: CvSection[] = [
 /** How to turn the profile into a strong application story. */
 export const storyTips = [
   {
+    title: 'Own your grades, show the trend',
+    text: 'Don\'t hide the GPA. Show the upward trend (2.5 → 2.9), and put your strongest subject grades (FEM, Machine Elements, Automotive Theory) next to proof that you can do the work in practice: Jülich, CSWP, competition results. One honest sentence works better than an excuse.',
+  },
+  {
     title: 'One clear story',
     text: 'Motorsport needs engineers who can design (CSWP), simulate (Jülich FEA/CFD, 6-DOF Python) and build and control real hardware (ESP32, robot competitions). Every motivation letter should show you already do all three.',
   },
