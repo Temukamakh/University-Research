@@ -4,11 +4,11 @@ import { MapPin, Search, SlidersHorizontal } from 'lucide-react'
 import { programs, RESEARCHED_ON } from '../data/programs'
 import type { Focus, Program, Tier } from '../data/types'
 import { useStore } from '../lib/store'
-import { BUDGET_PER_SEMESTER, eur, fmtDate, focusMeta, tierMeta, useNow } from '../lib/util'
+import { BUDGET_PER_SEMESTER, fromKonstanz, eur, fmtDate, focusMeta, tierMeta, useNow } from '../lib/util'
 import { DeadlineChip, DifficultyMeter, MotorsportMeter, PhotoImg, Pill, StarButton, StatusSelect, TierBadge } from '../components/ui'
 import { navigate } from '../App'
 
-type Sort = 'deadline' | 'fit' | 'ranking' | 'cost' | 'difficulty' | 'motorsport'
+type Sort = 'deadline' | 'fit' | 'ranking' | 'cost' | 'difficulty' | 'motorsport' | 'konstanz'
 
 const rankValue = (p: Program) => {
   const m = p.ranking.qsWorld.match(/\d+/)
@@ -46,6 +46,7 @@ export default function Programs() {
       cost: (a, b) => a.costs.tuition + a.costs.living * 6 - (b.costs.tuition + b.costs.living * 6),
       difficulty: (a, b) => b.difficulty - a.difficulty,
       motorsport: (a, b) => b.motorsport.score - a.motorsport.score || b.fit - a.fit,
+      konstanz: (a, b) => fromKonstanz(a.coords).straight - fromKonstanz(b.coords).straight,
     }
     return filtered.sort(by[sort])
   }, [q, tiers, focus, onlyShortlist, withinBudget, noGre, motorsportOnly, sort, state.shortlist])
@@ -104,6 +105,7 @@ export default function Programs() {
               <option value="cost">Sort: cheapest</option>
               <option value="difficulty">Sort: hardest first</option>
               <option value="motorsport">Sort: motorsport links</option>
+              <option value="konstanz">Sort: closest to Konstanz</option>
             </select>
           </label>
         </div>
@@ -147,6 +149,7 @@ export default function Programs() {
                     {p.costs.tuition === 0 ? 'Tuition-free' : `${eur(p.costs.tuition)}/sem`}
                   </Pill>
                   <Pill>🏆 {p.ranking.qsWorld}</Pill>
+                  <Pill tone="#0ea5e9">📍 {fromKonstanz(p.coords).straight} km to Konstanz</Pill>
                 </div>
                 <div className="pc-fit">
                   <span>Fit</span>

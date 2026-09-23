@@ -2,10 +2,10 @@ import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
+import { MapContainer, Marker, Polyline, Popup, TileLayer, useMap } from 'react-leaflet'
 import { programs } from '../data/programs'
 import type { Program } from '../data/types'
-import { eur } from '../lib/util'
+import { eur, fromKonstanz, KONSTANZ } from '../lib/util'
 import { TierBadge } from '../components/ui'
 import { useStore } from '../lib/store'
 
@@ -16,6 +16,13 @@ const icon = (p: Program, starred: boolean) =>
     iconSize: [0, 0],
     iconAnchor: [0, 0],
   })
+
+const konstanzIcon = L.divIcon({
+  className: 'map-pin-wrap',
+  html: '<div class="map-pin home"><span>📍 Konstanz</span></div>',
+  iconSize: [0, 0],
+  iconAnchor: [0, 0],
+})
 
 function FlyTo({ target }: { target: [number, number] | null }) {
   const map = useMap()
@@ -28,13 +35,15 @@ function FlyTo({ target }: { target: [number, number] | null }) {
 export default function MapView() {
   const { state } = useStore()
   const [target, setTarget] = useState<[number, number] | null>(null)
+  const [hover, setHover] = useState<Program | null>(null)
+  const byDistance = [...programs].sort((a, b) => fromKonstanz(a.coords).straight - fromKonstanz(b.coords).straight)
 
   return (
     <div className="page">
       <header className="page-head">
         <div>
           <h1>Map</h1>
-          <p className="muted">Where each program is. Click a university in the list to fly to it. ★ marks your shortlist.</p>
+          <p className="muted">Where each program is, and how far it is from Konstanz. Hover over a university in the list to draw the line, or click it to fly there. ★ marks your shortlist. Road distances and drive times are estimates.</p>
         </div>
       </header>
       <div className="map-layout">
@@ -50,21 +59,31 @@ export default function MapView() {
                   <br />
                   {p.city} · {p.costs.tuition ? `${eur(p.costs.tuition)}/sem` : 'Tuition-free'}
                   <br />
+                  📍 {fromKonstanz(p.coords).straight} km from Konstanz (≈ {fromKonstanz(p.coords).drive} by car)
+                  <br />
                   <a href={`#/program/${p.id}`}>Open details →</a>
                 </Popup>
               </Marker>
             ))}
+            <Marker position={KONSTANZ} icon={konstanzIcon} zIndexOffset={1000}>
+              <Popup>
+                <strong>Konstanz</strong>
+              </Popup>
+            </Marker>
+            {hover && <Polyline positions={[KONSTANZ, hover.coords]} pathOptions={{ color: hover.color, weight: 3, dashArray: '6 8' }} />}
             <FlyTo target={target} />
           </MapContainer>
         </motion.div>
         <ul className="map-list">
-          {programs.map((p, i) => (
+          {byDistance.map((p, i) => (
             <motion.li
               key={p.id}
               initial={{ opacity: 0, x: 16 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.03 }}
               onClick={() => setTarget([...p.coords])}
+              onMouseEnter={() => setHover(p)}
+              onMouseLeave={() => setHover(null)}
               className="card"
               style={{ '--brand': p.color } as React.CSSProperties}
             >
@@ -74,7 +93,7 @@ export default function MapView() {
                   {p.short} {state.shortlist.includes(p.id) && '★'}
                 </strong>
                 <small className="muted">
-                  {p.city} · {p.state}
+                  {p.city} · 📍 {fromKonstanz(p.coords).straight} km (≈ {fromKonstanz(p.coords).drive})
                 </small>
               </div>
               <TierBadge tier={p.tier} />

@@ -3,7 +3,7 @@ import { X } from 'lucide-react'
 import { programs } from '../data/programs'
 import type { Program } from '../data/types'
 import { useStore } from '../lib/store'
-import { BUDGET_PER_SEMESTER, degreeCost, eur, fmtDate } from '../lib/util'
+import { BUDGET_PER_SEMESTER, fromKonstanz, degreeCost, eur, fmtDate } from '../lib/util'
 import { DifficultyMeter, MotorsportMeter, PhotoImg, TierBadge } from '../components/ui'
 
 const reqValue = (p: Program, label: string) => p.requirements.find((r) => r.label.startsWith(label))?.value ?? '–'
@@ -11,6 +11,14 @@ const reqValue = (p: Program, label: string) => p.requirements.find((r) => r.lab
 const ROWS: { label: string; render: (p: Program) => React.ReactNode; best?: (ps: Program[]) => string | undefined }[] = [
   { label: 'Tier', render: (p) => <TierBadge tier={p.tier} /> },
   { label: 'City', render: (p) => `${p.city}, ${p.state}` },
+  {
+    label: 'To Konstanz',
+    render: (p) => {
+      const d = fromKonstanz(p.coords)
+      return `${d.straight} km (≈ ${d.road} km, ${d.drive} by car)`
+    },
+    best: (ps) => ps.reduce((a, b) => (fromKonstanz(b.coords).straight < fromKonstanz(a.coords).straight ? b : a)).id,
+  },
   { label: 'Type', render: (p) => p.kind },
   { label: 'Language', render: (p) => p.language },
   { label: 'Duration', render: (p) => `${p.semesters} semesters (${p.degree})` },

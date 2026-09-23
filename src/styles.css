@@ -495,3 +495,5 @@ input[type='range'] { accent-color: var(--accent); width: 100%; }
 .edge-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
 .edge-chip { padding: 4px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 600; background: var(--surface-2); border: 1px solid var(--border); }
 @media (max-width: 860px) { .motorsport { grid-template-columns: 1fr; } }
+.map-pin.home { background: #0f172a; border: 2px solid white; }
+.map-pin.home::after { border-top-color: #0f172a; }

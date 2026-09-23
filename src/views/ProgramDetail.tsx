@@ -22,7 +22,7 @@ import {
 import { programById } from '../data/programs'
 import type { ReqStatus } from '../data/types'
 import { useStore } from '../lib/store'
-import { BUDGET_PER_SEMESTER, degreeCost, docsFor, eur, fmtDate, tierMeta, useNow } from '../lib/util'
+import { BUDGET_PER_SEMESTER, fromKonstanz, degreeCost, docsFor, eur, fmtDate, tierMeta, useNow } from '../lib/util'
 import { AnimatedNumber, DeadlineChip, DifficultyMeter, Gallery, MotorsportMeter, ProgressRing, riseIn, Section, stagger, StarButton, StatusSelect, TierBadge } from '../components/ui'
 import { navigate } from '../App'
 
@@ -101,6 +101,12 @@ export default function ProgramDetail({ id }: { id: string }) {
           label="Deadline (WS 2027/28)"
           value={fmtDate(p.application.deadline, { day: 'numeric', month: 'long', year: 'numeric' })}
           sub={<DeadlineChip iso={p.application.deadline} now={now} />}
+        />
+        <Fact
+          icon={<MapPin size={16} />}
+          label="Distance to Konstanz"
+          value={`${fromKonstanz(p.coords).straight} km straight line`}
+          sub={`≈ ${fromKonstanz(p.coords).road} km / ${fromKonstanz(p.coords).drive} by car (estimate)`}
         />
         <Fact icon={<Building2 size={16} />} label="Apply via" value={p.application.portal} sub={p.application.viaUniAssist ? 'uni-assist pre-check needed' : 'Direct application'} />
       </motion.div>

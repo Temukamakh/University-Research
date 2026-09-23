@@ -58,3 +58,21 @@ export const focusMeta = {
 } as const
 
 export const BUDGET_PER_SEMESTER = 3000
+
+export const KONSTANZ: [number, number] = [47.6779, 9.1732]
+
+/**
+ * Distance from Konstanz. Straight-line km is exact (haversine); road km and drive time are
+ * estimates (×1.3 detour factor, ~85 km/h average), so check a route planner for real trips.
+ */
+export function fromKonstanz([lat, lng]: [number, number]) {
+  const rad = (d: number) => (d * Math.PI) / 180
+  const dLat = rad(lat - KONSTANZ[0])
+  const dLng = rad(lng - KONSTANZ[1])
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(rad(KONSTANZ[0])) * Math.cos(rad(lat)) * Math.sin(dLng / 2) ** 2
+  const straight = Math.round(2 * 6371 * Math.asin(Math.sqrt(a)))
+  const road = Math.round((straight * 1.3) / 10) * 10
+  const minutes = Math.round(((road / 85) * 60) / 15) * 15
+  const drive = `${Math.floor(minutes / 60)}h${minutes % 60 ? ` ${minutes % 60}m` : ''}`
+  return { straight, road, drive }
+}
