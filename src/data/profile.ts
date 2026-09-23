@@ -13,7 +13,7 @@ export const cv: CvSection[] = [
     emoji: '🔬',
     items: [
       {
-        title: 'Upcoming internship: Forschungszentrum Jülich (Helmholtz Association)',
+        title: 'Internship, February 2027: Forschungszentrum Jülich (Helmholtz Association)',
         detail:
           'Institute of Technology and Engineering (ITE), headed by Prof. Ghaleb Natour. Interviewed and accepted; team assignment pending. Target team: Simulation and Calculation (FEA, thermal and flow analysis of components under extreme loads). Secondary interest: CFD.',
       },
@@ -76,7 +76,7 @@ export const cv: CvSection[] = [
       { title: 'CAD', detail: 'SolidWorks (CSWA, CSWP)' },
       { title: 'Embedded', detail: 'ESP32, IMU sensors, serial communication, PWM control' },
       { title: 'Simulation & programming', detail: 'Python (6-DOF dynamics simulation)' },
-      { title: 'Languages', detail: 'Georgian (native), English, German (A2)' },
+      { title: 'Languages', detail: 'Georgian (native; language of your bachelor\'s), English (IELTS planned), German (A2)' },
       { title: 'Interests', detail: 'CFD, FEA, robotics, mechatronics, vehicle dynamics' },
     ],
   },

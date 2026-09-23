@@ -40,7 +40,7 @@ export const programs: Program[] = [
     ],
     gaps: [
       'The GRE General Test is mandatory for non-EU degrees: Verbal ≥ 145, Quant ≥ 160, Analytical Writing ≥ 3.0.',
-      'An industrial internship is an admission requirement. Ask ika how many weeks they need, and whether your Forschungszentrum Jülich internship counts (a research institute is not a company). You also have about 7 ECTS of practice from your degree.',
+      'An industrial internship is an admission requirement. Your Jülich internship (February 2027) ends just before the 1 March deadline. Ask ika how many weeks they need and whether a research-institute internship counts. You also have about 7 ECTS of practice from your degree.',
       'Fluid mechanics: you only have Hydraulics (4 ECTS) and Hydraulic Machines (5 ECTS). Mention both clearly in your course list.',
     ],
     motorsport: {
@@ -118,7 +118,7 @@ export const programs: Program[] = [
       'FEA and CFD electives build directly on your Jülich simulation internship',
     ],
     gaps: [
-      'A 12-week industrial internship is required. You can make it up during the master if it is missing, and your Jülich internship may count toward it (ask KIT).',
+      'A 12-week industrial internship is required. Your one-month Jülich internship (February 2027) may count toward it (ask KIT), and you can make up the rest during the master.',
       'Non-EU tuition in Baden-Württemberg is €1,500 per semester.',
     ],
     motorsport: {
@@ -662,7 +662,7 @@ export const programs: Program[] = [
     requirements: [
       { label: 'Degree', value: 'Bachelor in automotive engineering / systems or a related field', status: 'warn', note: 'Mechanical engineering with automotive courses should count as related' },
       { label: 'Grades', value: 'Top 35% of your class (grades A/B)', status: 'ok' },
-      { label: 'English', value: 'English certificate (exempt if your bachelor\'s was taught in English)', status: 'todo' },
+      { label: 'English', value: 'English certificate (IELTS). Your bachelor\'s is taught in Georgian, so you need it', status: 'todo' },
       { label: 'GRE', value: 'Not required', status: 'ok' },
     ],
     extraDocs: ['Ranking certificate (proof you are in the top 35%) from your university'],
