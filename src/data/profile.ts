@@ -106,7 +106,7 @@ export const storyTips = [
   },
   {
     title: 'Lead with Jülich',
-    text: 'A Helmholtz research internship on components under extreme loads, for which the institute director personally chose you out of about 100 students, is your strongest point. Name the institute, the team and the methods. Prof. Natour\'s letter is the most valuable one you can get, especially for RWTH.',
+    text: 'A Helmholtz research internship on components under extreme loads, for which the institute director personally chose you out of about 100 students, is your strongest point. Name the institute, the team and the methods. Prof. Natour\'s letter is the most valuable one you can get, especially for KIT and the DAAD scholarship.',
   },
   {
     title: 'Use numbers',
@@ -139,7 +139,7 @@ export const recommenders: Recommender[] = [
     id: 'natour',
     name: 'Prof. Dr. Ghaleb Natour',
     role: 'Director, Institute of Technology and Engineering (ITE), Forschungszentrum Jülich · Professor, Faculty of Mechanical Engineering, RWTH Aachen',
-    why: 'Your strongest letter. He chose you personally out of about 100 students, and he is a professor in RWTH\'s own mechanical engineering faculty (ITE is listed as one of its institutes). His letter carries weight everywhere and especially at RWTH.',
+    why: 'Your strongest letter. He chose you personally out of about 100 students, and he is a professor in RWTH\'s own mechanical engineering faculty (ITE is listed as one of its institutes). His letter carries weight everywhere: at KIT, for the DAAD scholarship, and for a student job or thesis at RWTH and Jülich. RWTH\'s admission itself is a requirements check, so the letter matters less for getting in there.',
     timing: 'After or near the end of your February 2027 internship. Ask early in February so it is ready for RWTH (1 March). It is also in time for Siegen, TUM, THI and KIT, but too late for Stuttgart FAME, TUHH, UDE, RPTU (round 1) and probably COMMAS.',
     defaultStatus: 'planned',
   },
