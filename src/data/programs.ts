@@ -529,7 +529,7 @@ export const programs: Program[] = [
     color: '#004c93',
     focus: ['mechanical'],
     tier: 'target',
-    language: 'English (International Studies in Engineering)',
+    language: 'English + German (ISE: roughly half the lectures in German)',
     semesters: 4,
     intake: 'Winter & summer',
     difficulty: 2,
@@ -537,7 +537,10 @@ export const programs: Program[] = [
       'A long-running English-taught mechanical engineering program with a large international cohort and moderate admission. With your grades (GPA 2.5 now, about 2.9/4.0 expected; roughly 2.1–2.5 on the German scale) it is a realistic target and close to a safety option.',
     fit: 85,
     fitNotes: ['Your industry internship strengthens a general mechanical engineering application', 'A general mechanical engineering degree that directly continues your bachelor\'s', 'Tuition-free, and the Ruhr area is affordable'],
-    gaps: ['You first need a uni-assist check of your documents (see the uni-assist fee)'],
+    gaps: [
+      'UDE says its ISE master\'s programs are taught about 50% in German and asks for German B2 at enrolment. With A2 this is a serious problem: confirm with the ISE office (pa-ise@uni-due.de) before applying',
+      'You first need a uni-assist check of your documents (see the uni-assist fee)',
+    ],
     path: {
       score: 2,
       team: 'E-Team Duisburg-Essen (electric, since 2010)',
@@ -558,11 +561,12 @@ export const programs: Program[] = [
     requirements: [
       { label: 'Degree', value: 'Bachelor in mechanical engineering or related', status: 'ok' },
       { label: 'English', value: 'B2 or higher (check the exact score in the exam regulations)', status: 'todo' },
+      { label: 'German', value: 'B2 at enrolment (ISE programs are ~50% German)', status: 'warn', note: 'You have A2. Confirm with the ISE office' },
       { label: 'uni-assist', value: 'Documents checked by uni-assist first', status: 'todo' },
       { label: 'GRE', value: 'Not required', status: 'ok' },
     ],
     extraDocs: ['uni-assist application'],
-    highlights: ['ISE program: fully English, very international', 'Ruhr region: low living costs, lots of industry', 'Intake in both winter and summer'],
+    highlights: ['ISE program: very international (but partly in German)', 'Ruhr region: low living costs, lots of industry', 'Intake in both winter and summer'],
     photos: [{ file: 'Uni DuE Duisburg LE1.JPG', caption: 'Campus Duisburg' }],
     links: [
       { label: 'International admissions', url: 'https://www.uni-due.de/international/international-admissions-en.php' },
@@ -584,7 +588,7 @@ export const programs: Program[] = [
     focus: ['automotive'],
     tier: 'target',
     language: 'English',
-    semesters: 3,
+    semesters: 4,
     intake: 'Winter & summer',
     difficulty: 3,
     difficultyNote:

@@ -20,6 +20,7 @@ import {
   Wallet,
 } from 'lucide-react'
 import { useProfile } from '../lib/profile'
+import { CurriculumSection } from '../components/Curriculum'
 import type { ReqStatus } from '../data/types'
 import { useStore } from '../lib/store'
 import { fromKonstanz, degreeCost, docsFor, eur, fmtDate, tierMeta, useNow } from '../lib/util'
@@ -170,6 +171,10 @@ export default function ProgramDetail({ id }: { id: string }) {
           </Section>
         </motion.div>
       </div>
+
+      <motion.div variants={riseIn}>
+        <CurriculumSection p={p} />
+      </motion.div>
 
       <motion.div variants={riseIn}>
         <Section title={profile.path.title} icon={<Flag size={18} />} action={<MotorsportMeter score={p.path.score} />}>

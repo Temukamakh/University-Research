@@ -2,6 +2,7 @@ import { programs, RESEARCHED_ON } from '../data/programs'
 import { baseDocuments, generalLinks, milestones, tests } from '../data/general'
 import { cv, goal, recommenders, storyTips } from '../data/profile'
 import { areaColors, creditChecks, curriculum } from '../data/curriculum'
+import { temurCurricula } from '../data/curricula'
 import type { ProfileConfig } from './types'
 
 export const temur: ProfileConfig = {
@@ -14,7 +15,7 @@ export const temur: ProfileConfig = {
   hero: { cityOrGoal: 'Aachen', afterShortlist: 'Next stop after that: motorsport 🏁' },
   researchedOn: RESEARCHED_ON,
   programsIntro: "English-taught master's programs in Germany that match your mechanical engineering degree.",
-  programs,
+  programs: programs.map((p) => ({ ...p, curriculum: temurCurricula[p.id] })),
   focusMeta: {
     automotive: { label: 'Automotive', emoji: '🚗' },
     mechanical: { label: 'Mechanical', emoji: '⚙️' },

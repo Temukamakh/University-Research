@@ -2,6 +2,7 @@ import type { Milestone } from '../../data/general'
 import type { CvSection, Recommender } from '../../data/profile'
 import type { ProfileConfig } from '../types'
 import { nataliPrograms } from './programs'
+import { nataliCurricula } from './curricula'
 
 const milestones: Milestone[] = [
   { id: 'n-shortlist', date: '2026-10-05', kind: 'prep', title: 'Finalise your shortlist', detail: 'Pick 8–10 programs: 2–3 reaches (RWTH, KIT, Stuttgart INFOTECH), 4 targets and 2–3 safeties (Chemnitz, UDE, Deggendorf). Star them on the Programs page.' },
@@ -109,7 +110,7 @@ export const natali: ProfileConfig = {
   researchedOn: 'September 2026',
   programsIntro:
     "English-taught electrical and electronics master's programs in Germany and Austria that match your interests, all within your €1,500-per-semester tuition budget.",
-  programs: nataliPrograms,
+  programs: nataliPrograms.map((p) => ({ ...p, curriculum: nataliCurricula[p.id] })),
   focusMeta: {
     power: { label: 'Power & EV', emoji: '🔋' },
     electronics: { label: 'Electronics', emoji: '🔌' },

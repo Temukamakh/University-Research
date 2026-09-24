@@ -25,6 +25,7 @@ const rowsFor = ({ budgetPerSemester: BUDGET_PER_SEMESTER, path }: ProfileConfig
   { label: 'Type', render: (p) => p.kind },
   { label: 'Language', render: (p) => p.language },
   { label: 'Duration', render: (p) => `${p.semesters} semesters (${p.degree})` },
+  { label: 'Specialisations', render: (p) => (p.curriculum?.tracks?.length ? p.curriculum.tracks.join(' · ') : '–') },
   { label: 'Fit for you', render: (p) => `${p.fit}%`, best: (ps) => ps.reduce((a, b) => (b.fit > a.fit ? b : a)).id },
   { label: 'Difficulty', render: (p) => <DifficultyMeter level={p.difficulty} /> },
   {

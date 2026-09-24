@@ -82,4 +82,19 @@ export interface Program {
   highlights: string[]
   photos: Photo[]
   links: { label: string; url: string }[]
+  curriculum?: Curriculum
+}
+
+/** What you study, semester by semester. */
+export interface Curriculum {
+  summary: string
+  /**
+   * 'semester': the university publishes which modules fall in which semester.
+   * 'structure': only the building blocks are published; the semester split shown is the usual one.
+   */
+  detail: 'semester' | 'structure'
+  plan: { term: string; ects?: number; items: string[] }[]
+  /** Specialisations / majors / focus areas you choose from. */
+  tracks?: string[]
+  source: { label: string; url: string }
 }

@@ -528,3 +528,21 @@ input[type='range'] { accent-color: var(--accent); width: 100%; }
   .sidebar .profile-switch { display: none; }
   .mobile-switch { display: flex; justify-content: flex-end; margin: 0 auto 14px; max-width: 1240px; }
 }
+
+/* ---------- Curriculum ---------- */
+.cur-badge { padding: 4px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; background: var(--surface-2); border: 1px solid var(--border); color: var(--muted); }
+.cur-badge.official { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 40%, var(--border)); background: color-mix(in srgb, var(--ok) 10%, var(--surface)); }
+.cur-summary { margin: 0 0 16px; }
+.cur-plan { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; counter-reset: none; }
+.cur-step { position: relative; padding: 14px 16px; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--border); border-top: 4px solid var(--brand, var(--accent)); }
+.cur-step.thesis { background: linear-gradient(135deg, color-mix(in srgb, var(--brand, var(--accent)) 14%, var(--surface)), var(--surface-2)); }
+.cur-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.cur-head strong { flex: 1; font-family: var(--font-display); }
+.cur-dot { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--brand, var(--accent)); color: white; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+.cur-ects { font-size: 0.72rem; font-weight: 700; color: var(--muted); padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); }
+.cur-step ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 0.88rem; }
+.cur-step li::marker { color: var(--brand, var(--accent)); }
+.cur-tracks { display: flex; flex-wrap: wrap; gap: 8px; }
+.cur-track { padding: 6px 12px; border-radius: 999px; font-size: 0.82rem; font-weight: 600; background: color-mix(in srgb, var(--accent) 10%, var(--surface)); border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border)); }
+.cur-note { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; margin: 14px 0 0; }
+.cur-note a { display: inline-flex; align-items: center; gap: 3px; }
