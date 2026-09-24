@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import type { Program } from '../data/types'
-import { baseDocuments } from '../data/general'
 
 export const eur = (n: number) =>
   new Intl.NumberFormat('en-IE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n)
@@ -31,7 +30,7 @@ export const commonsUrl = (file: string, width = 1200) =>
 
 export const commonsPage = (file: string) => `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file.replace(/ /g, '_'))}`
 
-export function docsFor(p: Program): string[] {
+export function docsFor(p: Program, baseDocuments: string[]): string[] {
   return [...baseDocuments, ...p.extraDocs]
 }
 
@@ -50,15 +49,6 @@ export const tierMeta = {
   safety: { label: 'Safety', color: '#10b981', blurb: 'High chance of admission' },
 } as const
 
-export const focusMeta = {
-  automotive: { label: 'Automotive', emoji: '🚗' },
-  mechanical: { label: 'Mechanical', emoji: '⚙️' },
-  mechatronics: { label: 'Mechatronics', emoji: '🤖' },
-  production: { label: 'Production', emoji: '🏭' },
-} as const
-
-export const BUDGET_PER_SEMESTER = 3000
-
 export const KONSTANZ: [number, number] = [47.6779, 9.1732]
 
 /**
@@ -75,4 +65,10 @@ export function fromKonstanz([lat, lng]: [number, number]) {
   const minutes = Math.round(((road / 85) * 60) / 15) * 15
   const drive = `${Math.floor(minutes / 60)}h${minutes % 60 ? ` ${minutes % 60}m` : ''}`
   return { straight, road, drive }
+}
+
+/** 2.88 → "2.88", 3 → "3.0", 2.5 → "2.5". */
+export const fmtGpa = (g: number) => {
+  const r = Math.round(g * 100) / 100
+  return Math.abs(r * 10 - Math.round(r * 10)) < 1e-9 ? r.toFixed(1) : r.toFixed(2)
 }

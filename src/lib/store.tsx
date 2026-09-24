@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
+import type { ProfileConfig } from '../profiles/types'
 
 export const STATUSES = [
   { id: 'researching', label: 'Researching', color: '#94a3b8' },
@@ -35,36 +36,37 @@ export interface AppState {
   theme: Theme
 }
 
-const STORAGE_KEY = 'masters-tracker:v1'
-
-export const defaultState: AppState = {
-  version: 1,
-  profile: { name: 'Temur', gpaNow: 2.5, gpaExpected: 2.9, german: 'A2' },
-  shortlist: ['rwth-automotive', 'kit-mechanical', 'stuttgart-fame', 'stuttgart-commas', 'rptu-cvt', 'thi-iae', 'ude-mechanical', 'siegen-mechanical', 'chemnitz-am'],
-  status: {},
-  docs: {},
-  notes: {},
-  milestonesDone: {},
-  letters: {},
-  tests: {},
-  compare: ['rwth-automotive', 'kit-mechanical', 'stuttgart-fame'],
-  theme: 'system',
+/** Fresh state for a profile, seeded from its defaults. */
+export function makeDefaultState(p: ProfileConfig): AppState {
+  return {
+    version: 1,
+    profile: { name: p.name, gpaNow: p.defaults.gpaNow, gpaExpected: p.defaults.gpaExpected, german: p.defaults.german },
+    shortlist: p.defaults.shortlist,
+    status: {},
+    docs: {},
+    notes: {},
+    milestonesDone: {},
+    letters: {},
+    tests: {},
+    compare: p.defaults.compare,
+    theme: 'system',
+  }
 }
 
 /** Merges saved state over the defaults. Older backups stored a 0–100 `gpa`, which is dropped. */
-function withDefaults(parsed: Partial<AppState>): AppState {
+function withDefaults(parsed: Partial<AppState>, defaults: AppState): AppState {
   const { gpa: _old, ...profile } = (parsed.profile ?? {}) as Partial<AppState['profile']> & { gpa?: number }
-  return { ...defaultState, ...parsed, profile: { ...defaultState.profile, ...profile } }
+  return { ...defaults, ...parsed, profile: { ...defaults.profile, ...profile } }
 }
 
-function load(): AppState {
+function load(p: ProfileConfig): AppState {
+  const defaults = makeDefaultState(p)
   try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return defaultState
-    const parsed = JSON.parse(raw) as Partial<AppState>
-    return withDefaults(parsed)
+    const raw = localStorage.getItem(p.storageKey)
+    if (!raw) return defaults
+    return withDefaults(JSON.parse(raw) as Partial<AppState>, defaults)
   } catch {
-    return defaultState
+    return defaults
   }
 }
 
@@ -84,16 +86,17 @@ interface Store {
 
 const Ctx = createContext<Store | null>(null)
 
-export function StoreProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<AppState>(load)
+/** Holds one profile's progress. Remount it (key={profile.id}) when switching profiles. */
+export function StoreProvider({ profile, children }: { profile: ProfileConfig; children: ReactNode }) {
+  const [state, setState] = useState<AppState>(() => load(profile))
 
   useEffect(() => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+      localStorage.setItem(profile.storageKey, JSON.stringify(state))
     } catch {
       // Storage can be unavailable (private mode). The app still works for this session.
     }
-  }, [state])
+  }, [state, profile.storageKey])
 
   const update = useCallback((fn: (s: AppState) => AppState) => setState((s) => fn(s)), [])
 
@@ -125,15 +128,15 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         try {
           const parsed = JSON.parse(json) as Partial<AppState>
           if (parsed.version !== 1) return false
-          setState(withDefaults(parsed))
+          setState(withDefaults(parsed, makeDefaultState(profile)))
           return true
         } catch {
           return false
         }
       },
-      reset: () => setState(defaultState),
+      reset: () => setState(makeDefaultState(profile)),
     }),
-    [state, update],
+    [state, update, profile],
   )
 
   return <Ctx.Provider value={store}>{children}</Ctx.Provider>

@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, BookOpen, CalendarClock, CheckCircle2, FileText, Info, Sparkles, Star, Target } from 'lucide-react'
-import { programs } from '../data/programs'
-import { milestones, tests } from '../data/general'
+import { useProfile } from '../lib/profile'
 import { toGermanGrade } from '../data/curriculum'
 import { statusOf, useStore } from '../lib/store'
-import { daysUntil, docsFor, fmtDate, useNow } from '../lib/util'
+import { daysUntil, docsFor, fmtDate, useNow, fmtGpa } from '../lib/util'
 import { AnimatedNumber, DeadlineChip, ProgressRing, riseIn, Section, stagger, TierBadge } from '../components/ui'
 import { navigate } from '../App'
 
@@ -12,6 +11,8 @@ const SEMESTER_START = '2027-10-11'
 
 export default function Dashboard() {
   const { state, setTest } = useStore()
+  const { profile } = useProfile()
+  const { programs, milestones, tests } = profile
   const now = useNow(1000)
 
   const tracked = programs.filter((p) => state.shortlist.includes(p.id))
@@ -26,7 +27,7 @@ export default function Dashboard() {
 
   const docTotals = tracked.reduce(
     (acc, p) => {
-      const list = docsFor(p)
+      const list = docsFor(p, profile.baseDocuments)
       acc.total += list.length
       acc.done += list.filter((d) => state.docs[p.id]?.[d]).length
       return acc
@@ -52,14 +53,14 @@ export default function Dashboard() {
         <div className="hero-glow" aria-hidden />
         <div className="hero-text">
           <p className="eyebrow">
-            <Sparkles size={14} /> Master's in Germany · Winter Semester 2027/28
+            <Sparkles size={14} /> Master's in {programs.some((p) => p.country === 'Austria') ? 'Germany & Austria' : 'Germany'} · Winter Semester 2027/28
           </p>
           <h1>
-            Hi{state.profile.name ? `, ${state.profile.name}` : ''}! Let's get you to <span className="grad-text">Aachen</span>.
+            Hi{state.profile.name ? `, ${state.profile.name}` : ''}! Let's get you to <span className="grad-text">{profile.hero.cityOrGoal}</span>.
           </h1>
           <p className="lead">
             Lectures start in <strong>{daysUntil(SEMESTER_START, now)} days</strong>. You have{' '}
-            <strong>{tracked.length}</strong> programs on your shortlist. Next stop after that: motorsport 🏁
+            <strong>{tracked.length}</strong> programs on your shortlist. {profile.hero.afterShortlist}
           </p>
           <div className="hero-actions">
             <a className="btn primary" href="#/programs">
@@ -224,7 +225,7 @@ export default function Dashboard() {
               <div>
                 <small>GPA now → expected</small>
                 <strong>
-                  {state.profile.gpaNow.toFixed(1)} → {state.profile.gpaExpected.toFixed(1)}
+                  {fmtGpa(state.profile.gpaNow)} → {fmtGpa(state.profile.gpaExpected)}
                 </strong>
               </div>
               <div>
@@ -243,26 +244,25 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="edge-chips">
-              {['🔬 Jülich internship: chosen by Prof. Natour (1 of ~100)', '🏭 6 months in industry: CNC, reverse engineering, robot arm', '✉️ 3 recommendation letters', '📜 SOLIDWORKS CSWP', '🏆 1st: university sumo robots', '🛰️ ESP32 hardware-in-the-loop 6-DOF sim', '🏁 Autonomous RC race organiser'].map((c) => (
+              {profile.edgeChips.map((c) => (
                 <span key={c} className="edge-chip">
                   {c}
                 </span>
               ))}
             </div>
             <p className="muted small">
-              In Germany 1.0 is the best grade and 4.0 is the lowest pass. Around 2.1–2.5 you are an average applicant, so the top
-              universities are reaches. Your Jülich internship, CSWP and projects have to do the heavy lifting, and so does raising your grades this year.
+              {profile.dashboardNote}
             </p>
           </Section>
         </motion.div>
         <motion.div variants={riseIn}>
           <Section title="Your dream picks" icon={<Star size={18} />}>
             <div className="dream">
-              {['rwth-automotive', 'kit-mechanical'].map((id) => {
+              {profile.dreamPicks.map((id, rank) => {
                 const p = programs.find((x) => x.id === id)!
                 return (
                   <motion.button key={id} className="dream-card" whileHover={{ y: -3 }} onClick={() => navigate('program', id)} style={{ '--brand': p.color } as React.CSSProperties}>
-                    <span className="dream-rank">#{id.startsWith('rwth') ? 1 : 2}</span>
+                    <span className="dream-rank">#{rank + 1}</span>
                     <strong>{p.short}</strong>
                     <span>{p.program}</span>
                     <TierBadge tier={p.tier} />

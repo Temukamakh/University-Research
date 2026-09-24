@@ -1,5 +1,6 @@
 export type Tier = 'reach' | 'target' | 'safety'
-export type Focus = 'automotive' | 'mechanical' | 'mechatronics' | 'production'
+/** Subject tags; each profile defines its own labels (see ProfileConfig.focusMeta). */
+export type Focus = string
 export type ReqStatus = 'ok' | 'todo' | 'warn'
 
 export interface Photo {
@@ -24,6 +25,8 @@ export interface Program {
   degree: 'M.Sc.' | 'M.Eng.'
   city: string
   state: string
+  /** Defaults to Germany. */
+  country?: string
   coords: [number, number]
   kind: 'TU9' | 'Technical University' | 'University' | 'University of Applied Sciences'
   /** Accent colour used for gradients / fallbacks. */
@@ -40,10 +43,13 @@ export interface Program {
   fit: number
   fitNotes: string[]
   gaps: string[]
-  /** How well the university sets you up for a motorsport career (my assessment). */
-  motorsport: {
+  /**
+   * How well the university serves the applicant's long-term goal (motorsport for Temur,
+   * labs and industry for Natali). Labels come from ProfileConfig.path. My assessment.
+   */
+  path: {
     score: 1 | 2 | 3 | 4 | 5
-    /** Formula Student team at this university. */
+    /** The student team or lab to highlight. */
     team: string
     points: string[]
   }

@@ -1,10 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useMemo, useState } from 'react'
 import { MapPin, Search, SlidersHorizontal } from 'lucide-react'
-import { programs, RESEARCHED_ON } from '../data/programs'
+import { useProfile } from '../lib/profile'
 import type { Focus, Program, Tier } from '../data/types'
 import { useStore } from '../lib/store'
-import { BUDGET_PER_SEMESTER, fromKonstanz, eur, fmtDate, focusMeta, tierMeta, useNow } from '../lib/util'
+import { fromKonstanz, eur, fmtDate, tierMeta, useNow } from '../lib/util'
 import { DeadlineChip, DifficultyMeter, MotorsportMeter, PhotoImg, Pill, StarButton, StatusSelect, TierBadge } from '../components/ui'
 import { navigate } from '../App'
 
@@ -17,6 +17,8 @@ const rankValue = (p: Program) => {
 
 export default function Programs() {
   const { state } = useStore()
+  const { profile } = useProfile()
+  const { programs, focusMeta, budgetPerSemester: BUDGET_PER_SEMESTER, path } = profile
   const now = useNow()
   const [q, setQ] = useState('')
   const [tiers, setTiers] = useState<Tier[]>([])
@@ -35,7 +37,7 @@ export default function Programs() {
       if (focus.length && !p.focus.some((f) => focus.includes(f))) return false
       if (onlyShortlist && !state.shortlist.includes(p.id)) return false
       if (withinBudget && p.costs.tuition > BUDGET_PER_SEMESTER) return false
-      if (motorsportOnly && p.motorsport.score < 4) return false
+      if (motorsportOnly && p.path.score < 4) return false
       if (noGre && p.requirements.some((r) => r.label.startsWith('GRE') && !/not required/i.test(r.value))) return false
       return true
     })
@@ -45,11 +47,11 @@ export default function Programs() {
       ranking: (a, b) => rankValue(a) - rankValue(b),
       cost: (a, b) => a.costs.tuition + a.costs.living * 6 - (b.costs.tuition + b.costs.living * 6),
       difficulty: (a, b) => b.difficulty - a.difficulty,
-      motorsport: (a, b) => b.motorsport.score - a.motorsport.score || b.fit - a.fit,
+      motorsport: (a, b) => b.path.score - a.path.score || b.fit - a.fit,
       konstanz: (a, b) => fromKonstanz(a.coords).straight - fromKonstanz(b.coords).straight,
     }
     return filtered.sort(by[sort])
-  }, [q, tiers, focus, onlyShortlist, withinBudget, noGre, motorsportOnly, sort, state.shortlist])
+  }, [programs, BUDGET_PER_SEMESTER, q, tiers, focus, onlyShortlist, withinBudget, noGre, motorsportOnly, sort, state.shortlist])
 
   const toggle = <T,>(arr: T[], v: T, set: (x: T[]) => void) => set(arr.includes(v) ? arr.filter((x) => x !== v) : [...arr, v])
 
@@ -59,7 +61,7 @@ export default function Programs() {
         <div>
           <h1>Programs</h1>
           <p className="muted">
-            {programs.length} English-taught master's programs in Germany that match your mechanical engineering degree. Researched {RESEARCHED_ON}.
+            {programs.length} {profile.programsIntro} Researched {profile.researchedOn}.
             Deadlines are projected for WS 2027/28, so always confirm on the official page.
           </p>
         </div>
@@ -94,7 +96,7 @@ export default function Programs() {
             📝 No GRE
           </button>
           <button className={`chip ${motorsportOnly ? 'on' : ''}`} onClick={() => setMotorsportOnly(!motorsportOnly)}>
-            🏁 Strong motorsport links
+            {path.emoji} {path.filterLabel}
           </button>
           <label className="sort">
             <SlidersHorizontal size={14} />
@@ -104,7 +106,7 @@ export default function Programs() {
               <option value="ranking">Sort: QS ranking</option>
               <option value="cost">Sort: cheapest</option>
               <option value="difficulty">Sort: hardest first</option>
-              <option value="motorsport">Sort: motorsport links</option>
+              <option value="motorsport">Sort: {path.sortLabel}</option>
               <option value="konstanz">Sort: closest to Konstanz</option>
             </select>
           </label>
@@ -160,8 +162,8 @@ export default function Programs() {
                 </div>
                 <div className="pc-meters">
                   <DifficultyMeter level={p.difficulty} />
-                  <span className="pc-ms" title={p.motorsport.team}>
-                    🏁 <MotorsportMeter score={p.motorsport.score} compact />
+                  <span className="pc-ms" title={p.path.team}>
+                    {path.emoji} <MotorsportMeter score={p.path.score} compact />
                   </span>
                 </div>
                 <div className="pc-foot">

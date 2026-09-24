@@ -2,6 +2,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { CalendarRange, Compass, GraduationCap, LayoutDashboard, Map as MapIcon, Monitor, Moon, Scale, Sun, User, Wallet } from 'lucide-react'
 import { useStore, type Theme } from './lib/store'
+import { useProfile } from './lib/profile'
+import { profiles } from './profiles'
 import Dashboard from './views/Dashboard'
 import Programs from './views/Programs'
 import ProgramDetail from './views/ProgramDetail'
@@ -104,9 +106,10 @@ export default function App() {
           </motion.span>
           <span>
             <strong>Master's Tracker</strong>
-            <small>Germany · WS 2027/28</small>
+            <small>WS 2027/28</small>
           </span>
         </a>
+        <ProfileSwitcher />
         <nav className="nav">
           {NAV.map(({ name, label, icon: Icon }) => (
             <a key={name} href={`#/${name}`} className={`nav-item ${active === name ? 'active' : ''}`} aria-current={active === name ? 'page' : undefined}>
@@ -127,6 +130,9 @@ export default function App() {
       </aside>
 
       <main className="main">
+        <div className="mobile-switch">
+          <ProfileSwitcher compact />
+        </div>
         <AnimatePresence mode="wait">
           <motion.div
             key={route.name + (route.id ?? '')}
@@ -139,6 +145,39 @@ export default function App() {
           </motion.div>
         </AnimatePresence>
       </main>
+    </div>
+  )
+}
+
+/** Switches between applicants. Each profile has its own programs and saved progress. */
+function ProfileSwitcher({ compact = false }: { compact?: boolean }) {
+  const { profile, switchProfile } = useProfile()
+  return (
+    <div className={`profile-switch ${compact ? 'compact' : ''}`} role="radiogroup" aria-label="Profile">
+      {profiles.map((p) => {
+        const on = p.id === profile.id
+        return (
+          <button
+            key={p.id}
+            role="radio"
+            aria-checked={on}
+            className={`ps-item ${on ? 'on' : ''}`}
+            onClick={() => !on && switchProfile(p.id)}
+            style={{ '--ps': p.color } as React.CSSProperties}
+            title={`${p.name}: ${p.field}`}
+          >
+            {on && <motion.span layoutId={compact ? 'ps-pill-m' : 'ps-pill'} className="ps-pill" transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
+            <span className="ps-avatar">{p.name[0]}</span>
+            {!compact && (
+              <span className="ps-text">
+                <strong>{p.name}</strong>
+                <small>{p.tagline}</small>
+              </span>
+            )}
+            {compact && <span className="ps-name">{p.name}</span>}
+          </button>
+        )
+      })}
     </div>
   )
 }

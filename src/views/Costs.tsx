@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { Landmark, PiggyBank, ShieldCheck, Wallet } from 'lucide-react'
-import { programs } from '../data/programs'
+import { useProfile } from '../lib/profile'
 import { BLOCKED_ACCOUNT_YEAR, HEALTH_INSURANCE_MONTH } from '../data/general'
-import { BUDGET_PER_SEMESTER, degreeCost, eur } from '../lib/util'
+import { degreeCost, eur } from '../lib/util'
 import { AnimatedNumber, Section } from '../components/ui'
 
 export default function Costs() {
+  const { profile } = useProfile()
+  const { programs, budgetPerSemester: BUDGET_PER_SEMESTER } = profile
   const [id, setId] = useState(programs[0].id)
   const p = programs.find((x) => x.id === id)!
   const [living, setLiving] = useState(p.costs.living)
@@ -25,7 +27,8 @@ export default function Costs() {
           <h1>Costs</h1>
           <p className="muted">
             Public universities in Germany are free or cheap. Baden-Württemberg (KIT, Stuttgart, Esslingen) charges non-EU students €1,500 per semester, and
-            TUM charges €6,000. Living costs are my estimates per city (rent, food, insurance, phone).
+            TUM charges up to €6,000. {profile.costsNote} Your tuition budget is {eur(BUDGET_PER_SEMESTER)} per semester. Living costs are my estimates per city (rent,
+            food, insurance, phone).
           </p>
         </div>
       </header>

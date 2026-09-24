@@ -19,10 +19,10 @@ import {
   Trophy,
   Wallet,
 } from 'lucide-react'
-import { programById } from '../data/programs'
+import { useProfile } from '../lib/profile'
 import type { ReqStatus } from '../data/types'
 import { useStore } from '../lib/store'
-import { BUDGET_PER_SEMESTER, fromKonstanz, degreeCost, docsFor, eur, fmtDate, tierMeta, useNow } from '../lib/util'
+import { fromKonstanz, degreeCost, docsFor, eur, fmtDate, tierMeta, useNow } from '../lib/util'
 import { AnimatedNumber, DeadlineChip, DifficultyMeter, Gallery, MotorsportMeter, ProgressRing, riseIn, Section, stagger, StarButton, StatusSelect, TierBadge } from '../components/ui'
 import { navigate } from '../App'
 
@@ -33,7 +33,9 @@ const reqIcon: Record<ReqStatus, React.ReactNode> = {
 }
 
 export default function ProgramDetail({ id }: { id: string }) {
-  const p = programById(id)
+  const { profile } = useProfile()
+  const p = profile.programs.find((x) => x.id === id)
+  const BUDGET_PER_SEMESTER = profile.budgetPerSemester
   const { state, toggleDoc, setNote, toggleCompare } = useStore()
   const now = useNow()
 
@@ -47,7 +49,7 @@ export default function ProgramDetail({ id }: { id: string }) {
   }
 
   const cost = degreeCost(p)
-  const docs = docsFor(p)
+  const docs = docsFor(p, profile.baseDocuments)
   const done = docs.filter((d) => state.docs[p.id]?.[d]).length
   const inCompare = state.compare.includes(p.id)
 
@@ -71,7 +73,8 @@ export default function ProgramDetail({ id }: { id: string }) {
             {p.program} <span className="muted">{p.degree}</span>
           </h1>
           <p className="muted">
-            <MapPin size={14} /> {p.city}, {p.state} · {p.kind}
+            <MapPin size={14} /> {p.city}, {p.state}
+            {p.country ? `, ${p.country}` : ''} · {p.kind}
           </p>
           <div className="detail-actions">
             <StarButton id={p.id} />
@@ -94,7 +97,7 @@ export default function ProgramDetail({ id }: { id: string }) {
           icon={<Wallet size={16} />}
           label="Tuition (non-EU)"
           value={p.costs.tuition ? `${eur(p.costs.tuition)} / semester` : 'Free 🎉'}
-          sub={p.costs.tuition > BUDGET_PER_SEMESTER ? '⚠️ Above your €3,000 budget' : `+ ≈ ${eur(p.costs.semesterFee)} semester fee`}
+          sub={p.costs.tuition > BUDGET_PER_SEMESTER ? `⚠️ Above your ${eur(BUDGET_PER_SEMESTER)} budget` : `+ ≈ ${eur(p.costs.semesterFee)} semester fee`}
         />
         <Fact
           icon={<CalendarClock size={16} />}
@@ -169,17 +172,17 @@ export default function ProgramDetail({ id }: { id: string }) {
       </div>
 
       <motion.div variants={riseIn}>
-        <Section title="Road to motorsport" icon={<Flag size={18} />} action={<MotorsportMeter score={p.motorsport.score} />}>
+        <Section title={profile.path.title} icon={<Flag size={18} />} action={<MotorsportMeter score={p.path.score} />}>
           <div className="motorsport">
             <div className="ms-team">
-              <span className="ms-flag" aria-hidden>🏁</span>
+              <span className="ms-flag" aria-hidden>{profile.path.emoji}</span>
               <div>
-                <small className="muted">Formula Student team</small>
-                <strong>{p.motorsport.team}</strong>
+                <small className="muted">{profile.path.teamLabel}</small>
+                <strong>{p.path.team}</strong>
               </div>
             </div>
             <ul className="bullets">
-              {p.motorsport.points.map((pt) => (
+              {p.path.points.map((pt) => (
                 <li key={pt}>
                   <Flag size={13} /> {pt}
                 </li>
@@ -201,7 +204,7 @@ export default function ProgramDetail({ id }: { id: string }) {
             <CostBar label="Living costs" value={cost.living} total={cost.total} color="#6366f1" sub={`≈ ${eur(p.costs.living)}/month in ${p.city.split(' ')[0]}`} />
             <CostBar label="Tuition" value={cost.tuition} total={cost.total} color="#f43f5e" sub={p.costs.tuition ? `${eur(p.costs.tuition)} × ${p.semesters}` : 'No tuition'} />
             <CostBar label="Semester fees" value={cost.fees} total={cost.total} color="#10b981" sub={`≈ ${eur(p.costs.semesterFee)} × ${p.semesters} (often includes a public-transport ticket)`} />
-            <p className="muted small">Application fee: {p.costs.appFee}. For the visa you must also show a blocked account of €11,904 per year, which is paid out to you monthly for living costs.</p>
+            <p className="muted small">Application fee: {p.costs.appFee}. {p.country === 'Austria' ? 'For the Austrian residence permit you show proof of sufficient funds (there is no blocked account).' : 'For the visa you must also show a blocked account of €11,904 per year, which is paid out to you monthly for living costs.'}</p>
           </Section>
         </motion.div>
 

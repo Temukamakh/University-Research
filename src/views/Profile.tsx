@@ -1,29 +1,36 @@
 import { motion } from 'framer-motion'
 import { useMemo, useRef, useState } from 'react'
 import { BookOpenCheck, Database, Download, Flag, GraduationCap, Lightbulb, Link2, Mail, RotateCcw, Upload } from 'lucide-react'
-import { areaColors, creditChecks, curriculum, toGermanGrade, totalEcts, type Area } from '../data/curriculum'
-import { generalLinks } from '../data/general'
-import { cv, goal, recommenders, storyTips, type LetterStatus } from '../data/profile'
+import { toGermanGrade } from '../data/curriculum'
+import type { LetterStatus } from '../data/profile'
+import { useProfile } from '../lib/profile'
+import { fmtGpa } from '../lib/util'
 import { useStore, type Theme } from '../lib/store'
 import { Section } from '../components/ui'
 
 export default function Profile() {
   const { state, update, importState, reset } = useStore()
+  const { profile } = useProfile()
+  const { cv, goal, recommenders, storyTips, links: generalLinks } = profile
+  const curriculum = profile.curriculum?.courses ?? []
+  const creditChecks = profile.curriculum?.creditChecks ?? []
+  const areaColors = profile.curriculum?.areaColors ?? {}
+  const totalEcts = curriculum.reduce((a, c) => a + c.ects, 0)
   const fileRef = useRef<HTMLInputElement>(null)
   const [msg, setMsg] = useState('')
-  const [openArea, setOpenArea] = useState<Area | null>(null)
+  const [openArea, setOpenArea] = useState<string | null>(null)
 
   const byArea = useMemo(() => {
-    const m = new Map<Area, number>()
+    const m = new Map<string, number>()
     for (const c of curriculum) m.set(c.area, (m.get(c.area) ?? 0) + c.ects)
     return [...m.entries()].sort((a, b) => b[1] - a[1])
-  }, [])
+  }, [curriculum])
 
   const exportData = () => {
     const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' })
     const a = document.createElement('a')
     a.href = URL.createObjectURL(blob)
-    a.download = `masters-tracker-${new Date().toISOString().slice(0, 10)}.json`
+    a.download = `masters-tracker-${profile.id}-${new Date().toISOString().slice(0, 10)}.json`
     a.click()
     URL.revokeObjectURL(a.href)
   }
@@ -48,17 +55,17 @@ export default function Profile() {
             <input value={state.profile.name} placeholder="Your first name" onChange={(e) => update((s) => ({ ...s, profile: { ...s.profile, name: e.target.value } }))} />
           </label>
           <label className="field">
-            Current GPA (4.0 scale): <b>{state.profile.gpaNow.toFixed(1)}</b>
-            <input type="range" min={1} max={4} step={0.1} value={state.profile.gpaNow} onChange={(e) => setGpa('gpaNow', Number(e.target.value))} />
+            Current GPA (4.0 scale): <b>{fmtGpa(state.profile.gpaNow)}</b>
+            <input type="range" min={1} max={4} step={0.01} value={state.profile.gpaNow} onChange={(e) => setGpa('gpaNow', Number(e.target.value))} />
           </label>
           <label className="field">
-            Expected GPA at graduation: <b>{state.profile.gpaExpected.toFixed(1)}</b>
-            <input type="range" min={1} max={4} step={0.1} value={state.profile.gpaExpected} onChange={(e) => setGpa('gpaExpected', Number(e.target.value))} />
+            Expected GPA at graduation: <b>{fmtGpa(state.profile.gpaExpected)}</b>
+            <input type="range" min={1} max={4} step={0.01} value={state.profile.gpaExpected} onChange={(e) => setGpa('gpaExpected', Number(e.target.value))} />
           </label>
           <div className="grade-convert">
             <div>
               <small>Now</small>
-              <strong>{state.profile.gpaNow.toFixed(1)}</strong>
+              <strong>{fmtGpa(state.profile.gpaNow)}</strong>
               <small>≈ German {germanNow.toFixed(1)}</small>
             </div>
             <motion.span className="arrow" animate={{ x: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 1.6 }}>
@@ -67,7 +74,7 @@ export default function Profile() {
             <div>
               <small>At graduation</small>
               <motion.strong key={germanExpected} initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="grad-text">
-                {state.profile.gpaExpected.toFixed(1)}
+                {fmtGpa(state.profile.gpaExpected)}
               </motion.strong>
               <small>≈ German {germanExpected.toFixed(1)}</small>
             </div>
@@ -96,6 +103,12 @@ export default function Profile() {
         </Section>
 
         <Section title="Credit requirement checks" icon={<BookOpenCheck size={18} />}>
+          {creditChecks.length === 0 && (
+            <p className="small">
+              📄 No curriculum yet. Send your course list with ECTS (a photo of the curriculum sheet is enough) and the tracker will check your credits
+              against each program's subject requirements.
+            </p>
+          )}
           {creditChecks.map((chk) => (
             <div key={chk.program} className="credit-check">
               <h4>{chk.program}</h4>
@@ -192,7 +205,8 @@ export default function Profile() {
         </div>
       </Section>
 
-      <Section title={`Your bachelor's: Mechanical Engineering, ${totalEcts} ECTS`} icon={<GraduationCap size={18} />}>
+      {curriculum.length > 0 && (
+      <Section title={`Your bachelor's: ${profile.curriculum?.degreeTitle}, ${totalEcts} ECTS`} icon={<GraduationCap size={18} />}>
         <div className="stack-bar" role="img" aria-label="ECTS by subject area">
           {byArea.map(([area, ects], i) => (
             <motion.button
@@ -230,6 +244,7 @@ export default function Profile() {
           ))}
         </div>
       </Section>
+      )}
 
       <div className="grid-2">
         <Section title="Your data" icon={<Database size={18} />}>

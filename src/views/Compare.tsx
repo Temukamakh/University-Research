@@ -1,16 +1,19 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
-import { programs } from '../data/programs'
+import { useProfile } from '../lib/profile'
+import type { ProfileConfig } from '../profiles/types'
 import type { Program } from '../data/types'
 import { useStore } from '../lib/store'
-import { BUDGET_PER_SEMESTER, fromKonstanz, degreeCost, eur, fmtDate } from '../lib/util'
+import { fromKonstanz, degreeCost, eur, fmtDate } from '../lib/util'
 import { DifficultyMeter, MotorsportMeter, PhotoImg, TierBadge } from '../components/ui'
 
 const reqValue = (p: Program, label: string) => p.requirements.find((r) => r.label.startsWith(label))?.value ?? '–'
 
-const ROWS: { label: string; render: (p: Program) => React.ReactNode; best?: (ps: Program[]) => string | undefined }[] = [
+type Row = { label: string; render: (p: Program) => React.ReactNode; best?: (ps: Program[]) => string | undefined }
+
+const rowsFor = ({ budgetPerSemester: BUDGET_PER_SEMESTER, path }: ProfileConfig): Row[] => [
   { label: 'Tier', render: (p) => <TierBadge tier={p.tier} /> },
-  { label: 'City', render: (p) => `${p.city}, ${p.state}` },
+  { label: 'City', render: (p) => `${p.city}, ${p.country ?? p.state}` },
   {
     label: 'To Konstanz',
     render: (p) => {
@@ -25,14 +28,14 @@ const ROWS: { label: string; render: (p: Program) => React.ReactNode; best?: (ps
   { label: 'Fit for you', render: (p) => `${p.fit}%`, best: (ps) => ps.reduce((a, b) => (b.fit > a.fit ? b : a)).id },
   { label: 'Difficulty', render: (p) => <DifficultyMeter level={p.difficulty} /> },
   {
-    label: 'Motorsport',
+    label: path.short,
     render: (p) => (
       <span className="cmp-ms">
-        <MotorsportMeter score={p.motorsport.score} />
-        <small className="muted">{p.motorsport.team}</small>
+        <MotorsportMeter score={p.path.score} />
+        <small className="muted">{p.path.team}</small>
       </span>
     ),
-    best: (ps) => ps.reduce((a, b) => (b.motorsport.score > a.motorsport.score ? b : a)).id,
+    best: (ps) => ps.reduce((a, b) => (b.path.score > a.path.score ? b : a)).id,
   },
   { label: 'QS world rank', render: (p) => `${p.ranking.qsWorld} (${p.ranking.qsYear})` },
   { label: 'Subject rank', render: (p) => p.ranking.qsSubject ?? '–' },
@@ -55,6 +58,9 @@ const ROWS: { label: string; render: (p: Program) => React.ReactNode; best?: (ps
 
 export default function Compare() {
   const { state, toggleCompare } = useStore()
+  const { profile } = useProfile()
+  const { programs } = profile
+  const ROWS = rowsFor(profile)
   const chosen = state.compare.map((id) => programs.find((p) => p.id === id)!).filter(Boolean)
 
   return (

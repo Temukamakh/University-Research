@@ -46,7 +46,7 @@ export const programs: Program[] = [
       'An industrial internship is an admission requirement. Your 6-month Nasolutions internship should meet it. Get a certificate with exact dates, hours and tasks, and confirm with ika that it covers the required weeks and topics.',
       'Fluid mechanics: you only have Hydraulics (4 ECTS) and Hydraulic Machines (5 ECTS). Mention both clearly in your course list.',
     ],
-    motorsport: {
+    path: {
       score: 5,
       team: 'Ecurie Aix (won Formula Student Germany Electric 2023)',
       points: [
@@ -126,7 +126,7 @@ export const programs: Program[] = [
       'The 12-week industrial internship is covered by your 6-month Nasolutions internship. Just include the certificate.',
       'Non-EU tuition in Baden-Württemberg is €1,500 per semester.',
     ],
-    motorsport: {
+    path: {
       score: 4,
       team: 'KA-RaceIng (Formula Student Germany winner 2016)',
       points: [
@@ -200,7 +200,7 @@ export const programs: Program[] = [
       'Tuition of €6,000 per semester is above your €3,000 limit. Only consider it if you win a scholarship or fee waiver.',
       'Munich is the most expensive city in this list, at about €1,300–1,500 a month.',
     ],
-    motorsport: {
+    path: {
       score: 5,
       team: 'TUfast Racing Team (FSG Electric winner 2019)',
       points: [
@@ -268,7 +268,7 @@ export const programs: Program[] = [
       'Best place on this list for aerodynamics and CFD (FKFS wind tunnels), which is your secondary interest',
     ],
     gaps: ['Limited places (NC) with a grade ranking. Stand out through the interview and your motivation letter', 'English must be C1 (plan for IELTS 7.0)', 'Tuition is €1,500 per semester (Baden-Württemberg)'],
-    motorsport: {
+    path: {
       score: 5,
       team: 'Rennteam Uni Stuttgart (2nd at FSG Combustion 2023) + GreenTeam (electric/driverless)',
       points: [
@@ -341,7 +341,7 @@ export const programs: Program[] = [
       'Less vehicle-specific: you would add vehicle dynamics and CFD through electives or Formula Student',
       'Tuition is €1,500 per semester (Baden-Württemberg)',
     ],
-    motorsport: {
+    path: {
       score: 4,
       team: 'Rennteam Uni Stuttgart + GreenTeam (shared with FAME)',
       points: [
@@ -407,7 +407,7 @@ export const programs: Program[] = [
       'No tuition fees in Hamburg',
     ],
     gaps: ['"Very good academic performance" is expected, so your grades are below the bar', 'This program leans more on electronics and control than pure mechanical engineering', 'IELTS 6.5 minimum'],
-    motorsport: {
+    path: {
       score: 3,
       team: 'e-gnition Hamburg (electric + driverless classes)',
       points: [
@@ -476,7 +476,7 @@ export const programs: Program[] = [
       'Tuition-free, and one of the cheapest cities on this list',
     ],
     gaps: ['Getting to B1 German before applying would strengthen your application'],
-    motorsport: {
+    path: {
       score: 2,
       team: 'KaRaT, Kaiserslautern Racing Team (electric, since 2007)',
       points: [
@@ -538,7 +538,7 @@ export const programs: Program[] = [
     fit: 85,
     fitNotes: ['Your industry internship strengthens a general mechanical engineering application', 'A general mechanical engineering degree that directly continues your bachelor\'s', 'Tuition-free, and the Ruhr area is affordable'],
     gaps: ['You first need a uni-assist check of your documents (see the uni-assist fee)'],
-    motorsport: {
+    path: {
       score: 2,
       team: 'E-Team Duisburg-Essen (electric, since 2010)',
       points: [
@@ -597,7 +597,7 @@ export const programs: Program[] = [
       'Close to Audi, the CARISSMA vehicle-safety centre, and Audi\'s F1 power-unit base in Neuburg',
     ],
     gaps: ['Foreign degrees must go through uni-assist first, by 15 June'],
-    motorsport: {
+    path: {
       score: 4,
       team: 'Schanzer Racing Electric (about 80 students)',
       points: [
@@ -654,7 +654,7 @@ export const programs: Program[] = [
     fit: 80,
     fitNotes: ['Reverse engineering of automotive parts at Nasolutions helps show your automotive background', 'Two tracks: Vehicle Systems or Automotive IT', 'In the Stuttgart car-industry region'],
     gaps: ['Top 35% class-rank rule: you are probably not eligible with your current GPA', 'Prefers bachelor\'s degrees in automotive engineering or systems, so highlight "Automotive Theory"', 'Tuition is €1,500 per semester (Baden-Württemberg)'],
-    motorsport: {
+    path: {
       score: 4,
       team: 'Rennstall Esslingen',
       points: [
@@ -708,7 +708,7 @@ export const programs: Program[] = [
     fit: 84,
     fitNotes: ['Your industry internship strengthens an application to a practically oriented mechanical engineering program', 'General mechanical engineering with English specialisations', 'Tuition-free, affordable city'],
     gaps: [],
-    motorsport: {
+    path: {
       score: 2,
       team: 'Speeding Scientists Siegen',
       points: [
@@ -761,7 +761,7 @@ export const programs: Program[] = [
     fit: 82,
     fitNotes: ['Much better fit now: 6 months of CNC milling, laser cutting, 3D printing and scanning across several metals is real manufacturing experience', 'Your Manufacturing Processes, CAD methods and Measurement courses match', 'Saxony has a lot of automotive manufacturing (e.g. Volkswagen)'],
     gaps: ['Focused on production and manufacturing rather than vehicle design'],
-    motorsport: {
+    path: {
       score: 1,
       team: 'Check the current FSG team list',
       points: [

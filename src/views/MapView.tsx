@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { MapContainer, Marker, Polyline, Popup, TileLayer, useMap } from 'react-leaflet'
-import { programs } from '../data/programs'
+import { useProfile } from '../lib/profile'
 import type { Program } from '../data/types'
 import { eur, fromKonstanz, KONSTANZ } from '../lib/util'
 import { TierBadge } from '../components/ui'
@@ -34,6 +34,7 @@ function FlyTo({ target }: { target: [number, number] | null }) {
 
 export default function MapView() {
   const { state } = useStore()
+  const { programs } = useProfile().profile
   const [target, setTarget] = useState<[number, number] | null>(null)
   const [hover, setHover] = useState<Program | null>(null)
   const byDistance = [...programs].sort((a, b) => fromKonstanz(a.coords).straight - fromKonstanz(b.coords).straight)
@@ -48,7 +49,7 @@ export default function MapView() {
       </header>
       <div className="map-layout">
         <motion.div className="map card" initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}>
-          <MapContainer center={[50.9, 9.6]} zoom={6} scrollWheelZoom style={{ height: '100%', width: '100%' }}>
+          <MapContainer center={programs.some((p) => p.country === 'Austria') ? [49.8, 11.5] : [50.9, 9.6]} zoom={6} scrollWheelZoom style={{ height: '100%', width: '100%' }}>
             <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {programs.map((p) => (
               <Marker key={p.id} position={p.coords} icon={icon(p, state.shortlist.includes(p.id))}>

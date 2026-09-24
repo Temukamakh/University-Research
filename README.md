@@ -1,5 +1,14 @@
 # Master's Tracker 🎓
 
+**Two profiles, one site:** switch between them in the sidebar (or the top bar on phones). Each has its own programs and its own saved progress.
+
+| Profile | Field | Link |
+| --- | --- | --- |
+| Temur | Mechanical / automotive → motorsport | `https://temukamakh.github.io/University-Research/?u=temur` |
+| Natali | Electrical / electronics (Germany + Austria) | `https://temukamakh.github.io/University-Research/?u=natali` |
+
+Profiles live in [`src/profiles/`](src/profiles/). To add a person, copy `src/profiles/natali/`, fill in their data and list it in `src/profiles/index.ts`.
+
 A personal web app for planning an English-taught **mechanical / automotive engineering master's in Germany**, starting Winter Semester 2027/28. The long-term goal is a career in motorsport. The applicant has a B.Sc. in Mechanical Engineering from the Agricultural University of Georgia (240 ECTS).
 
 ## What's inside

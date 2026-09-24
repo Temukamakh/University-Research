@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 import { useMemo, useState } from 'react'
 import { Check, Flag, GraduationCap, Plane, BookOpen, FileText, Sparkles } from 'lucide-react'
-import { milestones, type Milestone } from '../data/general'
-import { programs } from '../data/programs'
+import type { Milestone } from '../data/general'
+import { useProfile } from '../lib/profile'
 import { statusOf, useStore } from '../lib/store'
 import { daysUntil, fmtDate, useNow } from '../lib/util'
 import { navigate } from '../App'
@@ -28,6 +28,7 @@ const KIND: Record<Item['kind'], { label: string; color: string; icon: typeof Fl
 
 export default function Timeline() {
   const { state, toggleMilestone } = useStore()
+  const { programs, milestones } = useProfile().profile
   const now = useNow()
   const [scope, setScope] = useState<'shortlist' | 'all'>('shortlist')
 
@@ -43,7 +44,7 @@ export default function Timeline() {
       programId: p.id,
     }))
     return [...milestones, ...dl].sort((a, b) => a.date.localeCompare(b.date))
-  }, [scope, state.shortlist])
+  }, [programs, milestones, scope, state.shortlist])
 
   const groups = useMemo(() => {
     const g = new Map<string, Item[]>()
