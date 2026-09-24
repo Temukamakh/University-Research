@@ -3,9 +3,10 @@ import type { CvSection, Recommender } from '../../data/profile'
 import type { ProfileConfig } from '../types'
 import { nataliPrograms } from './programs'
 import { nataliCurricula } from './curricula'
+import { selectionById } from '../../data/selection'
 
 const milestones: Milestone[] = [
-  { id: 'n-shortlist', date: '2026-10-05', kind: 'prep', title: 'Finalise your shortlist', detail: 'Pick 8–10 programs: 2–3 reaches (RWTH, KIT, Stuttgart INFOTECH), 4 targets and 2–3 safeties (Chemnitz, UDE, Deggendorf). Star them on the Programs page.' },
+  { id: 'n-shortlist', date: '2026-10-05', kind: 'prep', title: 'Finalise your shortlist', detail: 'Pick 8–10 programs: 2–3 reaches (RWTH, KIT, TUHH), 4 targets (incl. Stuttgart INFOTECH, where your class rank counts) and 2–3 safeties (Chemnitz, UDE, Deggendorf). Star them on the Programs page.' },
   { id: 'n-curriculum', date: '2026-10-08', kind: 'docs', title: 'Send your curriculum to the tracker', detail: 'Your course list with ECTS lets the app check RWTH, Paderborn, TU Dresden, TUHH and TU Wien\'s subject requirements. Watch in particular for electromagnetic field theory and systems theory.' },
   { id: 'n-rank', date: '2026-10-15', kind: 'docs', title: 'Get a class-rank certificate (top 5%)', detail: 'Your GPA looks average on paper, but top 5% of your class is excellent. An official letter from the faculty stating your rank puts the GPA in context everywhere you apply.' },
   { id: 'n-ielts-prep', date: '2026-10-10', kind: 'test', title: 'Start IELTS Academic prep', detail: 'Target 7.0 overall. TU Ilmenau and TU Graz require C1, which is about 7.0; most others need 6.0–6.5.' },
@@ -111,7 +112,7 @@ export const natali: ProfileConfig = {
   researchedOn: 'September 2026',
   programsIntro:
     "English-taught electrical and electronics master's programs in Germany and Austria that match your interests, all within your €1,500-per-semester tuition budget.",
-  programs: nataliPrograms.map((p) => ({ ...p, curriculum: nataliCurricula[p.id] })),
+  programs: nataliPrograms.map((p) => ({ ...p, curriculum: nataliCurricula[p.id], selection: selectionById[p.id] })),
   focusMeta: {
     power: { label: 'Power & EV', emoji: '🔋' },
     electronics: { label: 'Electronics', emoji: '🔌' },

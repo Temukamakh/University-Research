@@ -21,6 +21,7 @@ import {
 } from 'lucide-react'
 import { useProfile } from '../lib/profile'
 import { CurriculumSection } from '../components/Curriculum'
+import { SelectionSection } from '../components/Selection'
 import type { ReqStatus } from '../data/types'
 import { useStore } from '../lib/store'
 import { fromKonstanz, degreeCost, docsFor, eur, fmtDate, tierMeta, useNow } from '../lib/util'
@@ -113,6 +114,10 @@ export default function ProgramDetail({ id }: { id: string }) {
           sub={`≈ ${fromKonstanz(p.coords).road} km / ${fromKonstanz(p.coords).drive} by car (estimate)`}
         />
         <Fact icon={<Building2 size={16} />} label="Apply via" value={p.application.portal} sub={p.application.viaUniAssist ? 'uni-assist pre-check needed' : 'Direct application'} />
+      </motion.div>
+
+      <motion.div variants={riseIn}>
+        <SelectionSection p={p} />
       </motion.div>
 
       <div className="grid-2">

@@ -70,7 +70,11 @@ function load(p: ProfileConfig): AppState {
   try {
     const raw = localStorage.getItem(p.storageKey)
     if (!raw) return defaults
-    return withDefaults(JSON.parse(raw) as Partial<AppState>, defaults)
+    const state = withDefaults(JSON.parse(raw) as Partial<AppState>, defaults)
+    // Saved progress that still holds an old default GPA gets the current one; GPAs the user typed are kept.
+    const legacy = p.legacyGpaDefaults?.some(([now, exp]) => state.profile.gpaNow === now && state.profile.gpaExpected === exp)
+    if (legacy) state.profile = { ...state.profile, gpaNow: defaults.profile.gpaNow, gpaExpected: defaults.profile.gpaExpected }
+    return state
   } catch {
     return defaults
   }

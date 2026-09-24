@@ -45,6 +45,8 @@ export interface ProfileConfig {
   path: { title: string; short: string; emoji: string; teamLabel: string; filterLabel: string; sortLabel: string }
   budgetPerSemester: number
   defaults: { gpaNow: number; gpaExpected: number; german: string; shortlist: string[]; compare: string[] }
+  /** Earlier default GPAs [now, expected]. Saved progress that still has them gets the new defaults. */
+  legacyGpaDefaults?: [number, number][]
   /** localStorage key for this profile's progress. */
   storageKey: string
   edgeChips: string[]

@@ -620,3 +620,16 @@ input[type='range'] { accent-color: var(--accent); width: 100%; }
   .sch-hero-top, .sch-hero-cols { grid-template-columns: 1fr; }
   .sch-grid { grid-template-columns: 1fr; }
 }
+
+/* ---------- Selection ---------- */
+.sel-badge { display: inline-flex; padding: 4px 11px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; color: var(--sel); background: color-mix(in srgb, var(--sel) 13%, var(--surface)); border: 1px solid color-mix(in srgb, var(--sel) 35%, transparent); white-space: nowrap; }
+.sel-summary { margin: 0 0 14px; line-height: 1.55; }
+.sel-role { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 14px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--border); margin-bottom: 12px; }
+.sel-meter { display: inline-flex; gap: 4px; }
+.sel-meter i { width: 26px; height: 8px; border-radius: 4px; background: var(--track); transform-origin: left; }
+.sel-meter i.on { background: var(--lvl); }
+.sel-min { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--border); margin-bottom: 6px; }
+.sel-min-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.sel-min-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 0.9rem; padding: 6px 0; border-top: 1px dashed var(--border); }
+.sel-min p { margin: 0; }
+.sel-src { display: inline-flex; align-items: center; gap: 3px; margin-right: 10px; }

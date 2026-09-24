@@ -6,7 +6,7 @@ import type { Program } from '../../data/types'
  * a €1,500-per-semester tuition budget. Deadlines are projected from the 2026/27 cycle.
  * Rankings: QS World University Rankings 2027. Semester fees are the WS 2026/27 amounts.
  */
-const G = 'your GPA (2.88 → 3.0/4.0, roughly German 2.1 → 2.0)'
+const G = 'your GPA (2.88 now, about 3.0 at graduation: roughly 2.1–2.4 on the German scale now)'
 const TOP5 = 'Being in the top 5% of your class is a strong point: ask your faculty for a class-rank certificate and include it'
 
 export const nataliPrograms: Program[] = [
@@ -27,7 +27,7 @@ export const nataliPrograms: Program[] = [
     semesters: 4,
     intake: 'Winter & summer',
     difficulty: 5,
-    difficultyNote: `Very competitive, and the GRE is mandatory for non-EU applicants: the faculty asks for a Quant score in the top 15% (85th percentile, roughly 165+) and Verbal above the 15th percentile. It also checks detailed credit minimums per subject. With ${G} it is a reach; a strong GRE and your class rank help most.`,
+    difficultyNote: `Very competitive, and the GRE is mandatory for non-EU applicants: the faculty page asks for Quant in the top 15% (85th percentile, roughly 165+) and Verbal above the 15th percentile, though it also quotes admitted-student averages of V151 / Q162. Admission itself is open (no NC, no ranking by grade). It also checks detailed credit minimums per subject. With ${G} it is a reach; a strong GRE and your class rank help most.`,
     fit: 78,
     fitNotes: [
       'Matches your interest in EVs and power electronics',
@@ -141,12 +141,12 @@ export const nataliPrograms: Program[] = [
     kind: 'TU9',
     color: '#004191',
     focus: ['embedded', 'comms', 'electronics'],
-    tier: 'reach',
+    tier: 'target',
     language: 'English',
     semesters: 4,
     intake: 'Winter',
     difficulty: 4,
-    difficultyNote: `A long-running international program with limited places. Your bachelor's grade is the main selection criterion (the committee considers your university's grading), so with ${G} it is a reach. The class rank helps.`,
+    difficultyNote: `80 places and many more applicants. The main criterion is your GPA compared with other applicants from the same university and country, with a minimum of "good" (2.5 German). With ${G} you meet the minimum, and top 5% of your class is exactly what this comparison rewards, so send the class-rank certificate. A realistic target.`,
     fit: 88,
     fitNotes: ['Specialisations in embedded systems, communications and microelectronics: three of your interests in one program', 'Stuttgart has Bosch, Mercedes-Benz and Porsche: big employers for embedded and EV electronics', TOP5],
     gaps: ['Limited places, ranked by grade', 'Tuition is €1,500 per semester (Baden-Württemberg)'],
@@ -200,7 +200,7 @@ export const nataliPrograms: Program[] = [
     semesters: 4,
     intake: 'Winter',
     difficulty: 3,
-    difficultyNote: 'An established English program with a large international cohort. Signal processing is your strongest subject, which fits the program exactly. IELTS 6.0 is enough, and FAU charges no tuition for this program (non-EU applicants pay a €100 processing fee).',
+    difficultyNote: 'An established English program with a large international cohort. You need a grade of 2.5 or better (German scale), which you meet, and applicants from other universities must pass FAU\'s qualification assessment (QFV). Signal processing is your strongest subject, which fits the program exactly. IELTS 6.0 is enough, and FAU charges no tuition for this program (non-EU applicants pay a €100 processing fee).',
     fit: 90,
     fitNotes: ['Signal processing is your best subject, and this program is built around it', 'Your active-noise-cancellation project is a perfect topic for the motivation letter', 'You can apply before graduating; the final certificate is due by 30 September', TOP5],
     gaps: [],
@@ -253,7 +253,7 @@ export const nataliPrograms: Program[] = [
     semesters: 4,
     intake: 'Winter',
     difficulty: 3,
-    difficultyNote: 'Admission goes through an aptitude assessment that checks your subject background: maths, analogue and digital circuit design, electromagnetic fields, systems theory, electronic devices and programming. One of these may be missing. Your circuits grades are a strength.',
+    difficultyNote: 'Admission goes through an aptitude assessment with no minimum GPA. It checks your subject background (maths, analogue and digital circuit design, electromagnetic fields, systems theory, electronic devices and programming) and gives credit for projects, practical experience and extracurricular achievements, which is where your CubeSat, Gameboy and robotics work count.',
     fit: 82,
     fitNotes: ['Analogue and digital circuits are among your best subjects', 'Dresden is Europe\'s biggest microelectronics hub ("Silicon Saxony")', 'No tuition fees and low living costs'],
     gaps: ['Check electromagnetic fields and systems theory in your curriculum', 'IELTS 6.5 required'],
@@ -306,7 +306,7 @@ export const nataliPrograms: Program[] = [
     semesters: 4,
     intake: 'Winter',
     difficulty: 3,
-    difficultyNote: 'Requires an electrical engineering bachelor plus subject-specific requirements. You can apply to only ONE international master\'s program at TUHH, so choose carefully.',
+    difficultyNote: 'Grade-driven: an online pre-check tests your GPA against TUHH\'s "very strict" requirements before you can apply, plus subject-specific requirements. Your GPA is decent and the class rank helps, but the cut-off is not published. You can apply to only ONE international master\'s program at TUHH, so choose carefully.',
     fit: 82,
     fitNotes: ['Circuits and microprocessors are your best subjects', 'No tuition fees'],
     gaps: ['Only one international master application allowed at TUHH', 'IELTS 6.5 required (certificate ≤ 2 years old)'],
@@ -359,7 +359,7 @@ export const nataliPrograms: Program[] = [
     semesters: 4,
     intake: 'Winter',
     difficulty: 3,
-    difficultyNote: 'An English embedded-systems program in the electrical & computer engineering department. The same department also offers Automation and Control (A&C) in English. Documents are assessed individually, so your projects count.',
+    difficultyNote: 'An English embedded-systems program in the electrical & computer engineering department. Selection is based on your documents: transcript, motivation letter and TWO recommendation letters. The GRE is strongly recommended. Your projects count here more than a grade ranking would allow.',
     fit: 88,
     fitNotes: ['Your ATmega Gameboy, sumo robot and FPGA work are exactly embedded systems', 'Fraunhofer IESE (embedded software) is on campus', 'Tuition-free, low living costs'],
     gaps: ['IELTS 6.5 required'],
@@ -381,7 +381,8 @@ export const nataliPrograms: Program[] = [
     requirements: [
       { label: 'Degree', value: 'Bachelor in electrical/computer engineering or related', status: 'ok' },
       { label: 'English', value: 'IELTS 6.5 / TOEFL iBT 81', status: 'todo' },
-      { label: 'GRE', value: 'Not required', status: 'ok' },
+      { label: 'Letters', value: 'Motivation letter + two recommendation letters (faculty or industry)', status: 'todo', note: 'Metreveli and Paghava' },
+      { label: 'GRE', value: 'Strongly recommended', status: 'todo' },
     ],
     extraDocs: [],
     highlights: ['Embedded systems focus', 'Automation & Control is a second English option', 'Can apply with a current transcript'],
@@ -616,7 +617,7 @@ export const nataliPrograms: Program[] = [
     semesters: 3,
     intake: 'Winter & summer',
     difficulty: 2,
-    difficultyNote: 'A practical, English-only program at a university of applied sciences. Less competitive than the TU9 universities; a safety option.',
+    difficultyNote: 'A practical, English-only program at a university of applied sciences. You need an overall grade of at least "good" (2.5 German), which you meet, a 210-ECTS bachelor\'s and a written aptitude test (online for about US$27). Less competitive than the TU9 universities; a safety option if you prepare for the test.',
     fit: 80,
     fitNotes: ['Hands-on style suits your project-heavy profile', 'Your 240 ECTS bachelor fits the 90-ECTS, 3-semester master'],
     gaps: ['Since WS 2025/26 DIT charges non-EU students a €500 service fee per semester', 'There is an aptitude test'],

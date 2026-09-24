@@ -3,6 +3,7 @@ import { baseDocuments, generalLinks, milestones, tests } from '../data/general'
 import { cv, goal, recommenders, storyTips } from '../data/profile'
 import { areaColors, creditChecks, curriculum } from '../data/curriculum'
 import { temurCurricula } from '../data/curricula'
+import { selectionById } from '../data/selection'
 import type { ProfileConfig } from './types'
 
 export const temur: ProfileConfig = {
@@ -15,7 +16,7 @@ export const temur: ProfileConfig = {
   hero: { cityOrGoal: 'Aachen', afterShortlist: 'Next stop after that: motorsport 🏁' },
   researchedOn: RESEARCHED_ON,
   programsIntro: "English-taught master's programs in Germany that match your mechanical engineering degree.",
-  programs: programs.map((p) => ({ ...p, curriculum: temurCurricula[p.id] })),
+  programs: programs.map((p) => ({ ...p, curriculum: temurCurricula[p.id], selection: selectionById[p.id] })),
   focusMeta: {
     automotive: { label: 'Automotive', emoji: '🚗' },
     mechanical: { label: 'Mechanical', emoji: '⚙️' },
@@ -32,12 +33,14 @@ export const temur: ProfileConfig = {
   },
   budgetPerSemester: 3000,
   defaults: {
-    gpaNow: 2.5,
-    gpaExpected: 2.9,
+    gpaNow: 2.17,
+    gpaExpected: 2.83,
     german: 'A2',
     shortlist: ['rwth-automotive', 'kit-mechanical', 'stuttgart-fame', 'stuttgart-commas', 'rptu-cvt', 'thi-iae', 'ude-mechanical', 'siegen-mechanical', 'chemnitz-am'],
     compare: ['rwth-automotive', 'kit-mechanical', 'stuttgart-fame'],
   },
+  // Before the transcript arrived the app assumed 2.5 now / 2.9 expected.
+  legacyGpaDefaults: [[2.5, 2.9]],
   // Temur's progress predates profiles, so it keeps the original key.
   storageKey: 'masters-tracker:v1',
   edgeChips: [
@@ -51,7 +54,7 @@ export const temur: ProfileConfig = {
   ],
   dreamPicks: ['rwth-automotive', 'kit-mechanical'],
   dashboardNote:
-    'In Germany 1.0 is the best grade and 4.0 is the lowest pass. Around 2.1–2.5 you are an average applicant, so the top universities are reaches. Your Jülich internship, CSWP and projects have to do the heavy lifting, and so does raising your grades this year.',
+    'In Germany 1.0 is the best grade and 4.0 is the lowest pass. Your GPA converts to about 2.8–3.2 now and 2.2–2.4 at graduation. How much that matters depends on the program: RWTH and KIT check requirements rather than rank grades, while Siegen (3.0) and UDE (2.5) have hard minimums. Each program page shows how it selects.',
   milestones,
   tests: [...tests],
   baseDocuments: [...baseDocuments],
@@ -63,7 +66,7 @@ export const temur: ProfileConfig = {
     {
       id: 'daad-master',
       fit: 'stretch',
-      note: "You are eligible: final year now, graduating summer 2027. The weak spot is the GPA (2.5 now), because DAAD ranks mainly on grades. So the recommendation letter has to carry the application: ask Prof. Natour, since Jülich and RWTH carry weight with DAAD. Back it up with 6 months at Nasolutions, the CSWP and your competition results. Your IELTS is planned for 21 November, after the deadline, so book an earlier date or ask DAAD Tbilisi whether the certificate can follow.",
+      note: "You are eligible: final year now, graduating summer 2027. The weak spot is the GPA (2.17 now), because DAAD ranks mainly on grades. So the recommendation letter has to carry the application: ask Prof. Natour, since Jülich and RWTH carry weight with DAAD. Back it up with 6 months at Nasolutions, the CSWP and your competition results. Your IELTS is planned for 21 November, after the deadline, so book an earlier date or ask DAAD Tbilisi whether the certificate can follow.",
     },
     {
       id: 'deutschlandstipendium',

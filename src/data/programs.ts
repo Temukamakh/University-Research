@@ -110,13 +110,13 @@ export const programs: Program[] = [
     kind: 'TU9',
     color: '#009682',
     focus: ['mechanical', 'automotive'],
-    tier: 'reach',
+    tier: 'target',
     language: 'English (can be studied entirely in English)',
     semesters: 4,
     intake: 'Winter & summer',
-    difficulty: 4,
+    difficulty: 3,
     difficultyNote:
-      'A top-3 German university for mechanical engineering. Admission checks fixed credit minimums, which you meet easily, then ranks applicants mainly by grade. Your grades (GPA 2.5 now, about 2.9/4.0 expected; roughly 2.1–2.5 on the German scale) put you below the usual admit profile, so this is a reach. Your credits, 6 months in industry and the Jülich internship help, but the grade weighs most.',
+      'A top-3 German university for mechanical engineering, but the master\'s is not ranked by grade: the committee checks minimum credits in Block 1 and Block 2, and applicants who narrowly miss can take an entrance exam in September. You meet both blocks on paper, so your GPA matters much less than I first said. Block 2 includes fluid mechanics, so pass Hydraulics. Register for the entrance exam anyway, as KIT advises all external applicants to.',
     fit: 92,
     fitNotes: [
       'Hands-on CNC and materials experience (aluminium, stainless and carbon steel, titanium) fits KIT\'s production and lightweight-design specialisations',
@@ -126,7 +126,7 @@ export const programs: Program[] = [
       'FEA and CFD electives build directly on your Jülich simulation internship',
     ],
     gaps: [
-      'The ranking is mostly by final grade, which makes KIT a reach with your GPA',
+      'Pass Hydraulics: Block 2 includes fluid mechanics',
       'The 12-week industrial internship is covered by your 6-month Nasolutions internship. Just include the certificate.',
       'Non-EU tuition in Baden-Württemberg is €1,500 per semester.',
     ],
@@ -193,7 +193,7 @@ export const programs: Program[] = [
     intake: 'Winter & summer',
     difficulty: 5,
     difficultyNote:
-      'Germany\'s highest-ranked university. Its two-stage aptitude assessment scores grades heavily. With your grades (GPA 2.5 now, about 2.9/4.0 expected; roughly 2.1–2.5 on the German scale) you would probably have to pass the written test in stage 2 at best. It is also OVER YOUR BUDGET at €6,000 per semester. I\'d skip it.',
+      'Germany\'s highest-ranked university. Its two-stage aptitude assessment scores grades heavily. Stage 1 gives points for your GPA, subject grades and internships. With your grades (GPA 2.17 now, about 2.83 expected; roughly 2.8–3.2 now and 2.2–2.4 at graduation on the German scale) you would probably have to pass the written tests in stage 2 (maths, mechanics, design, materials) at best. It is also OVER YOUR BUDGET at €6,000 per semester. I\'d skip it.',
     fit: 85,
     fitNotes: [
       'Strong academic match',
@@ -262,7 +262,7 @@ export const programs: Program[] = [
     intake: 'Winter',
     difficulty: 4,
     difficultyNote:
-      'A new English program with limited places (NC). Some applicants are interviewed, which is your chance to show your projects. Your grades (GPA 2.5 now, about 2.9/4.0 expected; roughly 2.1–2.5 on the German scale) make this a reach, but a new program may get fewer applicants in its early years. C1 English required.',
+      'A new English program with limited places (NC). Some applicants are interviewed, which is your chance to show your projects. Most points (up to 100 of 120) are for subject-specific competences, and fewer for grades, so your projects and course match count more than the GPA. It is still a reach because places are limited and your grades (GPA 2.17 now, about 2.83 expected; roughly 2.8–3.2 now and 2.2–2.4 at graduation on the German scale) are not a strength. C1 English required.',
     fit: 90,
     fitNotes: [
       'Six months in industry (CNC, SolidWorks every day, a robot-arm design project) gives you plenty to talk about in the interview',
@@ -332,7 +332,7 @@ export const programs: Program[] = [
     intake: 'Winter',
     difficulty: 3,
     difficultyNote:
-      'A small, long-running computational mechanics (FEA and simulation) program. Your grades (GPA 2.5 now, about 2.9/4.0 expected; roughly 2.1–2.5 on the German scale) are not a strength, but the Jülich Simulation & Calculation internship and your 6-DOF Python simulation are directly relevant. It is a realistic target if your motivation letter is strong.',
+      'A small, long-running computational mechanics (FEA and simulation) program. The committee looks at prior performance and "professional promise". Your grades (GPA 2.17 now, about 2.83 expected; roughly 2.8–3.2 now and 2.2–2.4 at graduation on the German scale) are not a strength, but the Jülich Simulation & Calculation internship and your 6-DOF Python simulation are directly relevant. It is a realistic target if your motivation letter is strong.',
     fit: 87,
     fitNotes: [
       'The whole degree is about FEA, continuum mechanics and simulation, which is what your Jülich Simulation & Calculation team does',
@@ -400,9 +400,9 @@ export const programs: Program[] = [
     language: 'English (partly German)',
     semesters: 4,
     intake: 'Winter',
-    difficulty: 3,
+    difficulty: 4,
     difficultyNote:
-      'TUHH asks for "very good previous academic performance", and your grades (GPA 2.5 now, about 2.9/4.0 expected; roughly 2.1–2.5 on the German scale) are below that. Your robotics results and ESP32 hardware-in-the-loop project help. You can apply to only ONE international master\'s at TUHH.',
+      'Grade-driven: an online pre-check tests your GPA against TUHH\'s "very strict" requirements before you can even apply. Your grades (GPA 2.17 now, about 2.83 expected; roughly 2.8–3.2 now and 2.2–2.4 at graduation on the German scale) are below "very good", so you may not pass the pre-check. Your robotics results and ESP32 hardware-in-the-loop project help. You can apply to only ONE international master\'s at TUHH.',
     fit: 78,
     fitNotes: [
       'You are designing a 6-axis welding robot arm at Nasolutions: real mechatronics and robotics work to put at the centre of your letter',
@@ -431,7 +431,7 @@ export const programs: Program[] = [
     },
     requirements: [
       { label: 'Degree', value: 'Bachelor in mechatronics or mechanical engineering', status: 'ok' },
-      { label: 'Grades', value: 'Very good academic performance', status: 'warn', note: 'Your GPA (≈ 2.9/4.0) is below "very good"' },
+      { label: 'Grades', value: 'Very good academic performance', status: 'warn', note: 'Your GPA is below "very good". The pre-check will tell you before you apply' },
       { label: 'English', value: 'IELTS 6.5 or TOEFL iBT 90 (TOEFL ITP/Essentials not accepted; certificate ≤ 2 years old)', status: 'todo' },
       { label: 'Limit', value: 'Only one international master application per applicant at TUHH', status: 'warn' },
       { label: 'German', value: 'Partly taught in German: basic German strongly recommended', status: 'warn', note: 'You have A2' },
@@ -533,13 +533,13 @@ export const programs: Program[] = [
     kind: 'University',
     color: '#004c93',
     focus: ['mechanical'],
-    tier: 'target',
+    tier: 'reach',
     language: 'English + German (ISE: roughly half the lectures in German)',
     semesters: 4,
     intake: 'Winter & summer',
-    difficulty: 2,
+    difficulty: 3,
     difficultyNote:
-      'A long-running English-taught mechanical engineering program with a large international cohort and moderate admission. With your grades (GPA 2.5 now, about 2.9/4.0 expected; roughly 2.1–2.5 on the German scale) it is a realistic target and close to a safety option.',
+      'Not a safety after all: UDE requires an overall grade of 2.5 or better on the German scale for applicants from other universities. Your GPA of 2.17 now converts to about 2.8–3.2, which misses it. Your expected 2.83 converts to about 2.2–2.4, which would pass, but the application (15 June) comes before your final grades. Add the German B2 requirement, and this is a reach.',
     fit: 85,
     fitNotes: ['Your industry internship strengthens a general mechanical engineering application', 'A general mechanical engineering degree that directly continues your bachelor\'s', 'Tuition-free, and the Ruhr area is affordable'],
     gaps: [
@@ -597,7 +597,7 @@ export const programs: Program[] = [
     intake: 'Winter & summer',
     difficulty: 3,
     difficultyNote:
-      'A practical university of applied sciences with fewer places than a TU9. It weighs grades less than the big universities do, so with your grades (GPA 2.5 now, about 2.9/4.0 expected; roughly 2.1–2.5 on the German scale) it is a realistic target. Your CSWP and your projects fit its hands-on style.',
+      'A practical university of applied sciences with fewer places than a TU9. No minimum GPA or grade ranking is published, so with your grades (GPA 2.17 now, about 2.83 expected; roughly 2.8–3.2 now and 2.2–2.4 at graduation on the German scale) it is a realistic target. Your CSWP and your projects fit its hands-on style.',
     fit: 86,
     fitNotes: [
       'Your industry experience (CNC, reverse engineering of automotive parts) is exactly what a practical M.Eng. values',
@@ -659,10 +659,10 @@ export const programs: Program[] = [
     intake: 'Winter',
     difficulty: 4,
     difficultyNote:
-      'Esslingen has asked international applicants for a class-rank certificate showing the top 35% (grades A/B). I could not re-confirm this rule in September 2026, so check the program FAQ. A GPA of about 2.9/4.0 is probably below that cut-off, so ask your faculty for your class rank.',
+      'Esslingen\'s FAQ confirms it: you must be in the best 35% of your class (grades A/B). Only if places remain can others with at least the certified average grade get in, and only with a strong application. With your GPA you are probably not in the top 35%, so ask your faculty for your class rank.',
     fit: 80,
     fitNotes: ['Reverse engineering of automotive parts at Nasolutions helps show your automotive background', 'Two tracks: Vehicle Systems or Automotive IT', 'In the Stuttgart car-industry region'],
-    gaps: ['Top 35% class-rank rule (confirm it on the FAQ): you are probably not eligible with your current GPA', 'Prefers bachelor\'s degrees in automotive engineering or systems, so highlight "Automotive Theory"', 'Tuition is €1,500 per semester (Baden-Württemberg)', 'German A2 needed by the end of the 2nd semester. The program starts in September with an intensive German course', 'Two recommendation letters (your referees submit them after you apply)'],
+    gaps: ['Top 35% class-rank rule: you are probably not eligible with your current GPA', 'Prefers bachelor\'s degrees in automotive engineering or systems, so highlight "Automotive Theory"', 'Tuition is €1,500 per semester (Baden-Württemberg)', 'German A2 needed by the end of the 2nd semester. The program starts in September with an intensive German course', 'Two recommendation letters (your referees submit them after you apply)'],
     path: {
       score: 4,
       team: 'Rennstall Esslingen',
@@ -683,7 +683,7 @@ export const programs: Program[] = [
     },
     requirements: [
       { label: 'Degree', value: 'Bachelor in automotive engineering / systems or a related field', status: 'warn', note: 'Mechanical engineering with automotive courses should count as related' },
-      { label: 'Grades', value: 'Top 35% of your class (grades A/B), per earlier Esslingen guidance', status: 'warn', note: 'Probably not met with GPA ≈ 2.9/4.0. Confirm the rule and ask your faculty for your class rank' },
+      { label: 'Grades', value: 'Top 35% of your class (grades A/B)', status: 'warn', note: 'Probably not met with your GPA. Ask your faculty for your class rank' },
       { label: 'German', value: 'A2 by the end of the 2nd semester', status: 'ok', note: 'You have A2. Get a certificate' },
       { label: 'Letters', value: 'Two recommendations', status: 'todo' },
       { label: 'English', value: 'English certificate (IELTS). Your bachelor\'s is taught in Georgian, so you need it', status: 'todo' },
@@ -709,16 +709,16 @@ export const programs: Program[] = [
     kind: 'University',
     color: '#0d6c88',
     focus: ['mechanical'],
-    tier: 'safety',
+    tier: 'target',
     language: 'English (choose one of three English specialisations)',
     semesters: 4,
     intake: 'Winter only (for international applicants)',
-    difficulty: 2,
+    difficulty: 3,
     difficultyNote:
-      'Much less competitive than the TU9 universities, which makes it a real safety option with your grades (GPA 2.5 now, about 2.9/4.0 expected; roughly 2.1–2.5 on the German scale). You apply directly through UNISONO, without uni-assist.',
+      'Less competitive than the TU9 universities, but with a hard minimum grade of 3.0 on the German scale. Your GPA of 2.17 now converts to about 2.8–3.2, right on the line, and the 30 April deadline comes before your final grades. Shortlisted applicants also take an online test and an interview. Raise your grades this semester and it becomes a solid target.',
     fit: 84,
     fitNotes: ['Your industry internship strengthens an application to a practically oriented mechanical engineering program', 'General mechanical engineering with English specialisations', 'Tuition-free, affordable city'],
-    gaps: [],
+    gaps: ['Minimum grade 3.0 (German scale): borderline with your current GPA', 'Online test + interview if shortlisted'],
     path: {
       score: 2,
       team: 'Speeding Scientists Siegen (electric since 2011)',
@@ -768,7 +768,7 @@ export const programs: Program[] = [
     intake: 'Winter only',
     difficulty: 2,
     difficultyNote:
-      'An English-taught mechanical engineering and production program with moderate admission. Chemnitz is the cheapest city on this list. A safety option.',
+      'No grade ranking was found: admission checks subject knowledge (18 ECTS of special maths incl. Fourier transforms, regression and statistics; 12 ECTS of CAD, simulation and data acquisition; 8 ECTS of measurement and control). Check that your maths courses cover Fourier transforms. Chemnitz is the cheapest city on this list. Still your safest option.',
     fit: 82,
     fitNotes: ['Much better fit now: 6 months of CNC milling, laser cutting, 3D printing and scanning across several metals is real manufacturing experience', 'Your Manufacturing Processes, CAD methods and Measurement courses match', 'Saxony has a lot of automotive manufacturing (e.g. Volkswagen)'],
     gaps: ['Focused on production and manufacturing rather than vehicle design', 'TU Chemnitz requires a German A1 certificate (Goethe, telc or ÖSD) with the application, even for English programs'],

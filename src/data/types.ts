@@ -83,6 +83,7 @@ export interface Program {
   photos: Photo[]
   links: { label: string; url: string }[]
   curriculum?: Curriculum
+  selection?: Selection
 }
 
 /** What you study, semester by semester. */
@@ -97,4 +98,23 @@ export interface Curriculum {
   /** Specialisations / majors / focus areas you choose from. */
   tracks?: string[]
   source: { label: string; url: string }
+}
+
+/** How the program chooses students, and how much your GPA counts. */
+export interface Selection {
+  /**
+   * open: a requirements check, everyone who meets them is admitted.
+   * ranked: limited places, applicants ranked mainly by grade.
+   * points: limited places or an aptitude test, scored with points (grades are one part).
+   * holistic: a committee reads the whole application.
+   */
+  method: 'open' | 'ranked' | 'points' | 'holistic'
+  summary: string
+  gpaRole: 'low' | 'medium' | 'high'
+  /** Hard minimum on the German scale (1.0 best, 4.0 lowest pass), if the program has one. */
+  minGrade?: number
+  steps: string[]
+  /** false = from secondary sources or partly unclear; check the official regulations. */
+  confirmed: boolean
+  sources: { label: string; url: string }[]
 }

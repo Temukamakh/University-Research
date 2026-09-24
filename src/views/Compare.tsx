@@ -6,6 +6,7 @@ import type { Program } from '../data/types'
 import { useStore } from '../lib/store'
 import { fromKonstanz, degreeCost, eur, fmtDate } from '../lib/util'
 import { DifficultyMeter, MotorsportMeter, PhotoImg, TierBadge } from '../components/ui'
+import { METHOD_META } from '../components/Selection'
 
 const reqValue = (p: Program, label: string) => p.requirements.find((r) => r.label.startsWith(label))?.value ?? '–'
 
@@ -28,6 +29,10 @@ const rowsFor = ({ budgetPerSemester: BUDGET_PER_SEMESTER, path }: ProfileConfig
   { label: 'Specialisations', render: (p) => (p.curriculum?.tracks?.length ? p.curriculum.tracks.join(' · ') : '–') },
   { label: 'Fit for you', render: (p) => `${p.fit}%`, best: (ps) => ps.reduce((a, b) => (b.fit > a.fit ? b : a)).id },
   { label: 'Difficulty', render: (p) => <DifficultyMeter level={p.difficulty} /> },
+  {
+    label: 'Selection',
+    render: (p) => (p.selection ? `${METHOD_META[p.selection.method].label}${p.selection.minGrade !== undefined ? ` · min. grade ${p.selection.minGrade.toFixed(1)}` : ''}` : '–'),
+  },
   {
     label: path.short,
     render: (p) => (
