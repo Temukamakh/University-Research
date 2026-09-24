@@ -97,7 +97,7 @@ export default function Costs() {
               <PiggyBank size={18} />
               <div>
                 <strong>Blocked account (Sperrkonto)</strong>
-                <span>{eur(BLOCKED_ACCOUNT_YEAR)} for the first year was the 2025–2026 amount. It usually rises each year, so check before you pay it in.</span>
+                <span>{eur(BLOCKED_ACCOUNT_YEAR)} for the first year is the 2026 amount. It usually rises each year, so check before you pay it in.</span>
               </div>
             </li>
             <li>

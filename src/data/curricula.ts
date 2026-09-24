@@ -7,12 +7,12 @@ import type { Curriculum } from './types'
  */
 export const temurCurricula: Record<string, Curriculum> = {
   'rwth-automotive': {
-    summary: '90 ECTS over 3 semesters: 44 ECTS of compulsory modules and 16 ECTS of electives in the first two semesters, then a 22-week master thesis (30 ECTS).',
+    summary: '90 ECTS over 3 semesters: compulsory and elective modules (60 ECTS) in the first two semesters, then the master thesis (30 ECTS) with an oral presentation in semester 3.',
     detail: 'semester',
     plan: [
       { term: 'Semester 1', ects: 30, items: ['Driver Assistance Systems', 'Battery Storage Systems', 'Lightweight Design: Processes & Principles', 'Electives'] },
       { term: 'Semester 2', ects: 30, items: ['Alternative Vehicle Propulsion Systems', 'Internal Combustion Engines: Design & Mechanics', 'Machine Design of Rigid Systems', 'Structural Design of Vehicles', 'Electives'] },
-      { term: 'Semester 3', ects: 30, items: ['Master thesis (22 weeks), usually at an ika / RWTH institute or in industry'] },
+      { term: 'Semester 3', ects: 30, items: ['Master thesis + oral presentation, usually at an ika / RWTH institute or in industry'] },
     ],
     tracks: ['Vehicle dynamics', 'Energy efficiency', 'Acoustics', 'Mechatronics', 'Structural fatigue & durability'],
     source: { label: 'ika: Automotive Engineering M.Sc.', url: 'https://www.ika.rwth-aachen.de/en/studies/study-programs/automotive-engineering-msc.html' },
