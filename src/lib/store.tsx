@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
 import type { ProfileConfig } from '../profiles/types'
+import type { ScholarshipStatusId } from '../data/scholarships'
 
 export const STATUSES = [
   { id: 'researching', label: 'Researching', color: '#94a3b8' },
@@ -33,6 +34,9 @@ export interface AppState {
   letters: Record<string, string>
   tests: Record<string, TestEntry>
   compare: string[]
+  /** Scholarship application status and document checklist, by scholarship id. */
+  scholarships: Record<string, ScholarshipStatusId>
+  scholarshipDocs: Record<string, Record<string, boolean>>
   theme: Theme
 }
 
@@ -49,6 +53,8 @@ export function makeDefaultState(p: ProfileConfig): AppState {
     letters: {},
     tests: {},
     compare: p.defaults.compare,
+    scholarships: {},
+    scholarshipDocs: {},
     theme: 'system',
   }
 }
@@ -80,6 +86,8 @@ interface Store {
   toggleMilestone: (id: string) => void
   setTest: (id: string, entry: TestEntry) => void
   toggleCompare: (id: string) => void
+  setScholarshipStatus: (id: string, status: ScholarshipStatusId) => void
+  toggleScholarshipDoc: (id: string, doc: string) => void
   importState: (json: string) => boolean
   reset: () => void
 }
@@ -124,6 +132,12 @@ export function StoreProvider({ profile, children }: { profile: ProfileConfig; c
           if (s.compare.includes(id)) return { ...s, compare: s.compare.filter((x) => x !== id) }
           return { ...s, compare: [...s.compare, id].slice(-3) }
         }),
+      setScholarshipStatus: (id, status) => update((s) => ({ ...s, scholarships: { ...s.scholarships, [id]: status } })),
+      toggleScholarshipDoc: (id, doc) =>
+        update((s) => {
+          const cur = s.scholarshipDocs[id] ?? {}
+          return { ...s, scholarshipDocs: { ...s.scholarshipDocs, [id]: { ...cur, [doc]: !cur[doc] } } }
+        }),
       importState: (json) => {
         try {
           const parsed = JSON.parse(json) as Partial<AppState>
@@ -149,3 +163,9 @@ export function useStore() {
 }
 
 export const statusOf = (state: AppState, id: string): StatusId => state.status[id] ?? 'researching'
+
+export const scholarshipStatusOf = (state: AppState, id: string): ScholarshipStatusId => state.scholarships[id] ?? 'idea'
+
+/** A scholarship deadline counts as handled once you applied or decided not to. */
+export const scholarshipHandled = (state: AppState, id: string) =>
+  ['submitted', 'interview', 'awarded', 'rejected', 'skip'].includes(scholarshipStatusOf(state, id))

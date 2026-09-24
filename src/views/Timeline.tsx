@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion'
 import { useMemo, useState } from 'react'
-import { Check, Flag, GraduationCap, Plane, BookOpen, FileText, Sparkles } from 'lucide-react'
+import { Award, Check, Flag, GraduationCap, Plane, BookOpen, FileText, Sparkles } from 'lucide-react'
 import type { Milestone } from '../data/general'
 import { useProfile } from '../lib/profile'
-import { statusOf, useStore } from '../lib/store'
+import { scholarshipHandled, statusOf, useStore } from '../lib/store'
+import { scholarships } from '../data/scholarships'
 import { daysUntil, fmtDate, useNow } from '../lib/util'
 import { navigate } from '../App'
 
@@ -12,7 +13,8 @@ interface Item {
   date: string
   title: string
   detail: string
-  kind: Milestone['kind'] | 'deadline'
+  kind: Milestone['kind'] | 'deadline' | 'scholarship'
+  scholarshipId?: string
   color?: string
   programId?: string
 }
@@ -24,11 +26,12 @@ const KIND: Record<Item['kind'], { label: string; color: string; icon: typeof Fl
   visa: { label: 'Visa', color: '#8b5cf6', icon: Plane },
   life: { label: 'Life', color: '#10b981', icon: GraduationCap },
   deadline: { label: 'Deadline', color: '#ef4444', icon: Flag },
+  scholarship: { label: 'Scholarship', color: '#eab308', icon: Award },
 }
 
 export default function Timeline() {
   const { state, toggleMilestone } = useStore()
-  const { programs, milestones } = useProfile().profile
+  const { programs, milestones, scholarships: picks } = useProfile().profile
   const now = useNow()
   const [scope, setScope] = useState<'shortlist' | 'all'>('shortlist')
 
@@ -43,8 +46,21 @@ export default function Timeline() {
       color: p.color,
       programId: p.id,
     }))
-    return [...milestones, ...dl].sort((a, b) => a.date.localeCompare(b.date))
-  }, [programs, milestones, scope, state.shortlist])
+    const sch: Item[] = picks
+      .filter((p) => p.fit !== 'no' && scholarships[p.id]?.deadline)
+      .map((p) => {
+        const s = scholarships[p.id]
+        return {
+          id: `sch-${p.id}`,
+          date: s.deadline!.date,
+          title: `${s.provider}: ${s.name}`,
+          detail: `${s.deadline!.confirmed ? '' : 'Approximate date. '}${s.amount}.`,
+          kind: 'scholarship',
+          scholarshipId: p.id,
+        }
+      })
+    return [...milestones, ...dl, ...sch].sort((a, b) => a.date.localeCompare(b.date))
+  }, [programs, milestones, picks, scope, state.shortlist])
 
   const groups = useMemo(() => {
     const g = new Map<string, Item[]>()
@@ -56,14 +72,23 @@ export default function Timeline() {
   }, [items])
 
   const isDone = (it: Item) =>
-    it.kind === 'deadline' ? ['submitted', 'interview', 'admitted', 'rejected'].includes(statusOf(state, it.programId!)) : !!state.milestonesDone[it.id]
+    it.kind === 'deadline'
+      ? ['submitted', 'interview', 'admitted', 'rejected'].includes(statusOf(state, it.programId!))
+      : it.kind === 'scholarship'
+        ? scholarshipHandled(state, it.scholarshipId!)
+        : !!state.milestonesDone[it.id]
+  const open = (it: Item) => {
+    if (it.kind === 'deadline') navigate('program', it.programId)
+    else if (it.kind === 'scholarship') navigate('scholarships')
+  }
+  const linked = (it: Item) => it.kind === 'deadline' || it.kind === 'scholarship'
 
   return (
     <div className="page">
       <header className="page-head">
         <div>
           <h1>Timeline</h1>
-          <p className="muted">From now until your first lecture. Tick milestones as you finish them. Deadlines are marked done once you set that application's status to "Submitted".</p>
+          <p className="muted">From now until your first lecture. Tick milestones as you finish them. Deadlines are marked done once you set that application's status to "Submitted", and scholarship deadlines once you mark the scholarship as submitted.</p>
         </div>
         <div className="seg">
           {(['shortlist', 'all'] as const).map((s) => (
@@ -108,12 +133,12 @@ export default function Timeline() {
                   <button
                     className="tl-dot"
                     style={{ '--dot': color } as React.CSSProperties}
-                    onClick={() => (it.kind === 'deadline' ? navigate('program', it.programId) : toggleMilestone(it.id))}
-                    aria-label={it.kind === 'deadline' ? 'Open program' : done ? 'Mark as not done' : 'Mark as done'}
+                    onClick={() => (linked(it) ? open(it) : toggleMilestone(it.id))}
+                    aria-label={it.kind === 'deadline' ? 'Open program' : it.kind === 'scholarship' ? 'Open scholarships' : done ? 'Mark as not done' : 'Mark as done'}
                   >
                     {done ? <Check size={14} /> : <Icon size={14} />}
                   </button>
-                  <div className="tl-card card" onClick={() => it.kind === 'deadline' && navigate('program', it.programId)}>
+                  <div className="tl-card card" onClick={() => open(it)}>
                     <div className="tl-top">
                       <span className="tl-kind" style={{ color }}>
                         {meta.label}

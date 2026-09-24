@@ -1,6 +1,7 @@
 import type { Program } from '../data/types'
 import type { Milestone } from '../data/general'
 import type { CvSection, Recommender } from '../data/profile'
+import type { ScholarshipPick } from '../data/scholarships'
 
 export interface Course {
   name: string
@@ -57,6 +58,8 @@ export interface ProfileConfig {
   storyTips: { title: string; text: string }[]
   recommenders: Recommender[]
   curriculum?: { courses: Course[]; areaColors: Record<string, string>; creditChecks: CreditCheck[]; degreeTitle: string }
+  /** Scholarships that matter for this applicant, most important first. */
+  scholarships: ScholarshipPick[]
   /** Extra line for the Costs page (e.g. Austria has no blocked account). */
   costsNote?: string
 }

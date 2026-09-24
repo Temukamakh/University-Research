@@ -215,6 +215,33 @@ export const natali: ProfileConfig = {
     },
   ],
   recommenders,
+  scholarships: [
+    {
+      id: 'daad-master',
+      fit: 'apply',
+      note: "This is the one to go for. Top 5% of your class is exactly what DAAD looks for, and your CubeSat ADCS, noise-cancellation and robotics-teaching story fits the motivation letter well. Ask Dr Metreveli for the recommendation letter now, because the referee uploads it through the DAAD portal. Your IELTS is planned for 21 November, after the deadline, so book an earlier date or ask DAAD Tbilisi whether the certificate can follow.",
+    },
+    {
+      id: 'boell',
+      fit: 'stretch',
+      note: 'Needs German B2 by 1 March 2027. You are at B1, so a B2 exam in January or February makes you eligible. Your robotics lectures and the RC race you organised are the kind of engagement they look for.',
+    },
+    {
+      id: 'kas',
+      fit: 'stretch',
+      note: 'Also needs German B2. Apply either through the KAS office for the South Caucasus in Tbilisi, or after you arrive (15 July deadline). Only covers four-semester programs, which is most of your list.',
+    },
+    { id: 'deutschlandstipendium', fit: 'later', note: 'RWTH, KIT, FAU and TUHH all award it. Apply as soon as you are admitted, since your class rank is a strong argument.' },
+    { id: 'austria-grants', fit: 'later', note: 'Only if you choose TU Wien or TU Graz. Both reward good first-year grades with merit scholarships.' },
+    { id: 'fes', fit: 'later', note: 'Needs German C1 and enrolment in Germany, so it is a goal for your second year at the earliest.' },
+    { id: 'stibet', fit: 'later', note: 'Useful in your thesis semester. Ask the International Office once you are enrolled.' },
+    {
+      id: 'daad-stem',
+      fit: 'no',
+      note: 'Your bachelor\'s had to be finished by today\'s deadline. If you ever take a gap year, the next round (September 2027) is worth a look.',
+    },
+    { id: 'daad-epos', fit: 'no', note: 'Needs 2 years of full-time work after the bachelor\'s.' },
+  ],
   costsNote:
     'TU Wien and TU Graz charge non-EU students €726.72 per semester, and Austria has no blocked account: you show proof of funds for the residence permit instead.',
 }

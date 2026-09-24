@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { lazy, Suspense, useEffect, useState } from 'react'
-import { CalendarRange, Compass, GraduationCap, LayoutDashboard, Map as MapIcon, Monitor, Moon, Scale, Sun, User, Wallet } from 'lucide-react'
+import { Award, CalendarRange, Compass, GraduationCap, LayoutDashboard, Map as MapIcon, Monitor, Moon, Scale, Sun, User, Wallet } from 'lucide-react'
 import { useStore, type Theme } from './lib/store'
 import { useProfile } from './lib/profile'
 import { profiles } from './profiles'
@@ -11,23 +11,25 @@ import Timeline from './views/Timeline'
 import Compare from './views/Compare'
 import Costs from './views/Costs'
 import Profile from './views/Profile'
+import Scholarships from './views/Scholarships'
 
 // Leaflet is the heaviest dependency, so the map is only loaded when you open it.
 const MapView = lazy(() => import('./views/MapView'))
 
-export type RouteName = 'dashboard' | 'programs' | 'program' | 'timeline' | 'map' | 'compare' | 'costs' | 'me'
+export type RouteName = 'dashboard' | 'programs' | 'program' | 'timeline' | 'map' | 'compare' | 'costs' | 'scholarships' | 'me'
 interface Route {
   name: RouteName
   id?: string
 }
 
-const NAV: { name: RouteName; label: string; icon: typeof Compass }[] = [
+const NAV: { name: RouteName; label: string; short?: string; icon: typeof Compass }[] = [
   { name: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { name: 'programs', label: 'Programs', icon: Compass },
   { name: 'timeline', label: 'Timeline', icon: CalendarRange },
   { name: 'map', label: 'Map', icon: MapIcon },
   { name: 'compare', label: 'Compare', icon: Scale },
   { name: 'costs', label: 'Costs', icon: Wallet },
+  { name: 'scholarships', label: 'Scholarships', short: 'Funding', icon: Award },
   { name: 'me', label: 'Me', icon: User },
 ]
 
@@ -90,6 +92,9 @@ export default function App() {
     case 'costs':
       view = <Costs />
       break
+    case 'scholarships':
+      view = <Scholarships />
+      break
     case 'me':
       view = <Profile />
       break
@@ -111,11 +116,12 @@ export default function App() {
         </a>
         <ProfileSwitcher />
         <nav className="nav">
-          {NAV.map(({ name, label, icon: Icon }) => (
+          {NAV.map(({ name, label, short, icon: Icon }) => (
             <a key={name} href={`#/${name}`} className={`nav-item ${active === name ? 'active' : ''}`} aria-current={active === name ? 'page' : undefined}>
               {active === name && <motion.span layoutId="nav-pill" className="nav-pill" transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
               <Icon size={18} />
-              <span>{label}</span>
+              <span className="nav-label">{label}</span>
+              <span className="nav-short">{short ?? label}</span>
             </a>
           ))}
         </nav>

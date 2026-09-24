@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, BookOpen, CalendarClock, CheckCircle2, FileText, Info, Sparkles, Star, Target } from 'lucide-react'
+import { ArrowRight, Award, BookOpen, CalendarClock, CheckCircle2, FileText, Info, Sparkles, Star, Target } from 'lucide-react'
 import { useProfile } from '../lib/profile'
 import { toGermanGrade } from '../data/curriculum'
-import { statusOf, useStore } from '../lib/store'
+import { scholarshipHandled, statusOf, useStore } from '../lib/store'
+import { FIT_META, scholarships } from '../data/scholarships'
 import { daysUntil, docsFor, fmtDate, useNow, fmtGpa } from '../lib/util'
 import { AnimatedNumber, DeadlineChip, ProgressRing, riseIn, Section, stagger, TierBadge } from '../components/ui'
 import { navigate } from '../App'
@@ -21,6 +22,12 @@ export default function Dashboard() {
     .filter((p) => daysUntil(p.application.deadline, now) >= 0 && !['submitted', 'admitted', 'rejected', 'declined', 'interview'].includes(statusOf(state, p.id)))
     .sort((a, b) => a.application.deadline.localeCompare(b.application.deadline))
   const next = upcoming[0]
+
+  const nextScholarship = profile.scholarships
+    .filter((p) => (p.fit === 'apply' || p.fit === 'stretch') && scholarships[p.id]?.deadline && !scholarshipHandled(state, p.id))
+    .map((p) => ({ pick: p, s: scholarships[p.id], days: daysUntil(scholarships[p.id].deadline!.date, now) }))
+    .filter((x) => x.days >= 0)
+    .sort((a, b) => a.days - b.days)[0]
 
   const submitted = tracked.filter((p) => ['submitted', 'interview', 'admitted'].includes(statusOf(state, p.id))).length
   const admitted = tracked.filter((p) => statusOf(state, p.id) === 'admitted').length
@@ -93,6 +100,24 @@ export default function Dashboard() {
           </motion.button>
         )}
       </motion.section>
+
+      {nextScholarship && (
+        <motion.a variants={riseIn} href="#/scholarships" className="sch-banner card" whileHover={{ y: -2 }} style={{ '--fit': FIT_META[nextScholarship.pick.fit].color } as React.CSSProperties}>
+          <span className="sch-banner-icon">
+            <Award size={20} />
+          </span>
+          <span className="sch-banner-text">
+            <strong>
+              {nextScholarship.s.provider} scholarship: {nextScholarship.days} days left
+            </strong>
+            <small className="muted">
+              {nextScholarship.s.name} · {nextScholarship.s.deadline!.confirmed ? '' : '≈ '}
+              {fmtDate(nextScholarship.s.deadline!.date, { day: 'numeric', month: 'long' })} · {nextScholarship.s.amount}
+            </small>
+          </span>
+          <ArrowRight size={18} className="sch-banner-arrow" />
+        </motion.a>
+      )}
 
       <motion.div variants={riseIn} className="stats">
         <Stat icon={<Star size={18} />} label="Shortlisted" value={tracked.length} of={programs.length} />
