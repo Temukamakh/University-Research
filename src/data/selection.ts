@@ -9,15 +9,19 @@ export const selectionById: Record<string, Selection> = {
   // ---------- Temur ----------
   'rwth-automotive': {
     method: 'open',
-    summary: 'Open admission: no fixed number of places and no ranking by grade. The examination board checks the requirements and admits everyone who meets them.',
+    summary: 'No minimum GPA and no ranking of applicants: if your documents show the required knowledge, you are admitted. ika\'s course guidance confirmed this by email in September 2026.',
     gpaRole: 'low',
     steps: [
+      'Formal check: application complete and eligible',
       'GRE minimums V145 / Q160 / AW3.0 (pass/fail)',
-      'At least 120 ECTS in engineering, maths and science, covering the required subjects',
-      'English B2 and an industrial internship',
+      'Academic check of your module descriptions against 12 subject areas (mechanics, design & CAD, thermodynamics, heat transfer, materials, control, fluid mechanics, maths, plus 22 ECTS of automotive basics)',
+      'Gaps up to 30 ECTS become extra courses (enrolment conditions); more than 30 ECTS means rejection',
+      'English B2 by enrolment. The 16-week industrial internship is approved after enrolment, not at application',
+      'Results about eight weeks after the 1 March deadline',
     ],
-    confirmed: false,
+    confirmed: true,
     sources: [
+      { label: 'ika: Automotive Engineering M.Sc.', url: 'https://www.ika.rwth-aachen.de/en/studies/study-programs/automotive-engineering-msc.html' },
       { label: 'ika FAQ', url: 'https://www.ika.rwth-aachen.de/en/studies/information/faq.html' },
       { label: 'RWTH master admission requirements', url: 'https://www.rwth-aachen.de/cms/root/studium/vor-dem-studium/zugangsvoraussetzungen/~ddxf/zugangsvoraussetzungen-fuer-den-master/?lidx=1' },
     ],

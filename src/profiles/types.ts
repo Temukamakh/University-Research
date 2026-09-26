@@ -11,6 +11,7 @@ export interface Course {
 
 export interface CreditCheck {
   program: string
+  note?: string
   items: { label: string; required: number; have: number }[]
 }
 

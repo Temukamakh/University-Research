@@ -132,6 +132,8 @@ export const creditChecks = [
   },
   {
     program: 'RWTH Automotive Engineering',
+    note:
+      'The 12 subject areas ika checks (course guidance email, September 2026). This is an estimate: RWTH reads your module descriptions and judges what you learned, not course titles. Gaps become extra courses in Aachen (up to 30 ECTS, which can add a semester). More than 30 ECTS of gaps means rejection.',
     items: [
       {
         label: 'Engineering, maths & natural sciences (excl. internships)',
@@ -139,6 +141,22 @@ export const creditChecks = [
         have: sum((c) => !['General education', 'Electives', 'Projects & practice'].includes(c.area)) +
           sum(byName('Course Project (Sophomore Project)', 'Course Project (Junior Project)', 'Course Project (Senior Project)')),
       },
+      { label: 'Mechanics', required: 18, have: sum(byName('Theoretical Mechanics I, II', 'Strength of Materials (theory) I, II', 'Strength of Materials (lab) I, II')) },
+      {
+        label: 'Machine design & CAD',
+        required: 13,
+        have: sum(byName('Machine Elements', 'Computer-Aided Design Methods', 'Engineering Graphics I', 'Engineering Graphics II')),
+      },
+      { label: 'Thermodynamics', required: 7, have: sum(byName('Thermodynamics')) },
+      { label: 'Heat and mass transfer', required: 6, have: sum(byName('Fundamentals of Heat Transfer')) },
+      { label: 'Materials science', required: 8, have: sum(byName('Materials Science')) },
+      { label: 'Control engineering', required: 6, have: sum(byName('Automatic Control Systems', 'Digital Control')) },
+      { label: 'Fluid mechanics (needs Hydraulics passed)', required: 6, have: sum(byName('Hydraulics', 'Hydraulic Machines')) },
+      { label: 'Mathematics', required: 17, have: sum(byName('Calculus I, II', 'Differential Equations', 'Algebra and Statistics')) },
+      { label: 'Automotive: longitudinal dynamics', required: 6, have: sum(byName('Automotive Theory')) },
+      { label: 'Automotive: vertical & lateral dynamics', required: 6, have: 0 },
+      { label: 'Automotive: mobile propulsion fundamentals', required: 4, have: 0 },
+      { label: 'Automotive: mechatronic systems', required: 6, have: sum(byName('Mechatronics')) },
     ],
   },
 ]

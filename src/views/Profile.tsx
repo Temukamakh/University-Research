@@ -112,6 +112,7 @@ export default function Profile() {
           {creditChecks.map((chk) => (
             <div key={chk.program} className="credit-check">
               <h4>{chk.program}</h4>
+              {chk.note && <p className="muted small">{chk.note}</p>}
               {chk.items.map((it) => {
                 const ok = it.have >= it.required
                 return (
