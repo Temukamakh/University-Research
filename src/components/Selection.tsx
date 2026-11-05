@@ -14,7 +14,7 @@ export const METHOD_META: Record<Selection['method'], { label: string; color: st
 }
 
 const GPA_ROLE: Record<Selection['gpaRole'], { label: string; level: number }> = {
-  low: { label: 'Low: not ranked by grade', level: 1 },
+  low: { label: 'Low: the grade decides little', level: 1 },
   medium: { label: 'Medium: one factor among several', level: 2 },
   high: { label: 'High: the grade decides a lot', level: 3 },
 }

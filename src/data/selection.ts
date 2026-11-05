@@ -26,6 +26,38 @@ export const selectionById: Record<string, Selection> = {
       { label: 'RWTH master admission requirements', url: 'https://www.rwth-aachen.de/cms/root/studium/vor-dem-studium/zugangsvoraussetzungen/~ddxf/zugangsvoraussetzungen-fuer-den-master/?lidx=1' },
     ],
   },
+  'rwth-battery': {
+    method: 'points',
+    summary: 'Limited places (NC). Applicants are ranked on a weighted score: 80% from an aptitude test and 20% from the bachelor\'s grade. Non-EU applicants without an EU/EEA bachelor\'s take the GRE instead of the test (dMAT), so for you the GRE stands in for the 80% part.',
+    gpaRole: 'low',
+    steps: [
+      'Formal check: bachelor\'s in engineering or natural sciences, English B2',
+      'GRE minimums V145 / Q160 / AW3.0',
+      'Ranking: 80% test (your GRE), 20% bachelor\'s grade',
+      'Not confirmed: how a GRE score is converted into the 80% part. Ask the program office',
+    ],
+    confirmed: false,
+    sources: [
+      { label: 'Program FAQ', url: 'https://www.batteryengineering.rwth-aachen.de/faq/' },
+      { label: 'Program on DAAD', url: 'https://www2.daad.de/deutschland/studienangebote/international-programmes/en/detail/10395/' },
+    ],
+  },
+  'rwth-simulation': {
+    method: 'holistic',
+    summary: 'A requirements check plus a subject-aptitude assessment by the German Research School for Simulation Sciences (RWTH and Forschungszentrum Jülich). They read your motivation letter, two recommendation letters, an optional GRE and award certificates. No grade ranking was found.',
+    gpaRole: 'medium',
+    steps: [
+      'Bachelor\'s in natural sciences, maths, computer science or engineering with ≥ 120 ECTS in those areas',
+      'Missing requirements: refused if they exceed 20 ECTS or include mathematics',
+      'Aptitude assessment: motivation letter (including prior simulation experience), two recommendation letters, GRE (optional), awards',
+      'English test',
+    ],
+    confirmed: false,
+    sources: [
+      { label: 'RWTH MSS: admission', url: 'https://www.mss.rwth-aachen.de/cms/mss/studium/studium/masterstudiengaenge/sisc-masterprogramm/~bfbhzg/bewerbung/?lidx=1' },
+      { label: 'Examination regulations (PDF)', url: 'https://www.rwth-aachen.de/global/show_document.asp?id=aaaaaaaackqbotf' },
+    ],
+  },
   'kit-mechanical': {
     method: 'open',
     summary: 'An access check, not a ranking: the admissions committee checks your minimum knowledge in Block 1 and Block 2. If you narrowly miss it, you can still get in by passing an entrance exam.',

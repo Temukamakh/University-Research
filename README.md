@@ -16,7 +16,7 @@ A personal web app for planning an English-taught **mechanical / automotive engi
 | Page | What it does |
 | --- | --- |
 | **Dashboard** | Live countdown to your next deadline, readiness score, IELTS/GRE tracker, your profile at a glance |
-| **Programs** | 12 researched programs with photos, filters (reach/target/safety, focus, budget, GRE, motorsport), sorting, shortlist ⭐ and status |
+| **Programs** | 14 researched programs (Temur) with photos, filters (reach/target/safety, focus, budget, GRE, motorsport), sorting, shortlist ⭐ and status |
 | **Program page** | Requirements checked against your degree, fit and difficulty, **road to motorsport** (Formula Student team and nearby race companies), full cost breakdown, application steps, document checklist, notes, official links |
 | **Timeline** | Month-by-month plan from October 2026 to your first lecture, with program deadlines merged in |
 | **Map** | Interactive OpenStreetMap map of every university |
@@ -33,6 +33,8 @@ The app also scores each one for motorsport links (Formula Student team, nearby 
 | University | Program | Tuition/sem (non-EU) | WS 2027/28 deadline* |
 | --- | --- | --- | --- |
 | RWTH Aachen | Automotive Engineering M.Sc. | Free | 1 Mar 2027 (GRE required) |
+| RWTH Aachen | Battery Science and Technology in Engineering M.Sc. | Free | 15 Jul 2027 (GRE required, 80% of the ranking) |
+| RWTH Aachen | Simulation Sciences M.Sc. (with Forschungszentrum Jülich) | Free | 1 Mar 2027 (GRE optional) |
 | KIT Karlsruhe | Mechanical Engineering M.Sc. (English track) | €1,500 | 15 Jul 2027 |
 | TU Munich | Mechanical Engineering M.Sc. | €6,000 ⚠️ over budget | 31 May 2027 |
 | Univ. of Stuttgart | FAME M.Sc. | €1,500 | 15 Jan 2027 |

@@ -114,7 +114,7 @@ export const storyTips = [
   },
   {
     title: 'Tailor it to each university',
-    text: 'RWTH: ika, Ecurie Aix, Jülich next door. Stuttgart: FKFS wind tunnels, Rennteam, Porsche Motorsport. KIT: KA-RaceIng, vehicle-technology specialisation. THI: Audi F1 power unit in Neuburg.',
+    text: 'RWTH: ika, Ecurie Aix, Jülich next door. For Simulation Sciences, lead with Jülich: it runs the program with RWTH. For Battery Science, frame motorsport as electric racing (Formula E, F1 hybrid systems, pack cooling and structure). Stuttgart: FKFS wind tunnels, Rennteam, Porsche Motorsport. KIT: KA-RaceIng, vehicle-technology specialisation. THI: Audi F1 power unit in Neuburg.',
   },
   {
     title: 'Plan Formula Student from day one',
@@ -140,7 +140,7 @@ export const recommenders: Recommender[] = [
     name: 'Prof. Dr. Ghaleb Natour',
     role: 'Director, Institute of Technology and Engineering (ITE), Forschungszentrum Jülich · Professor, Faculty of Mechanical Engineering, RWTH Aachen',
     why: 'Your strongest letter. He chose you personally out of about 100 students, and he is a professor in RWTH\'s own mechanical engineering faculty (ITE is listed as one of its institutes). His letter carries weight everywhere: at KIT, for the DAAD scholarship, and for a student job or thesis at RWTH and Jülich. At RWTH, letters are only an optional attachment and are not part of the admission check.',
-    timing: 'After or near the end of your February 2027 internship. Ask early in February so it is ready for RWTH (1 March). It is also in time for Siegen, TUM, THI and KIT, but too late for Stuttgart FAME, TUHH, UDE, RPTU (round 1) and probably COMMAS.',
+    timing: 'After or near the end of your February 2027 internship. Ask early in February so it is ready for RWTH (1 March). RWTH Simulation Sciences (also 1 March) requires two letters, so his is needed there too. It is also in time for Siegen, TUM, THI, KIT and RWTH Battery Science, but too late for Stuttgart FAME, TUHH, UDE, RPTU (round 1) and probably COMMAS.',
     defaultStatus: 'planned',
   },
   {
