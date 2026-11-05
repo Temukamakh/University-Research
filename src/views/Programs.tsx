@@ -38,7 +38,7 @@ export default function Programs() {
       if (onlyShortlist && !state.shortlist.includes(p.id)) return false
       if (withinBudget && p.costs.tuition > BUDGET_PER_SEMESTER) return false
       if (motorsportOnly && p.path.score < 4) return false
-      if (noGre && p.requirements.some((r) => r.label.startsWith('GRE') && !/not required/i.test(r.value))) return false
+      if (noGre && p.requirements.some((r) => r.label.startsWith('GRE') && !/not required|optional/i.test(r.value))) return false
       return true
     })
     const by: Record<Sort, (a: Program, b: Program) => number> = {

@@ -22,6 +22,8 @@ export const temur: ProfileConfig = {
     mechanical: { label: 'Mechanical', emoji: '⚙️' },
     mechatronics: { label: 'Mechatronics', emoji: '🤖' },
     production: { label: 'Production', emoji: '🏭' },
+    simulation: { label: 'Simulation', emoji: '💻' },
+    energy: { label: 'Batteries & energy', emoji: '🔋' },
   },
   path: {
     title: 'Road to motorsport',
@@ -54,7 +56,7 @@ export const temur: ProfileConfig = {
   ],
   dreamPicks: ['rwth-automotive', 'kit-mechanical'],
   dashboardNote:
-    'In Germany 1.0 is the best grade and 4.0 is the lowest pass. Your GPA converts to about 2.8–3.2 now and 2.2–2.4 at graduation. How much that matters depends on the program: RWTH and KIT check requirements rather than rank grades, while Siegen has a hard minimum of 3.0. Each program page shows how it selects.',
+    'In Germany 1.0 is the best grade and 4.0 is the lowest pass. Your GPA converts to about 2.8–3.2 now and 2.2–2.4 at graduation. How much that matters depends on the program: RWTH Automotive and KIT check requirements rather than rank grades, RWTH Battery Science ranks 80% on your GRE and only 20% on your grade, and Siegen has a hard minimum of 3.0. Each program page shows how it selects.',
   milestones,
   tests: [...tests],
   baseDocuments: [...baseDocuments],

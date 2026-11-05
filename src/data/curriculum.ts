@@ -159,6 +159,18 @@ export const creditChecks = [
       { label: 'Automotive: mechatronic systems', required: 6, have: sum(byName('Mechatronics')) },
     ],
   },
+  {
+    program: 'RWTH Simulation Sciences',
+    note:
+      'From the examination regulations: 120 ECTS in maths, natural sciences, engineering and computer science. Admission is refused if the missing requirements add up to more than 20 ECTS or include any mathematics. The gap to watch is programming (C, C++ or Fortran, and Linux): your degree has no programming course, so learn the basics and describe your Python work.',
+    items: [
+      {
+        label: 'Maths, natural sciences, engineering & computer science',
+        required: 120,
+        have: sum((c) => !['General education', 'Electives', 'Projects & practice'].includes(c.area)),
+      },
+    ],
+  },
 ]
 
 export const totalEcts = curriculum.reduce((a, c) => a + c.ects, 0)

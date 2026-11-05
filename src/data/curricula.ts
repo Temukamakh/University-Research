@@ -43,6 +43,26 @@ export const temurCurricula: Record<string, Curriculum> = {
     tracks: ['Vehicle dynamics', 'Energy efficiency', 'Acoustics', 'Mechatronics', 'Structural fatigue & durability'],
     source: { label: 'ika: Automotive Engineering M.Sc.', url: 'https://www.ika.rwth-aachen.de/en/studies/study-programs/automotive-engineering-msc.html' },
   },
+  'rwth-battery': {
+    summary: '120 ECTS over 4 semesters, about 30 ECTS each. Compulsory modules, a seminar and a compulsory research lab on battery testing, then electives and elective research labs, then the master thesis. The program deliberately has no fixed specialisations: you choose your own mix.',
+    detail: 'structure',
+    plan: [
+      { term: 'Semesters 1–2', ects: 60, items: ['Compulsory modules (battery fundamentals, electrochemistry, materials, battery systems)', 'Seminar', 'Research lab: battery testing'] },
+      { term: 'Semester 3', ects: 30, items: ['Elective modules', 'Elective research labs'] },
+      { term: 'Semester 4', ects: 30, items: ['Master thesis'] },
+    ],
+    source: { label: 'Program structure (RWTH)', url: 'https://www.batteryengineering.rwth-aachen.de/program-2/' },
+  },
+  'rwth-simulation': {
+    summary: '120 ECTS over 4 semesters. A first year of modelling, numerics, scientific programming and high-performance computing, then electives in an application field and the thesis, often at Forschungszentrum Jülich. The module names here come from a secondary source; check the module handbook.',
+    detail: 'structure',
+    plan: [
+      { term: 'Semester 1', ects: 30, items: ['Mathematical Modelling and Numerical Methods', 'Fundamentals of Computational Simulation', 'Programming for Scientific Computing', 'Introduction to High-Performance Computing'] },
+      { term: 'Semesters 2–3', ects: 60, items: ['Electives in an application field (e.g. fluid dynamics, structural mechanics, materials)', 'Seminar and lab work'] },
+      { term: 'Semester 4', ects: 30, items: ['Master thesis'] },
+    ],
+    source: { label: 'Simulation programs at RWTH', url: 'https://acom.rwth-aachen.de/academics/computational-engineering-science/simulation-oriented-study-programs' },
+  },
   'kit-mechanical': {
     summary: '120 ECTS over 4 semesters, with no fixed schedule. You build your own plan from a specialisation, mechanical engineering electives and interdisciplinary electives, then write a 6-month master thesis (30 ECTS, can start after 74 ECTS).',
     detail: 'structure',
