@@ -4,7 +4,8 @@ import { useProfile } from '../lib/profile'
 import { toGermanGrade } from '../data/curriculum'
 import { scholarshipHandled, statusOf, useStore } from '../lib/store'
 import { FIT_META, scholarships } from '../data/scholarships'
-import { daysUntil, docsFor, fmtDate, useNow, fmtGpa } from '../lib/util'
+import { daysUntil, DOC_SOURCES, docSource, docsFor, fmtDate, useNow, fmtGpa } from '../lib/util'
+import type { DocSource } from '../lib/util'
 import { AnimatedNumber, DeadlineChip, ProgressRing, riseIn, Section, stagger, TierBadge } from '../components/ui'
 import { navigate } from '../App'
 
@@ -37,9 +38,21 @@ export default function Dashboard() {
       const list = docsFor(p, profile.baseDocuments)
       acc.total += list.length
       acc.done += list.filter((d) => state.docs[p.id]?.[d]).length
+      for (const d of list) {
+        const g = acc.bySource[docSource(d)]
+        g.total += 1
+        if (state.docs[p.id]?.[d]) g.done += 1
+      }
       return acc
     },
-    { done: 0, total: 0 },
+    {
+      done: 0,
+      total: 0,
+      bySource: { me: { done: 0, total: 0 }, university: { done: 0, total: 0 }, others: { done: 0, total: 0 } } as Record<
+        DocSource,
+        { done: number; total: number }
+      >,
+    },
   )
   const msDone = milestones.filter((m) => state.milestonesDone[m.id]).length
   const testsDone = tests.filter((t) => state.tests[t.id]?.done).length
@@ -186,12 +199,16 @@ export default function Dashboard() {
                     {testsDone}/{tests.length}
                   </b>
                 </li>
-                <li>
-                  <span>Documents</span>
-                  <b>
-                    {docTotals.done}/{docTotals.total}
-                  </b>
-                </li>
+                {(Object.keys(DOC_SOURCES) as DocSource[]).map((src) => (
+                  <li key={src}>
+                    <span>
+                      {DOC_SOURCES[src].emoji} {DOC_SOURCES[src].short}
+                    </span>
+                    <b>
+                      {docTotals.bySource[src].done}/{docTotals.bySource[src].total}
+                    </b>
+                  </li>
+                ))}
                 <li>
                   <span>Applications</span>
                   <b>

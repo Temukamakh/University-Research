@@ -316,6 +316,10 @@ input[type='range'] { accent-color: var(--accent); width: 100%; }
 .steps li::marker { color: var(--accent); font-weight: 700; }
 .doc-progress { height: 6px; border-radius: 6px; background: var(--track); overflow: hidden; margin-bottom: 12px; }
 .doc-progress span { display: block; height: 100%; background: linear-gradient(90deg, var(--ok), var(--accent-2)); border-radius: 6px; }
+.doc-group + .doc-group { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+.doc-group-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.doc-group-head h4 { margin: 0; font-size: 0.95rem; }
+.doc-group > p { margin: 2px 0 6px; }
 .checklist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
 .checklist label { display: flex; align-items: center; gap: 10px; padding: 7px 8px; border-radius: 10px; cursor: pointer; font-size: 0.9rem; transition: background 0.2s; }
 .checklist label:hover { background: var(--surface-2); }

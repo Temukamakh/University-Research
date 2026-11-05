@@ -24,7 +24,7 @@ import { CurriculumSection } from '../components/Curriculum'
 import { SelectionSection } from '../components/Selection'
 import type { ReqStatus } from '../data/types'
 import { useStore } from '../lib/store'
-import { fromKonstanz, degreeCost, docsFor, eur, fmtDate, tierMeta, useNow } from '../lib/util'
+import { fromKonstanz, degreeCost, DOC_SOURCES, docsFor, eur, fmtDate, groupDocs, tierMeta, useNow } from '../lib/util'
 import { AnimatedNumber, DeadlineChip, DifficultyMeter, Gallery, MotorsportMeter, ProgressRing, riseIn, Section, stagger, StarButton, StatusSelect, TierBadge } from '../components/ui'
 import { navigate } from '../App'
 
@@ -262,22 +262,39 @@ export default function ProgramDetail({ id }: { id: string }) {
             <div className="doc-progress">
               <motion.span animate={{ width: `${(done / docs.length) * 100}%` }} />
             </div>
-            <ul className="checklist">
-              {docs.map((d) => {
-                const on = !!state.docs[p.id]?.[d]
-                return (
-                  <li key={d}>
-                    <label className={on ? 'on' : ''}>
-                      <input type="checkbox" checked={on} onChange={() => toggleDoc(p.id, d)} />
-                      <motion.span className="box" animate={{ scale: on ? [1, 1.25, 1] : 1 }}>
-                        {on && <CheckCircle2 size={16} />}
-                      </motion.span>
-                      {d}
-                    </label>
-                  </li>
-                )
-              })}
-            </ul>
+            {groupDocs(docs).map((g) => {
+              const meta = DOC_SOURCES[g.source]
+              const groupDone = g.docs.filter((d) => state.docs[p.id]?.[d]).length
+              return (
+                <div key={g.source} className="doc-group">
+                  <div className="doc-group-head">
+                    <h4>
+                      {meta.emoji} {meta.label}
+                    </h4>
+                    <span className="muted small">
+                      {groupDone}/{g.docs.length}
+                    </span>
+                  </div>
+                  <p className="muted small">{meta.hint}</p>
+                  <ul className="checklist">
+                    {g.docs.map((d) => {
+                      const on = !!state.docs[p.id]?.[d]
+                      return (
+                        <li key={d}>
+                          <label className={on ? 'on' : ''}>
+                            <input type="checkbox" checked={on} onChange={() => toggleDoc(p.id, d)} />
+                            <motion.span className="box" animate={{ scale: on ? [1, 1.25, 1] : 1 }}>
+                              {on && <CheckCircle2 size={16} />}
+                            </motion.span>
+                            {d}
+                          </label>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
+              )
+            })}
           </Section>
         </motion.div>
 

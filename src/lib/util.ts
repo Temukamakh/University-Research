@@ -34,6 +34,51 @@ export function docsFor(p: Program, baseDocuments: string[]): string[] {
   return [...baseDocuments, ...p.extraDocs]
 }
 
+/** Who has to produce a document: you, your university, or someone else. */
+export type DocSource = 'me' | 'university' | 'others'
+
+export const DOC_SOURCES: Record<DocSource, { label: string; short: string; emoji: string; hint: string }> = {
+  me: {
+    label: 'You prepare',
+    short: 'Docs by you',
+    emoji: '✍️',
+    hint: 'Written or gathered by you: start these yourself, nobody else will.',
+  },
+  university: {
+    label: 'From your university',
+    short: 'Docs from university',
+    emoji: '🏛️',
+    hint: 'Ask the registrar or dean\'s office. Request them early: official copies can take weeks.',
+  },
+  others: {
+    label: 'From other people and offices',
+    short: 'Docs from others',
+    emoji: '📨',
+    hint: 'Referees, test centres, employers, translators and notaries. Ask early and follow up.',
+  },
+}
+
+const OTHERS =
+  /recommendation|ielts|toefl|\bgre\b|score report|goethe|telc|german .*certificate|internship certificate|certified|translation|atestati/i
+const UNIVERSITY =
+  /transcript|module|handbook|course descriptions|curriculum|graduation letter|rank(ing)? certificate|class-rank|description of subjects|diploma/i
+
+/**
+ * Sorts a document by who produces it. Matching on the text keeps the saved
+ * checklist (keyed by the document name) working unchanged.
+ */
+export function docSource(doc: string): DocSource {
+  if (OTHERS.test(doc)) return 'others'
+  if (UNIVERSITY.test(doc)) return 'university'
+  return 'me'
+}
+
+export function groupDocs(docs: string[]): { source: DocSource; docs: string[] }[] {
+  return (Object.keys(DOC_SOURCES) as DocSource[])
+    .map((source) => ({ source, docs: docs.filter((d) => docSource(d) === source) }))
+    .filter((g) => g.docs.length > 0)
+}
+
 /** Total cost of the whole degree: tuition + semester fees + living costs. */
 export function degreeCost(p: Program, livingOverride?: number) {
   const months = p.semesters * 6
