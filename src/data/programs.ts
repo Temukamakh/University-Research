@@ -279,7 +279,12 @@ export const programs: Program[] = [
       'Stuttgart is home to Mercedes-Benz, Porsche and Bosch',
       'Best place on this list for aerodynamics and CFD (FKFS wind tunnels), which is your secondary interest',
     ],
-    gaps: ['Limited places (NC) with a grade ranking. Stand out through the interview and your motivation letter', 'English must be C1 (plan for IELTS 7.0)', 'Tuition is €1,500 per semester (Baden-Württemberg)'],
+    gaps: [
+      '50 places per semester. Applicants with fewer than 80 of 120 points are rejected, and the real cut-off is set after all applications are scored (FAME office, Sept 2026)',
+      'Only modules already on your transcript count. Courses you finish after the 15 January deadline are ignored',
+      'English must be C1: IELTS 7.0 overall, with no minimum per band',
+      'Tuition is €1,500 per semester (Baden-Württemberg)',
+    ],
     path: {
       score: 5,
       team: 'Rennteam Uni Stuttgart + GreenTeam (electric/driverless)',
@@ -301,7 +306,7 @@ export const programs: Program[] = [
     requirements: [
       { label: 'Degree', value: 'Bachelor (≥ 6 semesters) in mechanical engineering or closely related', status: 'ok' },
       { label: 'English', value: 'C1: IELTS 7.0 or TOEFL iBT 95', status: 'todo' },
-      { label: 'Selection', value: 'Restricted admission (NC); interviews in some cases', status: 'warn' },
+      { label: 'Selection', value: '50 places; points out of 120, under 80 rejected; interviews only if the committee decides (none in SS 2027, online if held)', status: 'warn' },
       { label: 'GRE', value: 'Not required', status: 'ok' },
     ],
     extraDocs: ['Be ready for a possible online interview'],
@@ -547,12 +552,12 @@ export const programs: Program[] = [
     intake: 'Winter & summer',
     difficulty: 3,
     difficultyNote:
-      'Not a safety after all: UDE requires an overall grade of 2.5 or better on the German scale for applicants from other universities. Your GPA of 2.17 now converts to about 2.8–3.2, which misses it. Your expected 2.83 converts to about 2.2–2.4, which would pass, but the application (15 June) comes before your final grades. Add the German B2 requirement, and this is a reach.',
+      'The ISE examination board confirmed by email (September 2026) that there is no minimum grade for any ISE master\'s, so your GPA is not the problem. Two other things are: you can only apply once you have finished your bachelor\'s, and you need German B2 before you can start (until then you are admitted as a language-course student). With A2 German that makes it a reach. If you graduate before the deadline you could apply for WS 2027/28; otherwise the realistic start is a later semester.',
     fit: 85,
     fitNotes: ['Your industry internship strengthens a general mechanical engineering application', 'A general mechanical engineering degree that directly continues your bachelor\'s', 'Tuition-free, and the Ruhr area is affordable'],
     gaps: [
-      'UDE says its ISE master\'s programs are taught about 50% in German and asks for German B2 at enrolment. With A2 this is a serious problem: confirm with the ISE office (pa-ise@uni-due.de) before applying',
-      'ISE applications go through the UDE portal. Non-restricted programs close on 31 July, restricted ones on 15 June, so plan for 15 June',
+      'German B2 is required before you can start the program (confirmed by the ISE office). With A2 this is the main obstacle. For language courses, ask international@uni-due.de',
+      'You cannot apply before you have your bachelor\'s degree (confirmed by the ISE office). Check the deadline in the UDE portal; it will be 15 June or 31 July',
     ],
     path: {
       score: 2,
@@ -572,9 +577,10 @@ export const programs: Program[] = [
       viaUniAssist: false,
     },
     requirements: [
-      { label: 'Degree', value: 'Bachelor in mechanical engineering or related', status: 'ok' },
-      { label: 'English', value: 'B2 or higher (check the exact score in the exam regulations)', status: 'todo' },
-      { label: 'German', value: 'B2 (ISE programs are ~50% German). The certificate can follow after the application', status: 'warn', note: 'You have A2. Confirm with the ISE office' },
+      { label: 'Admission', value: 'No minimum grade for any ISE master\'s', status: 'ok', note: 'Confirmed by the ISE examination board, Sept 2026' },
+      { label: 'Degree', value: 'Bachelor in mechanical engineering or related, completed before you apply', status: 'warn', note: 'Applying before graduation is not possible' },
+      { label: 'English', value: 'B2, required at application', status: 'todo' },
+      { label: 'German', value: 'B2 before you can start (ISE programs are ~50% German). Without it you are first admitted as a language-course student', status: 'warn', note: 'You have A2' },
       { label: 'Credits', value: 'First degree of at least 210 ECTS', status: 'ok', note: 'You will have 240' },
       { label: 'GRE', value: 'Not required', status: 'ok' },
     ],
@@ -776,10 +782,15 @@ export const programs: Program[] = [
     intake: 'Winter only',
     difficulty: 2,
     difficultyNote:
-      'No grade ranking was found: admission checks subject knowledge (18 ECTS of special maths incl. Fourier transforms, regression and statistics; 12 ECTS of CAD, simulation and data acquisition; 8 ECTS of measurement and control). Check that your maths courses cover Fourier transforms. Chemnitz is the cheapest city on this list. Still your safest option.',
+      'The program advisor confirmed by email (September 2026) that applicants who meet all subject requirements get priority, and that admission is still possible if you miss some: a detailed CV, proof of work experience or a motivational video can help. The requirements are 18 ECTS of special maths (incl. Fourier transforms, regression, statistics), 12 ECTS of CAD, simulation and data acquisition, and 8 ECTS of measurement and control. You can apply with your 7th-semester transcript. Chemnitz is the cheapest city on this list. Still your safest option.',
     fit: 82,
     fitNotes: ['Much better fit now: 6 months of CNC milling, laser cutting, 3D printing and scanning across several metals is real manufacturing experience', 'Your Manufacturing Processes, CAD methods and Measurement courses match', 'Saxony has a lot of automotive manufacturing (e.g. Volkswagen)'],
-    gaps: ['Focused on production and manufacturing rather than vehicle design', 'TU Chemnitz requires a German A1 certificate (Goethe, telc or ÖSD) with the application, even for English programs'],
+    gaps: [
+      'Focused on production and manufacturing rather than vehicle design',
+      'German A1 is mandatory for enrolment, even though the program is in English. Get a Goethe, telc or ÖSD certificate',
+      'Eligibility is checked only in the official application, not in advance. Make sure your module descriptions show Fourier transforms and regression',
+      'Your Nasolutions work experience and a motivational video can strengthen the application',
+    ],
     path: {
       score: 1,
       team: 'Check the current FSG team list',
@@ -794,16 +805,17 @@ export const programs: Program[] = [
       portalUrl: 'https://eduapplication.de/',
       opens: '1 April',
       deadline: '2027-07-15',
-      deadlineNote: 'Window: 1 April – 15 July (winter intake only).',
+      deadlineNote: 'The EduApplication portal opens in April 2027 for WS 2027/28 (winter intake only). Plan for 15 July as the deadline and check it once the portal opens.',
       viaUniAssist: false,
     },
     requirements: [
       { label: 'Degree', value: 'Bachelor in mechanical/production engineering or related', status: 'ok' },
       { label: 'English', value: 'English proof required (IELTS, TOEFL or PTE; check the level on EduApplication)', status: 'todo' },
-      { label: 'German', value: 'A1 certificate at application (Goethe, telc or ÖSD only), A2 by the end of the 3rd semester', status: 'todo', note: 'You have A2, but you need the certificate' },
+      { label: 'Selection', value: 'Priority to applicants who meet all requirements; others can still be admitted', status: 'ok', note: 'Confirmed by the program advisor, Sept 2026' },
+      { label: 'German', value: 'A1 mandatory for enrolment (Goethe, telc or ÖSD), A2 by the end of the 3rd semester', status: 'todo', note: 'You have A2, but you need the certificate' },
       { label: 'GRE', value: 'Not required', status: 'ok' },
     ],
-    extraDocs: ['EduApplication fee payment', 'German A1+ certificate (Goethe, telc or ÖSD)'],
+    extraDocs: ['EduApplication fee payment', '7th-semester transcript (the degree certificate can follow)', 'Detailed CV and proof of work experience', 'Optional: motivational video', 'German A1 certificate (Goethe, telc or ÖSD) for enrolment'],
     highlights: ['Research-driven, interdisciplinary program', 'Lowest living costs on this list', 'Tuition-free (Saxony)'],
     photos: [
       { file: 'TU Chemnitz.JPG', caption: 'TU Chemnitz' },

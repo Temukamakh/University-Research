@@ -54,7 +54,7 @@ export const temur: ProfileConfig = {
   ],
   dreamPicks: ['rwth-automotive', 'kit-mechanical'],
   dashboardNote:
-    'In Germany 1.0 is the best grade and 4.0 is the lowest pass. Your GPA converts to about 2.8–3.2 now and 2.2–2.4 at graduation. How much that matters depends on the program: RWTH and KIT check requirements rather than rank grades, while Siegen (3.0) and UDE (2.5) have hard minimums. Each program page shows how it selects.',
+    'In Germany 1.0 is the best grade and 4.0 is the lowest pass. Your GPA converts to about 2.8–3.2 now and 2.2–2.4 at graduation. How much that matters depends on the program: RWTH and KIT check requirements rather than rank grades, while Siegen has a hard minimum of 3.0. Each program page shows how it selects.',
   milestones,
   tests: [...tests],
   baseDocuments: [...baseDocuments],
@@ -66,7 +66,7 @@ export const temur: ProfileConfig = {
     {
       id: 'daad-master',
       fit: 'stretch',
-      note: "You are eligible: final year now, graduating summer 2027. The weak spot is the GPA (2.17 now), because DAAD ranks mainly on grades. So the recommendation letter has to carry the application: ask Prof. Natour, since Jülich and RWTH carry weight with DAAD. Back it up with 6 months at Nasolutions, the CSWP and your competition results. Your IELTS is planned for 21 November, after the deadline, so book an earlier date or ask DAAD Tbilisi whether the certificate can follow.",
+      note: "The deadline for Georgia was 2 November 2026 (confirmed by DAAD Tbilisi). If you applied, the result comes in April 2027. If not, this round is closed: the next one opens in June 2027 and is for a 2028 start. DAAD has no minimum GPA but very strong competition, so the recommendation letter, Jülich, Nasolutions, the CSWP and your competition results have to carry the application.",
     },
     {
       id: 'deutschlandstipendium',

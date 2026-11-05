@@ -59,11 +59,13 @@ export const selectionById: Record<string, Selection> = {
     summary: 'Limited places (NC) with a two-stage procedure, new from WS 2026/27. Stage 1 scores up to 120 points: up to 100 for subject-specific competences, the rest for previous academic performance. Some applicants are then invited to a selection interview.',
     gpaRole: 'medium',
     steps: [
-      'Stage 1: subject-specific competences (up to 100 points) + previous academic performance',
-      'Stage 2: selection interview in some cases (July–August)',
-      'English C1 (IELTS 7.0 / TOEFL 95)',
+      'Stage 1: subject-specific competences (up to 100 points) + previous academic performance, with your GPA converted using the scale\'s best and lowest passing grades',
+      'Fewer than 80 points means rejection; the actual cut-off is set after all applications are scored',
+      'Only modules on your transcript at application count',
+      'Stage 2: an interview only if the committee decides (none were held for SS 2027; online if held)',
+      '50 places per semester. English C1 (IELTS 7.0 overall, no band minimum)',
     ],
-    confirmed: false,
+    confirmed: true,
     sources: [
       { label: 'Stuttgart: FAME program page', url: 'https://www.uni-stuttgart.de/en/study/study-programs/Fundamentals-and-Applications-of-Mechanical-Engineering-FAME-M.Sc./' },
       { label: 'Stuttgart: master admission regulations', url: 'https://www.uni-stuttgart.de/en/study/application/master/admission/' },
@@ -95,11 +97,10 @@ export const selectionById: Record<string, Selection> = {
   },
   'ude-mechanical': {
     method: 'open',
-    summary: 'A requirements check with a hard minimum grade: an engineering bachelor\'s with an overall grade of 2.5 or better on the German scale (3.0 applies only to UDE\'s own ISE graduates).',
-    gpaRole: 'high',
-    minGrade: 2.5,
-    steps: ['Overall grade 2.5 or better (German scale)', 'First degree of at least 210 ECTS', 'English and German B2'],
-    confirmed: false,
+    summary: 'A requirements check with no minimum grade: the ISE examination board confirmed by email (September 2026) that no ISE master\'s has one. You can only apply after finishing your bachelor\'s.',
+    gpaRole: 'low',
+    steps: ['Completed bachelor\'s (no applying before graduation)', 'First degree of at least 210 ECTS', 'English B2 at application', 'German B2 before the program starts'],
+    confirmed: true,
     sources: [{ label: 'UDE: M.Sc. Mechanical Engineering', url: 'https://www.uni-due.de/iw/en/study/m-me.php' }],
   },
   'thi-iae': {
@@ -129,15 +130,16 @@ export const selectionById: Record<string, Selection> = {
   },
   'chemnitz-am': {
     method: 'open',
-    summary: 'No ranking by grade was found. The check is on subject knowledge in three areas.',
+    summary: 'Applicants who meet all the subject requirements get priority; admission is still possible if you miss some, and a detailed CV, work experience or a motivational video can help. Confirmed by the program advisor by email (September 2026).',
     gpaRole: 'low',
     steps: [
       'At least 18 ECTS of special maths methods, including Fourier transforms, regression, probability and statistics',
       'At least 12 ECTS of engineering data processing (CAD, numerical simulation, data acquisition)',
       'At least 8 ECTS of metrology and control (sensors, actuators, digital production)',
-      'German A1 certificate with the application',
+      'Eligibility is checked only in the official application; the 7th-semester transcript is enough',
+      'German A1 certificate for enrolment',
     ],
-    confirmed: false,
+    confirmed: true,
     sources: [{ label: 'TU Chemnitz: Advanced Manufacturing flyer', url: 'https://www.tu-chemnitz.de/studierendenservice/zsb/studiengaenge/flyer/advanced_manufacturing_master_eng.pdf' }],
   },
 
