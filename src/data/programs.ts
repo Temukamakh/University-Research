@@ -132,7 +132,7 @@ export const programs: Program[] = [
       'Your General Chemistry (7 ECTS), Physics (15), Electric Circuits and Electromechanics courses are the base the program builds on',
       'Pack design is mechanical work: cooling, crash structure and thermal runaway. Your Jülich FEA and thermal-analysis internship fits that directly',
       'The same GRE score report as RWTH Automotive (same minimums, same institution code), so the test fee buys two applications',
-      'The deadline is 15 July, four and a half months after RWTH Automotive. If your first GRE goes badly, there is time to retake it',
+      'The deadline is 15 July, four and a half months after RWTH Automotive. Your GRE on 14 January is well before it',
     ],
     gaps: [
       'A shift away from vehicle dynamics and chassis towards electrochemistry, cell materials and battery systems. Be sure that is a direction you want before you apply',
@@ -165,7 +165,7 @@ export const programs: Program[] = [
       { label: 'Admission', value: 'Limited places: 80% aptitude test, 20% bachelor\'s grade', status: 'ok', note: 'For non-EU applicants the GRE replaces the test' },
       { label: 'Degree', value: 'Bachelor in natural or engineering sciences (e.g. mechanical or electrical engineering, chemistry, physics, materials science)', status: 'ok' },
       { label: 'GRE General', value: 'V ≥ 145 · Q ≥ 160 · AW ≥ 3.0', status: 'todo', note: 'Same minimums as RWTH Automotive. Here a higher score is likely to rank you higher; confirm with the program office' },
-      { label: 'English', value: 'B2 (whole program in English)', status: 'todo', note: 'Your planned IELTS 7.0 covers it' },
+      { label: 'English', value: 'B2 (whole program in English)', status: 'todo', note: 'Your TOEFL target of 95 covers it' },
       { label: 'German', value: 'Not required', status: 'ok' },
     ],
     extraDocs: [
@@ -455,7 +455,7 @@ export const programs: Program[] = [
     gaps: [
       '50 places per semester. Applicants with fewer than 80 of 120 points are rejected, and the real cut-off is set after all applications are scored (FAME office, Sept 2026)',
       'Only modules already on your transcript count. Courses you finish after the 15 January deadline are ignored',
-      'English must be C1: IELTS 7.0 overall, with no minimum per band',
+      'English must be C1: IELTS 7.0 overall or TOEFL iBT 95, with no minimum per band or section',
       'Tuition is €1,500 per semester (Baden-Württemberg)',
     ],
     path: {
@@ -873,7 +873,7 @@ export const programs: Program[] = [
       { label: 'Grades', value: 'Top 35% of your class (grades A/B)', status: 'warn', note: 'Probably not met with your GPA. Ask your faculty for your class rank' },
       { label: 'German', value: 'A2 by the end of the 2nd semester', status: 'ok', note: 'You have A2. Get a certificate' },
       { label: 'Letters', value: 'Two recommendations', status: 'todo' },
-      { label: 'English', value: 'English certificate (IELTS). Your bachelor\'s is taught in Georgian, so you need it', status: 'todo' },
+      { label: 'English', value: 'IELTS or TOEFL iBT (TOEFL ITP not accepted), about IELTS 6.0. Your bachelor\'s is taught in Georgian, so you need it', status: 'todo' },
       { label: 'GRE', value: 'Not required', status: 'ok' },
     ],
     extraDocs: ['Ranking certificate (proof you are in the top 35%) from your university'],

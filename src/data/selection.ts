@@ -95,7 +95,7 @@ export const selectionById: Record<string, Selection> = {
       'Fewer than 80 points means rejection; the actual cut-off is set after all applications are scored',
       'Only modules on your transcript at application count',
       'Stage 2: an interview only if the committee decides (none were held for SS 2027; online if held)',
-      '50 places per semester. English C1 (IELTS 7.0 overall, no band minimum)',
+      '50 places per semester. English C1 (IELTS 7.0 overall or TOEFL iBT 95, no band minimum)',
     ],
     confirmed: true,
     sources: [
@@ -115,7 +115,7 @@ export const selectionById: Record<string, Selection> = {
     method: 'ranked',
     summary: 'Before you can apply, TUHH\'s online pre-check tests your GPA against its "very strict" requirements. The grade needed depends on the number of applicants, and "very good" performance is expected.',
     gpaRole: 'high',
-    steps: ['Online pre-check of your GPA (from 1 December)', 'Only one international master\'s application per person at TUHH', 'IELTS 6.5'],
+    steps: ['Online pre-check of your GPA (from 1 December)', 'Only one international master\'s application per person at TUHH', 'IELTS 6.5 or TOEFL iBT 90'],
     confirmed: true,
     sources: [{ label: 'TUHH: Mechatronics', url: 'https://www.tuhh.de/tuhh/en/studying/before-studying/degree-courses/international-study-programs/mechatronics' }],
   },

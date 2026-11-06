@@ -88,7 +88,7 @@ export const cv: CvSection[] = [
       { title: 'Manufacturing', detail: '3-axis CNC milling, CNC routing, laser cutting, 3D printing, 3D scanning. Aluminium, stainless and carbon steel, titanium' },
       { title: 'Embedded', detail: 'ESP32, IMU sensors, serial communication, PWM control' },
       { title: 'Simulation & programming', detail: 'Python (6-DOF dynamics simulation)' },
-      { title: 'Languages', detail: 'Georgian (native; language of your bachelor\'s), English (IELTS planned), German (A2)' },
+      { title: 'Languages', detail: 'Georgian (native; language of your bachelor\'s), English (TOEFL iBT on 20 December 2026), German (A2)' },
       { title: 'Interests', detail: 'CFD, FEA, robotics, mechatronics, vehicle dynamics' },
     ],
   },
